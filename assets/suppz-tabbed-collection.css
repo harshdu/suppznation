@@ -1,4 +1,4 @@
-.sn-tabs{display:block;color:#3b4658;padding:var(--sn-tabs-top,28px) 0 var(--sn-tabs-bottom,28px);--sn-tabs-accent:#ed142b}
+.sn-tabs{display:block;color:#3b4658;padding:var(--sn-tabs-top,28px) 0 var(--sn-tabs-bottom,28px);--sn-tabs-accent:#ed142b;max-width: 1430px;margin: 0 auto;}
 .sn-tabs__heading{max-width:1180px;box-sizing:border-box;padding:0 36px;margin:0 0 16px;color:#050505;text-align:left;font:400 30px/1.1 Impact,'Arial Narrow',Arial,sans-serif;text-transform:uppercase;overflow-wrap:anywhere}
 .sn-tabs__toolbar{display:flex;align-items:center;justify-content:space-between;gap:20px;max-width:100%;box-sizing:border-box;padding:0 36px;margin-bottom:15px}
 .sn-tabs__tablist{display:flex;gap:8px;overflow:auto;scrollbar-width:none;min-width:0;padding:3px 2px 5px}
