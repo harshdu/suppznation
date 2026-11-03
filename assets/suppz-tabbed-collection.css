@@ -18,5 +18,17 @@
 .sn-tabs .sn-deals__arrow{top:calc((clamp(190px,14vw,235px)/.715)/2)}
 .sn-tabs__tab:focus-visible,.sn-tabs__view-all:focus-visible{outline:2px solid #202b3a;outline-offset:2px}
 .sn-tabs__tablist:focus-within{scroll-behavior:smooth}
+.sn-tabs__media{position:relative;isolation:isolate;border-radius:13px;overflow:hidden}
+.sn-tabs__actions{position:absolute;bottom:0;left:0;right:0;z-index:2;padding:10px;background:linear-gradient(transparent,#fff 30%);transform:translateY(105%);opacity:0;visibility:hidden;transition:transform .22s ease,opacity .22s ease,visibility .22s}
+.sn-tabs__media:hover .sn-tabs__actions,.sn-tabs__media:focus-within .sn-tabs__actions{transform:translateY(0);opacity:1;visibility:visible}
+.sn-tabs__actions modal-opener,.sn-tabs__actions product-form{display:block}
+.sn-tabs__form{margin:0}
+.sn-tabs__add{position:relative;display:flex;justify-content:center;align-items:center;min-height:42px;width:100%;padding:10px 7px;border:0;border-radius:8px;background:var(--sn-tabs-accent);color:#fff;font:700 14px/1.25 Arial,sans-serif;cursor:pointer;text-align:center}
+.sn-tabs__add:disabled{background:#e5e7eb;color:#6c7480;cursor:not-allowed}
+.sn-tabs__add:focus-visible{outline:2px solid #222;outline-offset:2px}
+.sn-tabs__add.loading>span:not(.loading__spinner){visibility:hidden}
+.sn-tabs__add .loading__spinner{position:absolute;width:20px;height:20px;left:calc(50% - 10px);top:calc(50% - 10px)}
+.sn-tabs__cart-error{padding:8px;background:#fff1f2;color:#a5162c;font:400 12px/1.35 Arial,sans-serif;border-radius:5px;margin-top:5px}
+@media(hover:none),(pointer:coarse){.sn-tabs__actions{transform:none;opacity:1;visibility:visible}.sn-tabs__image-link{padding-bottom:58px}}
 @media(max-width:749px){.sn-tabs__heading{font-size:25px;padding:0 15px;margin-bottom:14px}.sn-tabs__toolbar{padding:0 15px;gap:12px;flex-wrap:wrap}.sn-tabs__tablist{flex:1 1 100%;order:2}.sn-tabs__view-all{margin-left:auto}.sn-tabs__tab{font-size:14px;padding:7px 9px;min-height:34px}.sn-tabs .sn-tabs__products{--sn-deal-gutter:15px}.sn-tabs .sn-tabs__product{width:44vw;max-width:220px;min-width:135px}.sn-tabs__image-link{padding:9px}.sn-tabs__product-title{font-size:12px;margin-top:12px}.sn-tabs__price{font-size:13px}.sn-tabs .sn-deals__arrow{top:calc((min(44vw,220px)/.715)/2)}}
 @media(prefers-reduced-motion:reduce){.sn-tabs__tablist:focus-within{scroll-behavior:auto}}

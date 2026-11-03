@@ -1,5 +1,8 @@
 {{ 'suppz-featured-deals.css' | asset_url | stylesheet_tag }}
 {{ 'suppz-tabbed-collection.css' | asset_url | stylesheet_tag }}
+{{ 'quick-add.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'product-form.js' | asset_url }}" defer></script>
+<script src="{{ 'quick-add.js' | asset_url }}" defer></script>
 <script src="{{ 'suppz-featured-deals.js' | asset_url }}" defer></script>
 <script src="{{ 'suppz-tabbed-collection.js' | asset_url }}" defer></script>
 <suppz-collection-tabs class="sn-tabs" style="--sn-tabs-accent:{{ section.settings.accent }};--sn-tabs-top:{{ section.settings.padding_top }}px;--sn-tabs-bottom:{{ section.settings.padding_bottom }}px;">
@@ -22,7 +25,7 @@
           <div class="sn-deals__track" id="SNProducts-{{ section.id }}-{{ block.id }}" tabindex="0" role="region" aria-label="Products. Swipe, drag or use arrow keys to browse.">
             <ul class="sn-deals__list" role="list">
               {% for product in block.settings.collection.products limit: section.settings.products_to_show %}
-                {% render 'suppz-tabbed-product', product: product, section: section %}
+                {% render 'suppz-tabbed-product', product: product, section: section, tab_id: block.id %}
               {% else %}
                 {% if block.settings.collection == blank %}
                   {% for i in (1..6) %}{% render 'suppz-tabbed-product', section: section %}{% endfor %}

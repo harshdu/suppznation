@@ -1,10 +1,53 @@
 <li class="sn-deals__card sn-tabs__product">
   {% if product != blank %}
+    {% liquid
+      assign card_id = section.id | append: '-' | append: tab_id | append: '-' | append: product.id
+      assign variant = product.selected_or_first_available_variant
+      assign needs_options = false
+      if product.variants_count > 1 or product.variants.size > 1 or variant.quantity_rule.min > 1 or variant.quantity_rule.increment > 1
+        assign needs_options = true
+      endif
+    %}
+    <div class="sn-tabs__media">
     <a class="sn-tabs__image-link" href="{{ product.url }}" aria-label="{{ product.title | escape }}" draggable="false">
       {% if product.featured_image != blank %}
         {{ product.featured_image | image_url: width: 700 | image_tag: widths: '180, 300, 450, 700', sizes: '(max-width: 749px) 44vw, 220px', loading: 'lazy', alt: product.featured_image.alt, class: 'sn-tabs__image' }}
       {% else %}{{ 'product-1' | placeholder_svg_tag: 'sn-tabs__placeholder' }}{% endif %}
     </a>
+    <div class="sn-tabs__actions">
+      {% if product.available == false %}
+        <button type="button" class="sn-tabs__add" disabled>{{ 'products.product.sold_out' | t }}</button>
+      {% elsif needs_options %}
+        <modal-opener data-modal="#QuickAdd-{{ card_id }}">
+          <button type="button" class="sn-tabs__add" data-product-url="{{ product.url }}" aria-haspopup="dialog" aria-label="Quick Add — {{ product.title | escape }}">
+            <span>Quick Add</span>{% render 'loading-spinner' %}
+          </button>
+        </modal-opener>
+      {% else %}
+        <product-form data-section-id="{{ section.id }}">
+          {% assign product_form_id = 'TabProductForm-' | append: card_id %}
+          {% form 'product', product, id: product_form_id, class: 'sn-tabs__form', novalidate: 'novalidate', data-type: 'add-to-cart-form' %}
+            <input type="hidden" name="id" value="{{ variant.id }}" class="product-variant-id">
+            <input type="hidden" name="quantity" value="{{ variant.quantity_rule.min | default: 1 }}">
+            <button type="submit" name="add" class="sn-tabs__add" aria-haspopup="dialog" aria-label="{{ 'products.product.add_to_cart' | t }} — {{ product.title | escape }}">
+              <span>{{ 'products.product.add_to_cart' | t }}</span>
+              <span class="sold-out-message hidden">{{ 'products.product.sold_out' | t }}</span>
+              {% render 'loading-spinner' %}
+            </button>
+            <div class="product-form__error-message-wrapper sn-tabs__cart-error" role="alert" hidden><span class="product-form__error-message"></span></div>
+          {% endform %}
+        </product-form>
+      {% endif %}
+    </div>
+    </div>
+    {% if needs_options and product.available %}
+      <quick-add-modal id="QuickAdd-{{ card_id }}" class="quick-add-modal">
+        <div role="dialog" aria-label="{{ 'products.product.choose_product_options' | t: product_name: product.title | escape }}" aria-modal="true" class="quick-add-modal__content global-settings-popup" tabindex="-1">
+          <button id="ModalClose-{{ card_id }}" type="button" class="quick-add-modal__toggle" aria-label="{{ 'accessibility.close' | t }}">{{ 'icon-close.svg' | inline_asset_content }}</button>
+          <div id="QuickAddInfo-{{ card_id }}" class="quick-add-modal__content-info"></div>
+        </div>
+      </quick-add-modal>
+    {% endif %}
     <a class="sn-tabs__product-title" href="{{ product.url }}" draggable="false">{{ product.title | escape }}</a>
     <div class="sn-tabs__price">
       {% if product.price_varies %}<span class="sn-tabs__from">{{ 'products.product.price.from_price_html' | t: price: '' }}</span>{% endif %}
