@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "suppz_categories": {
@@ -177,7 +186,7 @@
       "settings": {
         "label": "Shop by category",
         "circle_size": 76,
-        "accent": "#F84A00",
+        "accent": "#f84a00",
         "background": "rgba(0,0,0,0)"
       }
     },
@@ -186,15 +195,25 @@
       "blocks": {
         "slide_1": {
           "type": "banner",
-          "settings": {}
+          "settings": {
+            "desktop_image": "shopify://shop_images/Wellness_Essentials_Supplement_Showcase.png",
+            "link": "",
+            "alt_text": ""
+          }
         },
         "slide_2": {
           "type": "banner",
-          "settings": {}
+          "settings": {
+            "link": "",
+            "alt_text": ""
+          }
         },
         "slide_3": {
           "type": "banner",
-          "settings": {}
+          "settings": {
+            "link": "",
+            "alt_text": ""
+          }
         }
       },
       "block_order": [
@@ -204,7 +223,7 @@
       ],
       "settings": {
         "autoplay": true,
-        "autoplay_seconds": 5
+        "autoplay_seconds": 3
       }
     }
   },
