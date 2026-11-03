@@ -1,0 +1,188 @@
+/* Shared glass surfaces for Dawn and Silkspire custom sections. */
+body.silkspire-glass {
+  --glass-surface: linear-gradient(135deg, rgba(255,255,255,.48), rgba(229,228,226,.2));
+  --glass-line: rgba(255, 255, 255, .68);
+  --glass-shadow: 0 18px 44px rgba(111,78,55,.16), inset 0 1px 0 rgba(255,255,255,.95), inset 0 -1px 0 rgba(111,78,55,.08);
+  --buttons-radius: 16px;
+  --inputs-radius: 14px;
+  --variant-pills-radius: 24px;
+  background-color: #E5E4E2;
+  background-image: radial-gradient(ellipse at 10% 22%, rgba(255,255,255,.95) 0%, transparent 35%), radial-gradient(ellipse at 88% 36%, rgba(111,78,55,.32) 0%, transparent 42%), radial-gradient(ellipse at 32% 85%, rgba(111,78,55,.2) 0%, transparent 40%), linear-gradient(125deg,#E5E4E2,#cfc9c1 50%,#E5E4E2);
+  background-attachment: fixed;
+}
+body.silkspire-glass .shopify-section > .gradient,
+body.silkspire-glass collection-component > .gradient,
+body.silkspire-glass .collection-hero,
+body.silkspire-glass .reviews-section,
+body.silkspire-glass .dwell-shoppable-video-section,
+body.silkspire-glass .collections-list { background: transparent; }
+
+/* Keep navigation readable as imagery scrolls behind it. */
+body.silkspire-glass .header-wrapper {
+  background: linear-gradient(120deg,rgba(255,255,255,.72),rgba(229,228,226,.58));
+  -webkit-backdrop-filter: blur(22px) saturate(125%);
+  backdrop-filter: blur(22px) saturate(125%);
+  border-bottom: 1px solid var(--glass-line);
+  box-shadow: 0 5px 28px rgba(111, 78, 55, .07);
+}
+body.silkspire-glass .shopify-section .utility-bar { background: rgba(111, 78, 55, .9); color: #E5E4E2; }
+body.silkspire-glass :is(.header__submenu, .menu-drawer, .predictive-search, .search-modal__content, .cart-notification, .drawer__inner, .facets__display, .facets__display-vertical, .mobile-facets__inner, .product-popup-modal__content, .localization-form__list) {
+  background: rgba(239, 238, 236, .94);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  border: 1px solid var(--glass-line);
+  box-shadow: var(--glass-shadow);
+  color: #6F4E37;
+}
+body.silkspire-glass :is(.header__submenu, .predictive-search, .cart-notification, .facets__display, .product-popup-modal__content) { border-radius: 20px; }
+
+/* Product, collection, editorial and review surfaces. Images stay crisp. */
+body.silkspire-glass :is(.card--card, .article-card, .blog-articles .article, .collage-card, .multicolumn-card, .image-with-text__content, .rich-text__wrapper, .newsletter__wrapper, .reviews-section__card, .dwell-sv-card, .cart__footer > div, .customer form) {
+  background: var(--glass-surface);
+  border: 1px solid var(--glass-line);
+  border-radius: 22px;
+  box-shadow: var(--glass-shadow);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+body.silkspire-glass :is(.reviews-section__card, .dwell-sv-card) { padding: 14px; }
+body.silkspire-glass :is(.card__inner, .category-image-grid__card, .reviews-section__frame, .dwell-sv-video-box) { border-radius: 18px; overflow: hidden; }
+body.silkspire-glass .reviews-section__frame { background: rgba(229, 228, 226, .5); border: 1px solid var(--glass-line); }
+body.silkspire-glass .dwell-sv-product-card { background: transparent; }
+body.silkspire-glass .collection-block .icon-block { border: 1px solid var(--glass-line); box-shadow: 0 5px 20px rgba(111, 78, 55, .1); border-radius: 50%; overflow: hidden; }
+body.silkspire-glass .category-image-grid__content {
+  margin: 12px;
+  padding: 12px 18px;
+  border: 1px solid var(--glass-line);
+  border-radius: 16px;
+  background: rgba(229, 228, 226, .78);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+}
+body.silkspire-glass .category-image-grid__title { color: #6F4E37; }
+
+/* Reference collection layout keeps two desktop columns and filled images. */
+body.silkspire-glass .silkspire-card {
+  padding: 12px;
+  border: 1px solid var(--glass-line);
+  border-radius: 24px;
+  background: rgba(242, 241, 239, .52);
+  box-shadow: var(--glass-shadow);
+}
+body.silkspire-glass .silkspire-card__stage { border-radius: 18px; border: 1px solid rgba(255, 255, 255, .5); }
+body.silkspire-glass .silkspire-card__thumbnail { border-radius: 12px; border: 1px solid rgba(255, 255, 255, .75); background: rgba(229, 228, 226, .58); }
+body.silkspire-glass .silkspire-card__thumbnail[aria-pressed="true"] { border-color: #6F4E37; }
+body.silkspire-glass .silkspire-card__details {
+  position: static;
+  padding: 14px 4px 0;
+  background: transparent;
+}
+body.silkspire-glass .silkspire-card__actions { margin-top: 14px; }
+body.silkspire-glass :is(.button, .shopify-challenge__button, .silkspire-card__buy, .dwell-sv-add-btn) {
+  background: linear-gradient(135deg, rgba(111, 78, 55, .96), rgba(111, 78, 55, .83));
+  color: #E5E4E2;
+  border-radius: 15px;
+  box-shadow: 0 5px 16px rgba(111, 78, 55, .15), inset 0 1px 0 rgba(255, 255, 255, .2);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+body.silkspire-glass :is(.button--secondary, .silkspire-card__cart, .slider-button, .dwell-sv-nav, .reviews-section__arrow) {
+  background: rgba(229, 228, 226, .76);
+  color: #6F4E37;
+  border: 1px solid rgba(255, 255, 255, .8);
+  border-radius: 15px;
+  box-shadow: var(--glass-shadow);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+body.silkspire-glass .button::after { border-radius: 15px; }
+body.silkspire-glass .utility-bar .slider-button { background: rgba(229, 228, 226, .12); color: #E5E4E2; box-shadow: none; border-color: rgba(229, 228, 226, .25); }
+body.silkspire-glass :is(.field__input, .select__select, .customer input, .quantity) { background: rgba(242, 241, 239, .67); color: #6F4E37; border-radius: 14px; }
+body.silkspire-glass :is(.field::after, .select::after, .quantity::after) { border-radius: 14px; }
+body.silkspire-glass .product-form__input input[type=radio] + label { background: rgba(229, 228, 226, .6); }
+body.silkspire-glass .product-form__input input[type=radio]:checked + label { background: #6F4E37; color: #E5E4E2; }
+body.silkspire-glass footer.footer {
+  background: linear-gradient(135deg, rgba(111, 78, 55, .94), rgba(111, 78, 55, .84));
+  border-top: 1px solid rgba(255, 255, 255, .4);
+  border-radius: 28px 28px 0 0;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+body.silkspire-glass footer .field__input { color: #E5E4E2; background: rgba(229, 228, 226, .12); }
+body.silkspire-glass footer .newsletter-form__field-wrapper .field__label { color: #E5E4E2; }
+@media (max-width: 749px) {
+  body.silkspire-glass { background-attachment: scroll; }
+  body.silkspire-glass .silkspire-card { padding: 8px; border-radius: 20px; }
+  body.silkspire-glass .silkspire-card__details { padding: 12px 4px 0; }
+  body.silkspire-glass .silkspire-card__title { font-size: 14px; }
+  body.silkspire-glass .silkspire-card .price { font-size: 13px; }
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  body.silkspire-glass { --glass-surface: #ECEBE9; }
+  body.silkspire-glass .header-wrapper { background: #E5E4E2; }
+}
+
+/* Stronger frosted panels over the brown/silver background. */
+body.silkspire-glass :is(.hanging-rail, .reviews-section, .dwell-shoppable-video-section, .newsletter__wrapper, .rich-text__wrapper) {
+  background: linear-gradient(130deg,rgba(255,255,255,.42),rgba(229,228,226,.18)) !important;
+  border: 1px solid rgba(255,255,255,.8);
+  border-radius: 30px;
+  box-shadow: var(--glass-shadow);
+  -webkit-backdrop-filter: blur(24px) saturate(115%);
+  backdrop-filter: blur(24px) saturate(115%);
+}
+body.silkspire-glass :is(.hanging-rail, .reviews-section, .dwell-shoppable-video-section) { width:calc(100% - 48px); max-width:calc(100% - 48px); margin:32px 24px !important; box-sizing:border-box; }
+body.silkspire-glass :is(.dwell-sv-card, .reviews-section__card) {
+  background: linear-gradient(140deg,rgba(255,255,255,.52),rgba(229,228,226,.16)) !important;
+  border:1px solid rgba(255,255,255,.9) !important;
+  box-shadow:var(--glass-shadow);
+  -webkit-backdrop-filter:blur(18px);
+  backdrop-filter:blur(18px);
+}
+body.silkspire-glass .dwell-sv-product-card { background:transparent !important; }
+body.silkspire-glass .silkspire-card {
+  background:linear-gradient(135deg,rgba(255,255,255,.42),rgba(229,228,226,.12));
+  border:1px solid rgba(255,255,255,.9);
+  -webkit-backdrop-filter:blur(22px);
+  backdrop-filter:blur(22px);
+  box-shadow:var(--glass-shadow);
+}
+body.silkspire-glass .silkspire-card__details {
+  background:transparent;
+  box-shadow:none;
+  -webkit-backdrop-filter:none;
+  backdrop-filter:none;
+}
+body.silkspire-glass :is(.hanging-rail__cta, .silkspire-card__cart, .slider-button, .dwell-sv-nav, .reviews-section__arrow) {
+  background:linear-gradient(135deg,rgba(255,255,255,.64),rgba(229,228,226,.24));
+  box-shadow:0 8px 24px rgba(111,78,55,.12),inset 0 1px 0 white;
+  -webkit-backdrop-filter:blur(18px);
+  backdrop-filter:blur(18px);
+}
+body.silkspire-glass :is(.button, .silkspire-card__buy, .dwell-sv-add-btn) {
+  background:linear-gradient(135deg,rgba(111,78,55,.88),rgba(111,78,55,.64));
+  border:1px solid rgba(255,255,255,.46);
+  box-shadow:0 9px 24px rgba(111,78,55,.2),inset 0 1px 0 rgba(255,255,255,.4);
+}
+body.silkspire-glass footer.footer { background:linear-gradient(135deg,rgba(111,78,55,.85),rgba(111,78,55,.65)); }
+@media(max-width:749px) {
+  body.silkspire-glass :is(.hanging-rail, .reviews-section, .dwell-shoppable-video-section) { width:calc(100% - 20px); max-width:calc(100% - 20px); margin:20px 10px !important; border-radius:22px; }
+}
+/* Full-width collection and product pages with consistent side gutters. */
+body.silkspire-glass:is(.template-collection, .template-product) #MainContent .page-width {
+  max-width:none;
+  width:100%;
+  box-sizing:border-box;
+  padding-left:15px;
+  padding-right:15px;
+}
+@media(max-width:749px) {
+  body.silkspire-glass.template-product .product__media-wrapper slider-component:not(.thumbnail-slider--no-slide) {
+    margin-left:0;
+    margin-right:0;
+  }
+  body.silkspire-glass.template-product .product__media-list {
+    margin-left:0;
+    width:100%;
+  }
+}

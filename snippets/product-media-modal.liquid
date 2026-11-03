@@ -1,0 +1,88 @@
+{%- doc -%}
+  Renders a product media modal.
+
+  @param {string[]} variant_images - Image URLs for product images associated with a variant.
+  @param {product} [product] - The product whose media is rendered. Uses the current product when omitted.
+  @param {object} [section] - The current product section context, supplied implicitly when rendered from that section and used for gallery IDs, behavior, and presentation.
+
+  @example
+  {% render 'product-media-modal', product: product, variant_images: variant_images %}
+{%- enddoc -%}
+{%- liquid
+  assign gallery_media = product.media
+  assign gallery_featured_media = product.selected_or_first_available_variant.featured_media
+
+  assign hide_variant_media = section.settings.hide_variants
+  for color_option in product.options_with_values
+    assign color_option_name = color_option.name | downcase
+    if color_option_name contains 'color' or color_option_name contains 'colour' or color_option_name == 'रंग'
+      assign selected_color = color_option.selected_value | downcase | strip
+      if selected_color != blank
+
+        assign hide_variant_media = false
+        assign gallery_media = product.media | where: 'id', 0
+        for color_media in product.media
+          assign color_alt = color_media.alt | downcase | replace: '-', ' ' | replace: '_', ' ' | replace: '/', ' ' | replace: ',', ' ' | replace: '|', ' ' | replace: ':', ' ' | replace: '.', ' ' | strip | prepend: ' ' | append: ' '
+          assign color_token = selected_color | prepend: ' ' | append: ' '
+          if color_alt contains color_token
+            assign matching_media = product.media | where: 'id', color_media.id
+            assign gallery_media = gallery_media | concat: matching_media
+          endif
+        endfor
+        assign gallery_featured_media = gallery_media | where: 'id', gallery_featured_media.id | first
+        if gallery_featured_media == blank
+          assign gallery_featured_media = gallery_media | first
+        endif
+      endif
+      break
+    endif
+  endfor
+-%}
+
+
+<product-modal id="ProductModal-{{ section.id }}" class="product-media-modal media-modal">
+  <div
+    class="product-media-modal__dialog color-{{ section.settings.color_scheme }} gradient"
+    role="dialog"
+    aria-label="{{ 'products.modal.label' | t }}"
+    aria-modal="true"
+    tabindex="-1"
+  >
+    <button
+      id="ModalClose-{{ section.id }}"
+      type="button"
+      class="product-media-modal__toggle"
+      aria-label="{{ 'accessibility.close' | t }}"
+    >
+      {{ 'icon-close.svg' | inline_asset_content }}
+    </button>
+
+    <div
+      class="product-media-modal__content color-{{ section.settings.color_scheme }} gradient"
+      role="document"
+      aria-label="{{ 'products.modal.label' | t }}"
+      tabindex="0"
+    >
+      {%- liquid
+        if gallery_featured_media != null
+          assign media = gallery_featured_media
+          render 'product-media', media: media, loop: section.settings.enable_video_looping, variant_image: hide_variant_media
+        endif
+      -%}
+
+      {%- for media in gallery_media -%}
+        {%- liquid
+          if hide_variant_media and variant_images contains media.src or variant_images contains media.id
+            assign variant_image = true
+          else
+            assign variant_image = false
+          endif
+
+          unless media.id == gallery_featured_media.id
+            render 'product-media', media: media, loop: section.settings.enable_video_looping, variant_image: variant_image
+          endunless
+        -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</product-modal>

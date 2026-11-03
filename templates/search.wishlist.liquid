@@ -1,0 +1,9 @@
+{{ 'silkspire-collection-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'silkspire-collection-card.js' | asset_url }}" defer="defer"></script>
+<section class="page-width wishlist-page" data-wishlist-page>
+  <h1>My Wishlist</h1>
+  <p data-wishlist-empty hidden>Your wishlist is empty. Tap the heart on a product to save it here.</p>
+  <div class="wishlist-grid" data-wishlist-grid></div>
+  <a class="button" href="{{ routes.all_products_collection_url }}">Continue shopping</a>
+</section>

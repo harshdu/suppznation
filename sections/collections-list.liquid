@@ -1,0 +1,278 @@
+<div id="CollectionsList-{{ section.id }}" class="collections-list">
+  <div class="container">
+    <div class="wrapper">
+      {% for block in section.blocks %}
+        {% liquid
+          assign collection_image = block.settings.image
+          assign image_alt = collection_image.alt | default: block.settings.title
+        %}
+
+        <a
+          {% if block.settings.link != blank %}
+            href="{{ block.settings.link }}"
+          {% else %}
+            role="link"
+            aria-disabled="true"
+          {% endif %}
+          class="collection-block"
+          {{ block.shopify_attributes }}
+        >
+          <div class="icon-block">
+            {% if collection_image != blank %}
+              {{
+                collection_image
+                | image_url: width: 480
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '120, 240, 360, 480',
+                  sizes: '(max-width: 767px) 25vw, 12vw',
+                  alt: image_alt
+              }}
+            {% elsif block.settings.image_url != blank %}
+              <img
+                src="{{ block.settings.image_url | escape }}"
+                alt="{{ block.settings.title | escape }}"
+                loading="lazy"
+                width="240"
+                height="240"
+              >
+            {% else %}
+              {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            {% endif %}
+          </div>
+
+          {% if block.settings.title != blank %}
+            <h5>{{ block.settings.title | escape }}</h5>
+          {% endif %}
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% style %}
+  #CollectionsList-{{ section.id }} {
+    padding: 20px 0;
+  }
+
+  #CollectionsList-{{ section.id }} .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  #CollectionsList-{{ section.id }} .collection-block {
+    display: block;
+    flex: 0 0 12.5%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 0 8px;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  #CollectionsList-{{ section.id }} .icon-block {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+
+  #CollectionsList-{{ section.id }} .icon-block img,
+  #CollectionsList-{{ section.id }} .icon-block svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+  }
+
+  #CollectionsList-{{ section.id }} h5 {
+    margin: 10px 0 0;
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 600;
+  }
+
+  @media only screen and (max-width: 767px) {
+    #CollectionsList-{{ section.id }} .wrapper {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+    }
+
+    #CollectionsList-{{ section.id }} .collection-block {
+      flex: 0 0 25%;
+      padding: 0 5px;
+      scroll-snap-align: start;
+    }
+
+    #CollectionsList-{{ section.id }} .wrapper.slick-initialized {
+      display: block;
+      overflow: visible;
+    }
+
+    #CollectionsList-{{ section.id }} h5 {
+      font-size: 12px;
+      font-weight: 400;
+    }
+  }
+{% endstyle %}
+
+{% javascript %}
+  (function () {
+    function updateSliders() {
+      var $ = window.jQuery;
+
+      if (!$ || !$.fn || !$.fn.slick) return;
+
+      document.querySelectorAll('.collections-list .wrapper').forEach(function (wrapper) {
+        var $wrapper = $(wrapper);
+        var isMobile = window.matchMedia('(max-width: 767px)').matches;
+        var isInitialized = $wrapper.hasClass('slick-initialized');
+
+        if (isMobile && !isInitialized && wrapper.children.length > 0) {
+          $wrapper.slick({
+            arrows: false,
+            dots: false,
+            infinite: false,
+            speed: 300,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            adaptiveHeight: true
+          });
+        } else if (!isMobile && isInitialized) {
+          $wrapper.slick('unslick');
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', updateSliders);
+    } else {
+      updateSliders();
+    }
+
+    window.addEventListener('load', updateSliders);
+    window.addEventListener('resize', updateSliders);
+    document.addEventListener('shopify:section:load', updateSliders);
+
+    document.addEventListener('shopify:section:unload', function (event) {
+      var $ = window.jQuery;
+      if (!$ || !$.fn || !$.fn.slick) return;
+
+      $(event.target)
+        .find('.collections-list .wrapper.slick-initialized')
+        .slick('unslick');
+    });
+
+    document.addEventListener('shopify:block:select', function (event) {
+      var $ = window.jQuery;
+      if (!$ || !$.fn || !$.fn.slick) return;
+
+      var $slide = $(event.target).closest('.collection-block');
+      var $wrapper = $slide.closest('.wrapper.slick-initialized');
+
+      if ($wrapper.length) {
+        var index = parseInt($slide.attr('data-slick-index'), 10);
+
+        if (!isNaN(index)) {
+          $wrapper.slick('slickGoTo', index);
+        }
+      }
+    });
+  })();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Collections List",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Collection Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Collection Title",
+          "default": "Collection"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Collection Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collections List",
+      "blocks": [
+        {
+          "type": "collection",
+          "settings": {
+            "title": "Palazzo Set",
+            "link": "/collections/top-palazzo-dupatta-set"
+          }
+        },
+        {
+          "type": "collection",
+          "settings": {
+            "title": "Gown",
+            "link": "/collections/gown"
+          }
+        },
+        {
+          "type": "collection",
+          "settings": {
+            "title": "A-Line Kurta",
+            "link": "/collections/a-line-kurta-set"
+          }
+        },
+        {
+          "type": "collection",
+          "settings": {
+            "title": "Anarkali",
+            "link": "/collections/anarkali-suit"
+          }
+        },
+        {
+          "type": "collection",
+          "settings": {
+            "title": "Sharara Set",
+            "link": "/collections/top-sharara-dupatta-set"
+          }
+        },
+        {
+          "type": "collection",
+          "settings": {
+            "title": "Straight Kurta",
+            "link": "/collections/straight-kurta-set"
+          }
+        },
+        {
+          "type": "collection",
+          "settings": {
+            "title": "Ethnic Co-Ords",
+            "link": "/collections/ethnic-co-ords-set"
+          }
+        },
+        {
+          "type": "collection",
+          "settings": {
+            "title": "Western",
+            "link": "/collections/maxi-dress"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

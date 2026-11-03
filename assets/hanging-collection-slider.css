@@ -1,0 +1,56 @@
+.hanging-rail { display:block; padding:52px 0 36px; overflow:hidden; color:var(--rail-ink); background:linear-gradient(145deg,rgba(229, 228, 226,.48),transparent 65%),var(--rail-background); }
+.hanging-rail__heading { text-align:center; }
+.hanging-rail__eyebrow { margin:0; font-size:13px; font-weight:600; letter-spacing:.2em; line-height:1.8; }
+.hanging-rail__eyebrow span { margin-left:18px; padding-left:18px; border-left:1px solid rgba(111,78,55,.3); opacity:.65; }
+.hanging-rail__title { color:inherit; font-size:clamp(24px,2.6vw,38px); font-weight:400; margin:14px 0 0; }
+.hanging-rail__rack { position:relative; margin-top:36px; }
+.hanging-rail__rack::before { content:""; position:absolute; left:0; right:0; top:10px; height:5px; background:linear-gradient(#b6aca2,#81756a 50%,#cfc9c1); box-shadow:0 3px 4px rgba(111,78,55,.2); }
+.hanging-rail__track { display:flex; gap:clamp(24px,4vw,70px); overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; padding:0 max(24px,calc((100vw - 1200px)/2)) 25px; overscroll-behavior-x:contain; }
+.hanging-rail__track::-webkit-scrollbar { display:none; }
+.hanging-rail__track.slick-initialized { display:block; overflow:visible; padding:0 0 25px; scroll-snap-type:none; }
+.hanging-rail__track.slick-initialized .slick-list { padding-top:8px !important; padding-bottom:15px !important; }
+.hanging-rail__track.slick-initialized .hanging-rail__item { padding:0 clamp(12px,2vw,32px); box-sizing:border-box; }
+.hanging-rail__item { flex:0 0 clamp(210px,24vw,320px); min-width:0; scroll-snap-align:center; text-align:center; }
+.hanging-rail__swing { transform-origin:50% 12px; padding-top:12px; }
+.hanging-rail[data-sway="true"] .hanging-rail__swing { animation:rail-sway var(--rail-speed,7s) ease-in-out var(--item-delay,0s) infinite alternate; }
+.hanging-rail__hanger { display:block; position:relative; width:76%; height:88px; margin:0 auto -14px; filter:drop-shadow(0 3px 2px rgba(111,78,55,.13)); }
+.hanging-rail__hook { fill:none; stroke:#8e857b; stroke-width:3; stroke-linecap:round; }
+.hanging-rail__wood { fill:#977254; stroke:#6F4E37; stroke-width:1.5; stroke-linejoin:round; }
+.hanging-rail__grain { stroke:#c0a38a; stroke-width:2; fill:none; }
+.hanging-rail__garment { display:block; position:relative; width:100%; aspect-ratio:3/4; padding:0; border:0; background:transparent; color:inherit; perspective:1100px; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+.hanging-rail__flip { display:block; position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform .8s cubic-bezier(.2,.7,.2,1); }
+.hanging-rail__face { display:block; position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; }
+.hanging-rail__back { transform:rotateY(180deg); }
+.hanging-rail__face img,.hanging-rail__placeholder { display:block; width:100%; height:100%; object-fit:contain; filter:drop-shadow(4px 12px 9px rgba(111,78,55,.14)); border-radius:8px; }
+.hanging-rail__garment[aria-pressed="true"] .hanging-rail__flip { transform:rotateY(180deg); }
+@media(hover:hover) { .hanging-rail__garment--flippable:hover .hanging-rail__flip { transform:rotateY(180deg); } }
+.hanging-rail__garment:focus-visible { outline:2px solid var(--rail-ink); outline-offset:6px; border-radius:8px; }
+.hanging-rail__tag { position:absolute; top:18px; right:5px; padding:7px 12px; background:var(--rail-ink); color:#E5E4E2; font-size:11px; letter-spacing:.08em; transform:rotate(-8deg); box-shadow:0 4px 10px rgba(111,78,55,.15); }
+.hanging-rail__product-name { display:block; color:inherit; font-size:14px; text-decoration:none; margin:23px auto 0; max-width:90%; line-height:1.5; opacity:.7; }
+.hanging-rail__item[data-active] .hanging-rail__product-name { opacity:1; }
+.hanging-rail__navigation { display:flex; justify-content:space-between; pointer-events:none; position:absolute; top:50%; left:18px; right:18px; }
+.hanging-rail__navigation button { display:grid; place-items:center; width:44px; height:44px; border:1px solid rgba(255,255,255,.8); border-radius:50%; color:var(--rail-ink); font-size:23px; background:rgba(229, 228, 226,.8); backdrop-filter:blur(14px); cursor:pointer; pointer-events:auto; box-shadow:0 5px 18px rgba(111,78,55,.1); }
+.hanging-rail__navigation button:disabled { opacity:.3; cursor:default; }
+.hanging-rail__footer { text-align:center; margin-top:8px; }
+.hanging-rail__selected { min-height:24px; max-width:540px; margin:0 auto 14px; font-weight:600; font-size:17px; }
+.hanging-rail__cta { display:inline-flex; gap:28px; align-items:center; padding:12px 28px; border:1px solid rgba(111,78,55,.25); border-radius:40px; background:rgba(229, 228, 226,.45); backdrop-filter:blur(12px); color:var(--rail-ink); text-decoration:none; font-size:14px; }
+.hanging-rail__cta:hover { background:var(--rail-ink); color:#E5E4E2; }
+.hanging-rail__hint { margin:15px 0 0; font-size:11px; letter-spacing:.04em; opacity:.65; }
+@keyframes rail-sway { from { transform:rotate(-1.6deg); } to { transform:rotate(1.6deg); } }
+@media(max-width:749px) {
+ .hanging-rail { padding-top:32px; }
+ .hanging-rail__eyebrow { font-size:10px; letter-spacing:.12em; }
+ .hanging-rail__eyebrow span { margin-left:10px; padding-left:10px; }
+ .hanging-rail__item { flex-basis:64vw; }
+ .hanging-rail__track { gap:28px; padding-left:18vw; padding-right:18vw; }
+ .hanging-rail__track.slick-initialized { padding-left:0; padding-right:0; }
+ .hanging-rail__track.slick-initialized .hanging-rail__item { padding-left:12px; padding-right:12px; }
+ .hanging-rail__hanger { height:75px; }
+ .hanging-rail__navigation { left:10px; right:10px; }
+ .hanging-rail__navigation button { width:36px; height:36px; }
+ .hanging-rail__hint { font-size:10px; }
+}
+@media(prefers-reduced-motion:reduce) {
+ .hanging-rail[data-sway="true"] .hanging-rail__swing { animation:none; }
+ .hanging-rail__flip { transition:none; }
+}

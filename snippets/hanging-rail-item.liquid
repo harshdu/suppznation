@@ -1,0 +1,28 @@
+{%- liquid
+  assign front = front_image | default: product.featured_image
+  assign back = back_image | default: product.images[1] | default: front
+  assign title = product.title | default: 'Your next favourite'
+  assign has_back = false
+  if back != blank and back != front
+    assign has_back = true
+  endif
+-%}
+<div class="hanging-rail__item" role="listitem" data-title="{{ title | escape }}" data-url="{{ product.url | default: routes.all_products_collection_url }}" style="--item-delay: -{{ index | times: 1.3 }}s;" {{ block.shopify_attributes }}>
+  <div class="hanging-rail__swing">
+    <svg class="hanging-rail__hanger" viewBox="0 0 240 94" aria-hidden="true" focusable="false"><path class="hanging-rail__hook" d="M120 40V27c0-8 12-9 12-17a12 12 0 0 0-24 0"/><path class="hanging-rail__wood" d="M120 39 19 80c-5 2-4 9 2 9h198c6 0 7-7 2-9L120 39Z"/><path class="hanging-rail__grain" d="m35 80 85-34 85 34"/></svg>
+    <button class="hanging-rail__garment{% if has_back %} hanging-rail__garment--flippable{% endif %}" type="button" {% if has_back %}aria-pressed="false" aria-label="Flip {{ title | escape }} to see the other side"{% else %}aria-label="Select {{ title | escape }}"{% endif %}>
+      <span class="hanging-rail__flip">
+        <span class="hanging-rail__face hanging-rail__front">
+          {%- if front != blank -%}
+            {{ front | image_url: width: 800 | image_tag: loading: 'lazy', widths: '240, 400, 600, 800', sizes: '(max-width: 749px) 65vw, 25vw', alt: title }}
+          {%- else -%}
+            {{ 'product-1' | placeholder_svg_tag: 'hanging-rail__placeholder' }}
+          {%- endif -%}
+        </span>
+        {%- if has_back -%}<span class="hanging-rail__face hanging-rail__back" aria-hidden="true">{{ back | image_url: width: 800 | image_tag: loading: 'lazy', widths: '240, 400, 600, 800', sizes: '(max-width: 749px) 65vw, 25vw', alt: title }}</span>{%- endif -%}
+      </span>
+      {% if label != blank %}<span class="hanging-rail__tag">{{ label | escape }}</span>{% elsif product.compare_at_price > product.price %}<span class="hanging-rail__tag">SALE</span>{% endif %}
+    </button>
+  </div>
+  <a class="hanging-rail__product-name" href="{{ product.url | default: routes.all_products_collection_url }}">{{ title | escape }}</a>
+</div>

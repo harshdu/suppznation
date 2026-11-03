@@ -1,0 +1,70 @@
+{{ 'hanging-collection-slider.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'hanging-collection-slider.js' | asset_url }}" defer="defer"></script>
+<hanging-collection-slider class="hanging-rail" data-sway="{{ section.settings.sway }}" data-desktop-count="{{ section.settings.desktop_count | default: 3 }}" data-mobile-count="{{ section.settings.mobile_count | default: 1 }}" style="--rail-background: {{ section.settings.background }}; --rail-ink: {{ section.settings.text_color }}; --rail-speed: {{ section.settings.sway_speed }}s;">
+  <div class="hanging-rail__heading page-width">
+    <p class="hanging-rail__eyebrow">{{ section.settings.eyebrow | escape }}{% if section.settings.subtitle != blank %}<span>{{ section.settings.subtitle | escape }}</span>{% endif %}</p>
+    {% if section.settings.heading != blank %}<h2 class="hanging-rail__title">{{ section.settings.heading | escape }}</h2>{% endif %}
+  </div>
+  <div class="hanging-rail__rack">
+    <div class="hanging-rail__track" role="list" aria-label="{{ section.settings.heading | default: section.settings.eyebrow | escape }}">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {% render 'hanging-rail-item', product: block.settings.product, front_image: block.settings.front_image, back_image: block.settings.back_image, label: block.settings.label, index: forloop.index0, block: block %}
+        {%- endfor -%}
+      {%- else -%}
+        {%- assign rail_collection = section.settings.collection -%}
+        {%- for product in rail_collection.products limit: section.settings.product_limit -%}
+          {% render 'hanging-rail-item', product: product, index: forloop.index0 %}
+        {%- else -%}
+          {%- for i in (1..5) -%}
+            {% render 'hanging-rail-item', index: forloop.index0 %}
+          {%- endfor -%}
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+    <div class="hanging-rail__navigation">
+      <button type="button" data-rail-prev aria-label="Previous product">&larr;</button>
+      <button type="button" data-rail-next aria-label="Next product">&rarr;</button>
+    </div>
+  </div>
+  <div class="hanging-rail__footer page-width">
+    <p class="hanging-rail__selected" aria-live="polite" aria-atomic="true"></p>
+    {%- if section.settings.collection != blank -%}
+      <a class="hanging-rail__cta" href="{{ section.settings.collection.url }}">{{ section.settings.button_label | escape }} <span aria-hidden="true">&nearr;</span></a>
+    {%- else -%}
+      <a class="hanging-rail__cta" data-rail-product-link href="{{ routes.all_products_collection_url }}">{{ section.settings.button_label | escape }} <span aria-hidden="true">&nearr;</span></a>
+    {%- endif -%}
+    <p class="hanging-rail__hint">Hover to see the other side <span aria-hidden="true">&middot;</span> Swipe to explore</p>
+  </div>
+</hanging-collection-slider>
+{% schema %}
+{
+  "name": "Hanging collection slider",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "NEW COLLECTION" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "THE SILKSPIRE EDIT" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "A little movement. A lot of elegance." },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "range", "id": "product_limit", "min": 3, "max": 12, "step": 1, "default": 8, "label": "Products from collection" },
+    { "type": "range", "id": "desktop_count", "min": 1, "max": 6, "step": 1, "default": 3, "label": "Products visible on desktop" },
+    { "type": "range", "id": "mobile_count", "min": 1, "max": 3, "step": 1, "default": 1, "label": "Products visible on mobile" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop the collection" },
+    { "type": "checkbox", "id": "sway", "label": "Gently sway the clothes", "default": true },
+    { "type": "range", "id": "sway_speed", "min": 4, "max": 12, "step": 1, "unit": "s", "default": 7, "label": "Sway duration" },
+    { "type": "color", "id": "background", "label": "Background", "default": "#E5E4E2" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#6F4E37" }
+  ],
+  "blocks": [{
+    "type": "garment", "name": "Hanging product", "limit": 12,
+    "settings": [
+      { "type": "product", "id": "product", "label": "Product" },
+      { "type": "image_picker", "id": "front_image", "label": "Front image", "info": "For the hanging-clothes effect, use a transparent PNG/WebP of the garment without a model or background." },
+      { "type": "image_picker", "id": "back_image", "label": "Back image", "info": "Optional. Otherwise uses the product's second image." },
+      { "type": "text", "id": "label", "label": "Small tag", "default": "NEW" }
+    ]
+  }],
+  "presets": [{ "name": "Hanging collection slider" }]
+}
+{% endschema %}

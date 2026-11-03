@@ -1,0 +1,57 @@
+{% comment %} Collection-only gallery card; other product cards keep their existing design. {% endcomment %}
+{%- liquid
+  assign variant = card_product.selected_or_first_available_variant
+  assign form_id = 'CollectionBuy-' | append: section_id | append: '-' | append: card_product.id
+  assign cart_form_id = form_id | append: '-cart'
+  assign image_loading = 'eager'
+  if lazy_load
+    assign image_loading = 'lazy'
+  endif
+-%}
+<silkspire-collection-card class="silkspire-card">
+  <div class="silkspire-card__gallery">
+    {%- if card_product.images.size > 1 -%}
+      <div class="silkspire-card__thumbnails" aria-label="{{ card_product.title | escape }} images">
+        {%- for image in card_product.images limit: 3 -%}
+          <button type="button" class="silkspire-card__thumbnail" aria-label="View image {{ forloop.index }} of {{ card_product.title | escape }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}" data-image-src="{{ image | image_url: width: 1000 }}" data-image-alt="{{ image.alt | default: card_product.title | escape }}">
+            {{ image | image_url: width: 240 | image_tag: loading: image_loading, widths: '100, 160, 240', sizes: '120px', alt: image.alt }}
+          </button>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+    <div class="silkspire-card__stage">
+      <a class="silkspire-card__image-link" href="{{ card_product.url }}" aria-label="{{ card_product.title | escape }}">
+        {%- if card_product.featured_image -%}
+          {{ card_product.featured_image | image_url: width: 1000 | image_tag: class: 'silkspire-card__main-image', loading: image_loading, widths: '360, 540, 720, 1000', sizes: '(min-width: 990px) 40vw, 80vw', alt: card_product.featured_image.alt }}
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag: 'silkspire-card__main-image placeholder-svg' }}
+        {%- endif -%}
+      </a>
+    </div>
+  </div>
+  <div class="silkspire-card__details">
+    <h3 class="silkspire-card__title"><a href="{{ card_product.url }}">{{ card_product.title | escape }}</a></h3>
+    {% render 'price', product: card_product, show_compare_at_price: true %}
+  </div>
+  <div class="silkspire-card__actions">
+    {%- if card_product.available == false -%}
+      <button class="silkspire-card__buy" disabled>{{ 'products.product.sold_out' | t }}</button>
+      <button class="silkspire-card__cart" disabled aria-label="{{ 'products.product.sold_out' | t }}"><span class="svg-wrapper">{{ 'icon-collection-cart.svg' | inline_asset_content }}</span></button>
+    {%- elsif card_product.has_only_default_variant and card_product.selling_plan_groups.size == 0 and card_product.gift_card? == false -%}
+      {%- form 'product', card_product, id: form_id, class: 'silkspire-card__buy-form' -%}
+        <input type="hidden" name="id" value="{{ variant.id }}">
+        <input type="hidden" name="quantity" value="{{ variant.quantity_rule.min | default: 1 }}">
+        <input type="hidden" name="return_to" value="/checkout">
+        <button type="submit" class="silkspire-card__buy">Buy it now</button>
+      {%- endform -%}
+      {%- form 'product', card_product, id: cart_form_id, class: 'silkspire-card__cart-form' -%}
+        <input type="hidden" name="id" value="{{ variant.id }}">
+        <input type="hidden" name="quantity" value="{{ variant.quantity_rule.min | default: 1 }}">
+        <button type="submit" name="add" class="silkspire-card__cart" aria-label="{{ 'products.product.add_to_cart' | t }}: {{ card_product.title | escape }}"><span class="svg-wrapper">{{ 'icon-collection-cart.svg' | inline_asset_content }}</span></button>
+      {%- endform -%}
+    {%- else -%}
+      <a class="silkspire-card__buy" href="{{ card_product.url }}">Buy it now</a>
+      <a class="silkspire-card__cart" href="{{ card_product.url }}" aria-label="{{ 'products.product.choose_options' | t }}: {{ card_product.title | escape }}"><span class="svg-wrapper">{{ 'icon-collection-cart.svg' | inline_asset_content }}</span></a>
+    {%- endif -%}
+  </div>
+</silkspire-collection-card>

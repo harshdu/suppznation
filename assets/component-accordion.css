@@ -1,0 +1,75 @@
+.accordion summary {
+  display: flex;
+  position: relative;
+  line-height: 1;
+  padding: 1.5rem 0;
+}
+
+.accordion .summary__title {
+  display: flex;
+  flex: 1;
+}
+
+.accordion .summary__title + .icon-caret {
+  height: calc(var(--font-heading-scale) * 0.6rem);
+}
+
+.accordion + .accordion {
+  margin-top: 0;
+  border-top: none;
+}
+
+.accordion {
+  margin-top: 2.5rem;
+  margin-bottom: 0;
+  border-top: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
+}
+
+.accordion__title {
+  display: inline-block;
+  max-width: calc(100% - 6rem);
+  min-height: 1.6rem;
+  margin: 0;
+  word-break: break-word;
+}
+
+.accordion .svg-wrapper {
+  align-self: center;
+  fill: rgb(var(--color-foreground));
+  height: calc(var(--font-heading-scale) * 2rem);
+  margin-right: calc(var(--font-heading-scale) * 1rem);
+  width: calc(var(--font-heading-scale) * 2rem);
+}
+
+.accordion details[open] > summary .icon-caret {
+  transform: rotate(180deg);
+}
+
+.accordion__content {
+  margin-bottom: 1.5rem;
+  word-break: break-word;
+  overflow-x: auto;
+  padding: 0 0.6rem;
+}
+
+.accordion__content img {
+  max-width: 100%;
+}
+
+.product-details-dropdown {
+  padding:0 16px;
+  border:1px solid rgba(255,255,255,.65);
+  border-radius:16px;
+  background:rgba(229,228,226,.3);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.7);
+}
+.product-details-dropdown summary { align-items:center; justify-content:space-between; gap:16px; padding:18px 0; cursor:pointer; }
+.product-details-dropdown + .product-details-dropdown { margin-top:10px; }
+.product-details-dropdown .accordion__title { max-width:none; color:inherit; line-height:1.4; }
+.product-details-dropdown__icon { position:relative; flex:0 0 18px; width:18px; height:18px; }
+.product-details-dropdown__icon::before,.product-details-dropdown__icon::after { content:''; position:absolute; background:currentColor; border-radius:1px; }
+.product-details-dropdown__icon::before { width:16px; height:2px; left:1px; top:8px; }
+.product-details-dropdown__icon::after { width:2px; height:16px; left:8px; top:1px; }
+.product-details-dropdown details[open] .product-details-dropdown__icon::after { display:none; }
+.product-details-dropdown .accordion__content { padding:0 0 4px; margin-top:0; }
