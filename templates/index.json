@@ -187,7 +187,7 @@
         "label": "Shop by category",
         "circle_size": 76,
         "accent": "#F84A00",
-        "background": "#ffffff"
+        "background": "rgba(0,0,0,0)"
       }
     }
   },
