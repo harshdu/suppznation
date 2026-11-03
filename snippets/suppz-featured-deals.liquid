@@ -1,0 +1,25 @@
+{{ 'suppz-featured-deals.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'suppz-featured-deals.js' | asset_url }}" defer></script>
+<suppz-deal-slider class="sn-deals" style="--sn-deal-accent:{{ section.settings.deal_accent }};--sn-deal-top:{{ section.settings.padding_top }}px;--sn-deal-bottom:{{ section.settings.padding_bottom }}px;" aria-label="Featured collection offers">
+  <div class="sn-deals__heading">
+    <div>{% if section.settings.title != blank %}<h2>{{ section.settings.title }}</h2>{% endif %}
+      {% if section.settings.show_description and section.settings.collection.description != blank %}<div class="sn-deals__description rte">{{ section.settings.collection.description }}</div>{% elsif section.settings.description != blank %}<div class="sn-deals__description rte">{{ section.settings.description }}</div>{% endif %}
+    </div>
+    {% if section.settings.show_view_all %}<a class="sn-deals__all" href="{{ section.settings.collection.url | default: routes.all_products_collection_url }}">{{ section.settings.deal_all_label | default: 'SHOP ALL' | escape }}</a>{% endif %}
+  </div>
+  <div class="sn-deals__slider">
+    <div class="sn-deals__track" id="SNDeals-{{ section.id }}" tabindex="0" role="region" aria-label="Offers. Swipe, drag or use arrow keys to browse.">
+      <ul class="sn-deals__list" role="list">
+        {% if section.blocks.size > 0 %}
+          {% for block in section.blocks %}{% render 'suppz-deal-card', section: section, block: block, product: block.settings.product %}{% endfor %}
+        {% elsif section.settings.collection != blank %}
+          {% for product in section.settings.collection.products limit: section.settings.products_to_show %}{% render 'suppz-deal-card', section: section, product: product %}{% else %}<li class="sn-deals__empty">No products in this collection yet.</li>{% endfor %}
+        {% else %}
+          {% for i in (1..6) %}{% render 'suppz-deal-card', section: section %}{% endfor %}
+        {% endif %}
+      </ul>
+    </div>
+    <button class="sn-deals__arrow sn-deals__arrow--prev" type="button" data-prev aria-controls="SNDeals-{{ section.id }}" aria-label="Previous offers" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6"/></svg></button>
+    <button class="sn-deals__arrow sn-deals__arrow--next" type="button" data-next aria-controls="SNDeals-{{ section.id }}" aria-label="Next offers"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+  </div>
+</suppz-deal-slider>

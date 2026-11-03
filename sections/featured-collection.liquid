@@ -1,3 +1,6 @@
+{% if section.settings.deal_layout != false %}
+{% render 'suppz-featured-deals', section: section %}
+{% else %}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 
@@ -215,15 +218,47 @@
   </div>
 </div>
 
+{% endif %}
 {% schema %}
 {
   "name": "t:sections.featured-collection.name",
   "tag": "section",
   "class": "section",
   "disabled_on": {
-    "groups": ["header", "footer"]
+    "groups": [
+      "header",
+      "footer"
+    ]
   },
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "deal_layout",
+      "label": "Use offer carousel design",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "deal_accent",
+      "label": "Offer button color",
+      "default": "#ed142b"
+    },
+    {
+      "type": "text",
+      "id": "deal_button_label",
+      "label": "Offer button label",
+      "default": "SHOP DEAL NOW"
+    },
+    {
+      "type": "text",
+      "id": "deal_all_label",
+      "label": "View all label",
+      "default": "SHOP ALL"
+    },
+    {
+      "type": "paragraph",
+      "content": "Select a collection to show its products. Optional Offer card blocks override the product list and let you select custom promotional images and links. Disable offer design to use the classic product layout."
+    },
     {
       "type": "collection",
       "id": "collection",
@@ -237,15 +272,15 @@
       "step": 1,
       "default": 4,
       "label": "t:sections.featured-collection.settings.products_to_show.label"
-    },     
+    },
     {
       "type": "header",
       "content": "t:sections.featured-collection.settings.header_text.content"
-    },   
+    },
     {
       "type": "inline_richtext",
       "id": "title",
-      "default": "t:sections.featured-collection.settings.title.default",
+      "default": "FUEL NOVEMBER WITH EPIC DEALS",
       "label": "t:sections.featured-collection.settings.title.label"
     },
     {
@@ -285,7 +320,7 @@
       "type": "checkbox",
       "id": "show_description",
       "label": "t:sections.featured-collection.settings.show_description.label",
-      "default": false   
+      "default": false
     },
     {
       "type": "select",
@@ -310,7 +345,7 @@
     {
       "type": "header",
       "content": "t:sections.featured-collection.settings.header_collection.content"
-    },    
+    },
     {
       "type": "range",
       "id": "columns_desktop",
@@ -320,7 +355,7 @@
       "default": 4,
       "label": "t:sections.featured-collection.settings.columns_desktop.label"
     },
-        {
+    {
       "type": "checkbox",
       "id": "enable_desktop_slider",
       "label": "t:sections.featured-collection.settings.enable_desktop_slider.label",
@@ -358,7 +393,7 @@
         }
       ],
       "default": "solid"
-    }, 
+    },
     {
       "type": "color_scheme",
       "id": "color_scheme",
@@ -488,13 +523,13 @@
           "label": "t:sections.featured-collection.settings.columns_mobile.options__2.label"
         }
       ]
-    },    
+    },
     {
       "type": "checkbox",
       "id": "swipe_on_mobile",
       "default": false,
       "label": "t:sections.featured-collection.settings.swipe_on_mobile.label"
-    },          
+    },
     {
       "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"
@@ -523,6 +558,42 @@
   "presets": [
     {
       "name": "t:sections.featured-collection.presets.name"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "offer",
+      "name": "Offer card",
+      "limit": 24,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Offer image",
+          "info": "Recommended: 800 × 900 px. Use artwork with offer text included to match the reference."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Accessible offer title",
+          "default": "Featured offer"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product (image and link fallback)"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection link"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Custom link (takes priority)"
+        }
+      ]
     }
   ]
 }

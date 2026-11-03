@@ -1,0 +1,13 @@
+{% liquid
+  assign deal_image = block.settings.image | default: product.featured_image
+  assign deal_title = block.settings.title | default: product.title | default: 'Featured offer'
+  assign deal_url = block.settings.link | default: block.settings.collection.url | default: product.url | default: section.settings.collection.url | default: routes.all_products_collection_url
+%}
+<li class="sn-deals__card"{% if block != blank %} {{ block.shopify_attributes }}{% endif %}>
+  <a class="sn-deals__poster" href="{{ deal_url }}" aria-label="{{ deal_title | escape }}" draggable="false">
+    {% if deal_image != blank %}
+      {{ deal_image | image_url: width: 900 | image_tag: widths: '220, 330, 550, 900', sizes: '(max-width: 749px) 72vw, 280px', loading: 'lazy', alt: deal_title, class: 'sn-deals__image' }}
+    {% else %}{{ 'product-1' | placeholder_svg_tag: 'sn-deals__placeholder' }}{% endif %}
+  </a>
+  <a class="sn-deals__cta" href="{{ deal_url }}" draggable="false"><span>{{ section.settings.deal_button_label | default: 'SHOP DEAL NOW' | escape }}</span><span class="visually-hidden"> — {{ deal_title | escape }}</span></a>
+</li>
