@@ -1,0 +1,62 @@
+{{ 'suppz-category-slider.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'suppz-category-slider.js' | asset_url }}" defer></script>
+<suppz-category-slider class="sn-categories" style="--sn-circle-size: {{ section.settings.circle_size }}px; --sn-circle-border: {{ section.settings.accent }}; --sn-category-background: {{ section.settings.background }};" {{ section.shopify_attributes }}>
+  <div class="sn-categories__track" role="region" aria-label="{{ section.settings.label | escape }}" tabindex="0">
+    <ul class="sn-categories__list" role="list">
+      {% for block in section.blocks %}
+        {% liquid
+          assign destination = block.settings.link | default: block.settings.collection.url | default: routes.all_products_collection_url
+          if block.settings.store_link and block.settings.link == blank
+            assign destination = pages.contact.url | default: routes.root_url
+          endif
+          assign circle_title = block.settings.title | default: block.settings.collection.title
+        %}
+        <li class="sn-categories__item" {{ block.shopify_attributes }}>
+          <a class="sn-categories__circle{% if block.settings.highlight %} sn-categories__circle--highlight{% endif %}" href="{{ destination }}"{% if block.settings.store_link and block.settings.link == blank %} data-sn-store-link{% endif %} aria-label="{{ circle_title | newline_to_br | strip_html | escape }}" draggable="false">
+            {% if block.settings.image != blank %}
+              {{ block.settings.image | image_url: width: 240 | image_tag: widths: '76, 152, 240', sizes: '100px', loading: 'lazy', alt: '', class: 'sn-categories__image' }}
+            {% endif %}
+            {% unless block.settings.image != blank and block.settings.hide_text %}
+              <span class="sn-categories__title">{{ circle_title | escape | newline_to_br }}</span>
+            {% endunless %}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</suppz-category-slider>
+{% schema %}
+{
+  "name": "Suppz category slider",
+  "tag": "section",
+  "class": "sn-category-section",
+  "disabled_on": {"groups": ["header", "footer"]},
+  "settings": [
+    {"type":"text","id":"label","label":"Accessible section name","default":"Shop by category"},
+    {"type":"range","id":"circle_size","label":"Circle size","min":64,"max":100,"step":2,"unit":"px","default":76},
+    {"type":"color","id":"accent","label":"Border and highlighted circle","default":"#ed142b"},
+    {"type":"color","id":"background","label":"Section background","default":"#ffffff"}
+  ],
+  "blocks": [{"type":"category","name":"Category circle","limit":30,"settings":[
+    {"type":"textarea","id":"title","label":"Label (new line for each row)","default":"PROTEIN"},
+    {"type":"collection","id":"collection","label":"Collection"},
+    {"type":"url","id":"link","label":"Custom link (overrides collection)"},
+    {"type":"image_picker","id":"image","label":"Circle image"},
+    {"type":"checkbox","id":"hide_text","label":"Image already contains the label","default":false},
+    {"type":"checkbox","id":"highlight","label":"Red background","default":false},
+    {"type":"checkbox","id":"store_link","label":"Open header store information when no custom link","default":false}
+  ]}],
+  "presets": [{"name":"Suppz category slider","blocks":[
+    {"type":"category","settings":{"title":"FIND A\nSTORE","highlight":true,"store_link":true}},
+    {"type":"category","settings":{"title":"STACK\n&\nSAVE"}},
+    {"type":"category","settings":{"title":"PROTEIN"}},
+    {"type":"category","settings":{"title":"CREATINE"}},
+    {"type":"category","settings":{"title":"PRE\nWORK\nOUT"}},
+    {"type":"category","settings":{"title":"FAT\nBURNERS"}},
+    {"type":"category","settings":{"title":"BCAA’S/\nAMINOS"}},
+    {"type":"category","settings":{"title":"COLLAGEN"}},
+    {"type":"category","settings":{"title":"DRINKS"}},
+    {"type":"category","settings":{"title":"APPAREL"}}
+  ]}]
+}
+{% endschema %}
