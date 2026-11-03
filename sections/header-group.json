@@ -1,13 +1,85 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
     "header": {
-      "settings": {
-        "search_placeholder": "Search Products, Brands & More...",
-        "color": "#ed142b",
-        "rewards_text": "JOIN THE SUPPZ NATION COMMUNITY. CREATE AN ACCOUNT FOR YOUR NEXT ORDER.",
-        "promo_text": "FUEL YOUR NEXT LEVEL"
+      "type": "suppz-header",
+      "blocks": {
+        "categories": {
+          "type": "navigation",
+          "settings": {
+            "title": "CATEGORIES",
+            "url": "/collections",
+            "menu": "",
+            "source": "categories",
+            "icon": "muscle",
+            "highlight": false
+          }
+        },
+        "brands": {
+          "type": "navigation",
+          "settings": {
+            "title": "BRANDS",
+            "url": "",
+            "menu": "",
+            "source": "brands",
+            "icon": "brands",
+            "highlight": false
+          }
+        },
+        "specials": {
+          "type": "navigation",
+          "settings": {
+            "title": "SPECIALS",
+            "url": "",
+            "menu": "",
+            "source": "link",
+            "icon": "flame",
+            "highlight": true
+          }
+        },
+        "stacks": {
+          "type": "navigation",
+          "settings": {
+            "title": "STACKS",
+            "url": "",
+            "menu": "",
+            "source": "link",
+            "icon": "muscle",
+            "highlight": false
+          }
+        },
+        "talk": {
+          "type": "navigation",
+          "settings": {
+            "title": "FIT TALK",
+            "url": "",
+            "menu": "",
+            "source": "link",
+            "icon": "talk",
+            "highlight": false
+          }
+        },
+        "delivery": {
+          "type": "navigation",
+          "settings": {
+            "title": "PICKUP & DELIVERY",
+            "url": "",
+            "menu": "",
+            "source": "link",
+            "icon": "truck",
+            "highlight": false
+          }
+        }
       },
       "block_order": [
         "categories",
@@ -17,58 +89,16 @@
         "talk",
         "delivery"
       ],
-      "type": "suppz-header",
-      "blocks": {
-        "delivery": {
-          "settings": {
-            "title": "PICKUP & DELIVERY",
-            "icon": "truck",
-            "source": "link"
-          },
-          "type": "navigation"
-        },
-        "talk": {
-          "settings": {
-            "title": "FIT TALK",
-            "icon": "talk",
-            "source": "link"
-          },
-          "type": "navigation"
-        },
-        "specials": {
-          "settings": {
-            "title": "SPECIALS",
-            "highlight": true,
-            "icon": "flame",
-            "source": "link"
-          },
-          "type": "navigation"
-        },
-        "categories": {
-          "settings": {
-            "url": "/collections",
-            "title": "CATEGORIES",
-            "icon": "muscle",
-            "source": "categories"
-          },
-          "type": "navigation"
-        },
-        "brands": {
-          "settings": {
-            "title": "BRANDS",
-            "icon": "brands",
-            "source": "brands"
-          },
-          "type": "navigation"
-        },
-        "stacks": {
-          "settings": {
-            "title": "STACKS",
-            "icon": "muscle",
-            "source": "link"
-          },
-          "type": "navigation"
-        }
+      "settings": {
+        "logo": "shopify://shop_images/oz_suppz_nation_logo_2_1_570fbe1c-3793-4497-b4a0-5f5a259a473d.png",
+        "color": "#ed142b",
+        "promo_text": "FUEL YOUR NEXT LEVEL",
+        "promo_url": "",
+        "search_placeholder": "Search Products, Brands & More...",
+        "store_address": "",
+        "store_url": "",
+        "rewards_text": "JOIN THE SUPPZ NATION COMMUNITY. CREATE AN ACCOUNT FOR YOUR NEXT ORDER.",
+        "join_url": ""
       }
     }
   },
