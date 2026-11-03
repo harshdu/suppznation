@@ -1,0 +1,49 @@
+{{ 'suppz-hero-slider.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'suppz-hero-slider.js' | asset_url }}" defer></script>
+<suppz-hero-slider class="sn-hero" data-autoplay="{{ section.settings.autoplay }}" data-delay="{{ section.settings.autoplay_seconds | times: 1000 }}" role="region" aria-roledescription="carousel" aria-label="Featured offers">
+  <div class="sn-hero__track" id="SNHero-{{ section.id }}" tabindex="0" aria-label="Banner slides. Use arrow keys to change slides.">
+    {% for block in section.blocks %}
+      {% liquid
+        assign desktop = block.settings.desktop_image | default: block.settings.mobile_image
+        assign description = block.settings.alt_text | default: desktop.alt | default: 'Featured offer'
+      %}
+      <div class="sn-hero__slide" role="group" aria-roledescription="slide" aria-label="{{ forloop.index }} of {{ section.blocks.size }}" {{ block.shopify_attributes }}>
+        {% if block.settings.link != blank %}<a href="{{ block.settings.link }}" draggable="false">{% endif %}
+        {% if desktop != blank %}
+          <picture>
+            {% if block.settings.mobile_image != blank %}<source media="(max-width: 749px)" srcset="{{ block.settings.mobile_image | image_url: width: 390 }} 390w, {{ block.settings.mobile_image | image_url: width: 780 }} 780w, {{ block.settings.mobile_image | image_url: width: 1200 }} 1200w" sizes="calc(100vw - 30px)">{% endif %}
+            <img src="{{ desktop | image_url: width: 1600 }}" srcset="{{ desktop | image_url: width: 800 }} 800w, {{ desktop | image_url: width: 1600 }} 1600w, {{ desktop | image_url: width: 2400 }} 2400w" sizes="(min-width: 1440px) 1400px, calc(100vw - 30px)" width="{{ desktop.width }}" height="{{ desktop.height }}" alt="{{ description | escape }}" draggable="false" {% if forloop.first %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %}>
+          </picture>
+        {% else %}{{ 'lifestyle-1' | placeholder_svg_tag: 'sn-hero__placeholder' }}{% endif %}
+        {% if block.settings.link != blank %}</a>{% endif %}
+      </div>
+    {% endfor %}
+  </div>
+  {% if section.blocks.size > 1 %}
+    <div class="sn-hero__controls">
+      <div class="sn-hero__dots" role="group" aria-label="Choose a banner">{% for block in section.blocks %}<button class="sn-hero__dot{% if forloop.first %} is-active{% endif %}" type="button" data-slide="{{ forloop.index0 }}" aria-label="Go to slide {{ forloop.index }}" aria-controls="SNHero-{{ section.id }}"{% if forloop.first %} aria-current="true"{% endif %}></button>{% endfor %}</div>
+      <div class="sn-hero__buttons">
+        <button type="button" data-play aria-label="Pause slideshow" aria-controls="SNHero-{{ section.id }}"><svg class="sn-hero__pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 6v12M15 6v12"/></svg><svg class="sn-hero__play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m9 5 10 7-10 7Z"/></svg></button>
+        <button type="button" data-prev aria-label="Previous slide" aria-controls="SNHero-{{ section.id }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6"/></svg></button>
+        <button type="button" data-next aria-label="Next slide" aria-controls="SNHero-{{ section.id }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+      </div>
+    </div><span class="visually-hidden" data-status aria-live="polite" aria-atomic="true"></span>
+  {% endif %}
+</suppz-hero-slider>
+{% schema %}
+{
+ "name":"Suppz banner carousel","tag":"section","class":"sn-hero-section","max_blocks":12,
+ "disabled_on":{"groups":["header","footer"]},
+ "settings":[
+  {"type":"checkbox","id":"autoplay","label":"Autoplay","default":true},
+  {"type":"range","id":"autoplay_seconds","label":"Change slide every","min":2,"max":15,"step":1,"unit":"s","default":5}
+ ],
+ "blocks":[{"type":"banner","name":"Banner slide","settings":[
+  {"type":"image_picker","id":"desktop_image","label":"Desktop image","info":"Recommended: 2240 × 800 px (2.8:1)."},
+  {"type":"image_picker","id":"mobile_image","label":"Mobile image","info":"Recommended: 900 × 1000 px (0.9:1)."},
+  {"type":"url","id":"link","label":"Slide link"},
+  {"type":"text","id":"alt_text","label":"Image description"}
+ ]}],
+ "presets":[{"name":"Suppz banner carousel","blocks":[{"type":"banner"},{"type":"banner"},{"type":"banner"}]}]
+}
+{% endschema %}

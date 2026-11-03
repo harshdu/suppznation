@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "suppz_categories": {
@@ -189,9 +180,36 @@
         "accent": "#F84A00",
         "background": "rgba(0,0,0,0)"
       }
+    },
+    "suppz_hero": {
+      "type": "suppz-hero-slider",
+      "blocks": {
+        "slide_1": {
+          "type": "banner",
+          "settings": {}
+        },
+        "slide_2": {
+          "type": "banner",
+          "settings": {}
+        },
+        "slide_3": {
+          "type": "banner",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "slide_1",
+        "slide_2",
+        "slide_3"
+      ],
+      "settings": {
+        "autoplay": true,
+        "autoplay_seconds": 5
+      }
     }
   },
   "order": [
-    "suppz_categories"
+    "suppz_categories",
+    "suppz_hero"
   ]
 }
