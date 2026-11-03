@@ -1,0 +1,66 @@
+{{ 'suppz-featured-deals.css' | asset_url | stylesheet_tag }}
+{{ 'suppz-tabbed-collection.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'suppz-featured-deals.js' | asset_url }}" defer></script>
+<script src="{{ 'suppz-tabbed-collection.js' | asset_url }}" defer></script>
+<suppz-collection-tabs class="sn-tabs" style="--sn-tabs-accent:{{ section.settings.accent }};--sn-tabs-top:{{ section.settings.padding_top }}px;--sn-tabs-bottom:{{ section.settings.padding_bottom }}px;">
+  {% if section.settings.title != blank %}<h2 class="sn-tabs__heading">{{ section.settings.title | escape }}</h2>{% endif %}
+  <div class="sn-tabs__toolbar">
+    <div class="sn-tabs__tablist" role="tablist" aria-label="{{ section.settings.title | default: 'Featured collections' | escape }}">
+      {% for block in section.blocks %}
+        <button class="sn-tabs__tab" type="button" role="tab" id="SNTab-{{ section.id }}-{{ block.id }}" aria-controls="SNPanel-{{ section.id }}-{{ block.id }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" tabindex="{% if forloop.first %}0{% else %}-1{% endif %}">{{ block.settings.label | default: block.settings.collection.title | default: 'Collection' | escape }}</button>
+      {% endfor %}
+    </div>
+    {% if section.settings.show_view_all and section.blocks.size > 0 %}
+      {% assign first_tab = section.blocks.first %}
+      <a class="sn-tabs__view-all" data-view-all href="{{ first_tab.settings.link | default: first_tab.settings.collection.url | default: routes.all_products_collection_url }}">{{ section.settings.view_all_label | escape }}</a>
+    {% endif %}
+  </div>
+  {% for block in section.blocks %}
+    <div class="sn-tabs__panel" id="SNPanel-{{ section.id }}-{{ block.id }}" role="tabpanel" aria-labelledby="SNTab-{{ section.id }}-{{ block.id }}" data-view-url="{{ block.settings.link | default: block.settings.collection.url | default: routes.all_products_collection_url }}"{% unless forloop.first %} hidden{% endunless %} {{ block.shopify_attributes }}>
+      <suppz-deal-slider class="sn-deals sn-tabs__products" aria-label="{{ block.settings.label | default: block.settings.collection.title | escape }} products">
+        <div class="sn-deals__slider">
+          <div class="sn-deals__track" id="SNProducts-{{ section.id }}-{{ block.id }}" tabindex="0" role="region" aria-label="Products. Swipe, drag or use arrow keys to browse.">
+            <ul class="sn-deals__list" role="list">
+              {% for product in block.settings.collection.products limit: section.settings.products_to_show %}
+                {% render 'suppz-tabbed-product', product: product, section: section %}
+              {% else %}
+                {% if block.settings.collection == blank %}
+                  {% for i in (1..6) %}{% render 'suppz-tabbed-product', section: section %}{% endfor %}
+                {% else %}<li class="sn-deals__empty">{{ 'sections.collection_template.empty' | t }}</li>{% endif %}
+              {% endfor %}
+            </ul>
+          </div>
+          <button class="sn-deals__arrow sn-deals__arrow--prev" type="button" data-prev aria-controls="SNProducts-{{ section.id }}-{{ block.id }}" aria-label="Previous products" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6"/></svg></button>
+          <button class="sn-deals__arrow sn-deals__arrow--next" type="button" data-next aria-controls="SNProducts-{{ section.id }}-{{ block.id }}" aria-label="Next products"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+        </div>
+      </suppz-deal-slider>
+    </div>
+  {% endfor %}
+</suppz-collection-tabs>
+{% schema %}
+{
+ "name":"Tabbed Featured Products","tag":"section","class":"sn-tabbed-section","max_blocks":8,
+ "disabled_on":{"groups":["header","footer"]},
+ "settings":[
+  {"type":"text","id":"title","label":"Heading","default":"SHOP OUR BEST SELLERS"},
+  {"type":"range","id":"products_to_show","label":"Products per collection","min":4,"max":24,"step":1,"default":12},
+  {"type":"checkbox","id":"show_view_all","label":"Show View All","default":true},
+  {"type":"text","id":"view_all_label","label":"View All label","default":"VIEW ALL"},
+  {"type":"checkbox","id":"show_compare_price","label":"Show original price for sale products","default":true},
+  {"type":"color","id":"accent","label":"View All button color","default":"#ed142b"},
+  {"type":"range","id":"padding_top","label":"Top spacing","min":0,"max":100,"step":4,"unit":"px","default":28},
+  {"type":"range","id":"padding_bottom","label":"Bottom spacing","min":0,"max":100,"step":4,"unit":"px","default":28}
+ ],
+ "blocks":[{"type":"collection_tab","name":"Collection tab","settings":[
+  {"type":"text","id":"label","label":"Tab label","default":"BEST PROTEIN"},
+  {"type":"collection","id":"collection","label":"Collection"},
+  {"type":"url","id":"link","label":"Custom View All link (optional)"}
+ ]}],
+ "presets":[{"name":"Tabbed Featured Products","blocks":[
+  {"type":"collection_tab","settings":{"label":"BEST PROTEIN"}},
+  {"type":"collection_tab","settings":{"label":"BEST PRE WORKOUTS"}},
+  {"type":"collection_tab","settings":{"label":"BEST FAT BURNERS"}},
+  {"type":"collection_tab","settings":{"label":"BEST DRINKS (RTD)"}}
+ ]}]
+}
+{% endschema %}

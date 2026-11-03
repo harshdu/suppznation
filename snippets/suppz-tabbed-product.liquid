@@ -1,0 +1,19 @@
+<li class="sn-deals__card sn-tabs__product">
+  {% if product != blank %}
+    <a class="sn-tabs__image-link" href="{{ product.url }}" aria-label="{{ product.title | escape }}" draggable="false">
+      {% if product.featured_image != blank %}
+        {{ product.featured_image | image_url: width: 700 | image_tag: widths: '180, 300, 450, 700', sizes: '(max-width: 749px) 44vw, 220px', loading: 'lazy', alt: product.featured_image.alt, class: 'sn-tabs__image' }}
+      {% else %}{{ 'product-1' | placeholder_svg_tag: 'sn-tabs__placeholder' }}{% endif %}
+    </a>
+    <a class="sn-tabs__product-title" href="{{ product.url }}" draggable="false">{{ product.title | escape }}</a>
+    <div class="sn-tabs__price">
+      {% if product.price_varies %}<span class="sn-tabs__from">{{ 'products.product.price.from_price_html' | t: price: '' }}</span>{% endif %}
+      <span>{% if settings.currency_code_enabled %}{{ product.price | money_with_currency }}{% else %}{{ product.price | money }}{% endif %}</span>
+      {% if section.settings.show_compare_price and product.compare_at_price > product.price %}<s><span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>{{ product.compare_at_price | money }}</s>{% endif %}
+    </div>
+    {% unless product.available %}<span class="sn-tabs__sold-out">{{ 'products.product.sold_out' | t }}</span>{% endunless %}
+  {% else %}
+    <div class="sn-tabs__image-link">{{ 'product-1' | placeholder_svg_tag: 'sn-tabs__placeholder' }}</div>
+    {% if request.design_mode %}<p class="sn-tabs__setup">Select a collection for this tab.</p>{% endif %}
+  {% endif %}
+</li>
