@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "suppz_categories": {
@@ -227,40 +236,7 @@
       "name": "t:sections.featured-collection.presets.name",
       "settings": {
         "deal_layout": true,
-        "deal_accent": "#ed142b",
-        "deal_button_label": "SHOP DEAL NOW",
-        "deal_all_label": "SHOP ALL",
-        "collection": "frontpage",
-        "products_to_show": 4,
-        "title": "Featured collection",
-        "heading_size": "h1",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 4,
-        "enable_desktop_slider": false,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "color_scheme": "",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": false,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "featured_collection_fDP8ef": {
-      "type": "featured-collection",
-      "name": "t:sections.featured-collection.presets.name",
-      "settings": {
-        "deal_layout": true,
-        "deal_accent": "#ed142b",
+        "deal_accent": "#F84A00",
         "deal_button_label": "SHOP DEAL NOW",
         "deal_all_label": "SHOP ALL",
         "collection": "frontpage",
@@ -336,9 +312,42 @@
         "show_view_all": true,
         "view_all_label": "VIEW ALL",
         "show_compare_price": true,
-        "accent": "#ed142b",
+        "accent": "#F84A00",
         "padding_top": 28,
         "padding_bottom": 28
+      }
+    },
+    "featured_collection_fDP8ef": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "deal_layout": true,
+        "deal_accent": "#F84A00",
+        "deal_button_label": "SHOP DEAL NOW",
+        "deal_all_label": "SHOP ALL",
+        "collection": "frontpage",
+        "products_to_show": 4,
+        "title": "Featured collection",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "suppz_marquee": {
@@ -347,31 +356,36 @@
         "message_0": {
           "type": "message",
           "settings": {
-            "text": "WELCOME TO SUPPZ NATION"
+            "text": "WELCOME TO SUPPZ NATION",
+            "link": ""
           }
         },
         "message_1": {
           "type": "message",
           "settings": {
-            "text": "FUEL YOUR GOALS"
+            "text": "FUEL YOUR GOALS",
+            "link": ""
           }
         },
         "message_2": {
           "type": "message",
           "settings": {
-            "text": "EXPLORE OUR RANGE"
+            "text": "EXPLORE OUR RANGE",
+            "link": ""
           }
         },
         "message_3": {
           "type": "message",
           "settings": {
-            "text": "SHOP YOUR FAVOURITES"
+            "text": "SHOP YOUR FAVOURITES",
+            "link": ""
           }
         },
         "message_4": {
           "type": "message",
           "settings": {
-            "text": "JOIN THE SUPPZ NATION COMMUNITY"
+            "text": "JOIN THE SUPPZ NATION COMMUNITY",
+            "link": ""
           }
         }
       },
@@ -384,7 +398,7 @@
       ],
       "settings": {
         "label": "Store highlights",
-        "background": "#ed142b",
+        "background": "#F84A00",
         "text_color": "#ffffff",
         "speed": 30,
         "direction": "left",
