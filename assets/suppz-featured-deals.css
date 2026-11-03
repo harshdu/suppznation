@@ -1,4 +1,4 @@
-.sn-deals{display:block;padding:var(--sn-deal-top,28px) 0 var(--sn-deal-bottom,28px);color:#101010;--sn-deal-accent:#ed142b;--sn-deal-gutter:36px}
+.sn-deals{display:block;padding:var(--sn-deal-top,28px) 0 var(--sn-deal-bottom,28px);color:#101010;--sn-deal-accent:#ed142b;--sn-deal-gutter:36px;max-width: 1430px;margin: 0 auto;}
 .sn-deals__heading{display:flex;justify-content:space-between;align-items:center;gap:20px;max-width:100%;padding:0 var(--sn-deal-gutter);margin-bottom:24px;box-sizing:border-box}
 .sn-deals__heading>div{min-width:0}
 .sn-deals__heading h2{margin:0;color:#050505;font:400 30px/1.05 Impact,'Arial Narrow',Arial,sans-serif;text-transform:uppercase;letter-spacing:-.4px;overflow-wrap:anywhere}
