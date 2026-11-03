@@ -1,0 +1,97 @@
+{{ 'suppz-header.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'suppz-header.js' | asset_url }}" defer></script>
+<suppz-header class="sn-header" style="--sn-red: {{ section.settings.color }};" data-section-id="{{ section.id }}">
+  <header>
+    <div class="sn-promo">
+      <a href="{{ section.settings.promo_url | default: routes.all_products_collection_url }}">{{ section.settings.promo_text | escape }}<br><span>SHOP NOW</span></a>
+      <div class="sn-auth"><a href="{{ routes.account_register_url }}">JOIN</a><a href="{{ routes.account_login_url }}">LOGIN</a></div>
+    </div>
+    <div class="sn-main">
+      <button class="sn-icon sn-menu-toggle" type="button" data-sn-open="menu" aria-controls="SNMenu-{{ section.id }}" aria-expanded="false" aria-label="Open menu">{% render 'sn-header-icon', icon: 'menu' %}</button>
+      <button class="sn-icon sn-notice sn-notice--mobile" type="button" data-sn-open="offers" aria-label="View announcements">{% render 'sn-header-icon', icon: 'bell' %}</button>
+      {% render 'sn-header-logo', section: section %}
+      <button type="button" class="sn-store" data-sn-open="store" aria-label="Find a store">{% render 'sn-header-icon', icon: 'pin' %}<span>FIND A STORE</span></button>
+      <form class="sn-search" action="{{ routes.search_url }}" method="get" role="search">
+        <label class="visually-hidden" for="SNSearch-{{ section.id }}">Search products, brands and more</label>
+        <input id="SNSearch-{{ section.id }}" name="q" type="search" value="{{ search.terms | escape }}" placeholder="{{ section.settings.search_placeholder | escape }}" required>
+        <input type="hidden" name="options[prefix]" value="last">
+        <button type="submit" aria-label="Search">{% render 'sn-header-icon', icon: 'search' %}</button>
+      </form>
+      <a class="sn-account" href="{{ routes.account_url }}">{% render 'sn-header-icon', icon: 'account' %}<span>MY ACCOUNT</span></a>
+      <button class="sn-icon sn-notice sn-notice--desktop" type="button" data-sn-open="offers" aria-label="View announcements">{% render 'sn-header-icon', icon: 'bell' %}</button>
+      <a class="sn-cart header__icon--cart" id="cart-icon-bubble" href="{{ routes.cart_url }}" aria-label="Cart">{% render 'sn-header-icon', icon: 'cart' %}
+        {% if cart.item_count > 0 %}<span class="cart-count-bubble"><span aria-hidden="true">{{ cart.item_count }}</span><span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span></span>{% endif %}
+      </a>
+    </div>
+    <nav class="sn-desktop-nav" aria-label="Main navigation"><ul>
+      {% for block in section.blocks %}
+        {% liquid
+          assign destination = block.settings.url | default: routes.all_products_collection_url
+          assign has_children = false
+          if block.settings.menu != blank or block.settings.source != 'link'
+            assign has_children = true
+          endif
+        %}
+        <li {{ block.shopify_attributes }}>
+          {% if has_children %}<details class="sn-dropdown"><summary>{% render 'sn-header-icon', icon: block.settings.icon %}{{ block.settings.title | escape }}</summary><ul class="sn-dropdown__links"><li><a href="{{ destination }}">View all {{ block.settings.title | escape }}</a></li>{% render 'sn-header-links', block: block %}</ul></details>
+          {% else %}<a href="{{ destination }}">{% render 'sn-header-icon', icon: block.settings.icon %}{{ block.settings.title | escape }}</a>{% endif %}
+        </li>
+      {% endfor %}
+    </ul></nav>
+  </header>
+  <dialog class="sn-drawer" id="SNMenu-{{ section.id }}" data-sn-dialog="menu" aria-label="Navigation menu">
+    <div class="sn-drawer__top">{% render 'sn-header-logo', section: section %}<button class="sn-close" type="button" data-sn-close aria-label="Close menu">{% render 'sn-header-icon', icon: 'close' %}</button></div>
+    <nav aria-label="Mobile navigation"><ul class="sn-mobile-links">
+      {% for block in section.blocks %}
+        {% liquid
+          assign destination = block.settings.url | default: routes.all_products_collection_url
+          assign has_children = false
+          if block.settings.menu != blank or block.settings.source != 'link'
+            assign has_children = true
+          endif
+        %}
+        <li{% if block.settings.highlight %} class="sn-highlight"{% endif %}>
+          {% if has_children %}<details><summary>{{ block.settings.title | escape }}{% render 'sn-header-icon', icon: 'chevron' %}</summary><ul><li><a href="{{ destination }}">View all {{ block.settings.title | escape }}</a></li>{% render 'sn-header-links', block: block %}</ul></details>
+          {% else %}<a href="{{ destination }}">{{ block.settings.title | escape }}</a>{% endif %}
+        </li>
+      {% endfor %}
+    </ul></nav>
+    <button class="sn-drawer__red" type="button" data-sn-switch="store">{% render 'sn-header-icon', icon: 'pin' %}FIND A STORE</button>
+    <a class="sn-drawer__red" href="{{ routes.account_login_url }}">{% render 'sn-header-icon', icon: 'account' %}SIGN IN</a>
+    <div class="sn-rewards"><span class="sn-rewards__badge">SUPPZ<br>REWARDS</span><p>{{ section.settings.rewards_text | escape }}</p><a href="{{ section.settings.join_url | default: routes.account_register_url }}">{% render 'sn-header-icon', icon: 'account' %}JOIN NOW</a></div>
+  </dialog>
+  <dialog class="sn-panel" data-sn-dialog="offers" aria-labelledby="SNOffers-{{ section.id }}"><button class="sn-close" type="button" data-sn-close aria-label="Close announcements">{% render 'sn-header-icon', icon: 'close' %}</button><h2 id="SNOffers-{{ section.id }}">Latest from Suppz Nation</h2><p>{{ section.settings.promo_text | escape }}</p><a class="sn-panel__cta" href="{{ section.settings.promo_url | default: routes.all_products_collection_url }}">Shop now</a></dialog>
+  <dialog class="sn-panel" data-sn-dialog="store" aria-labelledby="SNStore-{{ section.id }}"><button class="sn-close" type="button" data-sn-close aria-label="Close store information">{% render 'sn-header-icon', icon: 'close' %}</button><h2 id="SNStore-{{ section.id }}">Find a store</h2>{% if section.settings.store_address != blank %}<p>{{ section.settings.store_address | escape | newline_to_br }}</p>{% else %}<p>Contact our team for store locations, opening hours and pickup availability.</p>{% endif %}{% if section.settings.store_url != blank %}<a class="sn-panel__cta" href="{{ section.settings.store_url }}">Store details & directions</a>{% elsif pages.contact != blank %}<a class="sn-panel__cta" href="{{ pages.contact.url }}">Contact us</a>{% else %}<a class="sn-panel__cta" href="mailto:{{ shop.email | escape }}">Contact us</a>{% endif %}</dialog>
+</suppz-header>
+{% if settings.cart_type == 'notification' %}
+  {{ 'component-cart-notification.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'cart-notification.js' | asset_url }}" defer></script>
+  {% render 'cart-notification', color_scheme: 'scheme-1', desktop_menu_type: 'dropdown' %}
+{% endif %}
+{% schema %}
+{
+  "name": "Suppz Nation header",
+  "class": "sn-header-section",
+  "limit": 1,
+  "enabled_on": {"groups": ["header"]},
+  "settings": [
+    {"type":"image_picker","id":"logo","label":"Suppz Nation logo"},
+    {"type":"color","id":"color","label":"Header color","default":"#ed142b"},
+    {"type":"text","id":"promo_text","label":"Announcement","default":"FUEL YOUR NEXT LEVEL"},
+    {"type":"url","id":"promo_url","label":"Announcement link"},
+    {"type":"text","id":"search_placeholder","label":"Search placeholder","default":"Search Products, Brands & More..."},
+    {"type":"textarea","id":"store_address","label":"Store address and opening hours"},
+    {"type":"url","id":"store_url","label":"Store locator or directions link"},
+    {"type":"text","id":"rewards_text","label":"Join message","default":"JOIN THE SUPPZ NATION COMMUNITY. CREATE AN ACCOUNT FOR YOUR NEXT ORDER."},
+    {"type":"url","id":"join_url","label":"Join / rewards link"}
+  ],
+  "blocks": [{"type":"navigation","name":"Navigation item","limit":8,"settings":[
+    {"type":"text","id":"title","label":"Label","default":"CATEGORIES"},
+    {"type":"url","id":"url","label":"Link (defaults to all products)"},
+    {"type":"link_list","id":"menu","label":"Submenu"},
+    {"type":"select","id":"source","label":"Automatic submenu","default":"link","options":[{"value":"link","label":"None"},{"value":"categories","label":"Store collections"},{"value":"brands","label":"Product brands"}]},
+    {"type":"select","id":"icon","label":"Icon","default":"muscle","options":[{"value":"muscle","label":"Muscle"},{"value":"brands","label":"Brands"},{"value":"flame","label":"Flame"},{"value":"talk","label":"Articles"},{"value":"truck","label":"Delivery"}]},
+    {"type":"checkbox","id":"highlight","label":"Highlight on mobile","default":false}
+  ]}]
+}
+{% endschema %}

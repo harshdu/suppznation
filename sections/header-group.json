@@ -1,1 +1,78 @@
-{"name":"t:sections.header.name","type":"header","sections":{"announcement-bar":{"type":"announcement-bar","blocks":{"announcement-bar-0":{"type":"announcement","settings":{"text":"Welcome to our store","link":""}},"announcement_4pHVTm":{"type":"announcement","settings":{"text":"Welcome to our store 2","link":""}},"announcement_P8mVyA":{"type":"announcement","settings":{"text":"Welcome to our store 3","link":""}}},"block_order":["announcement-bar-0","announcement_4pHVTm","announcement_P8mVyA"],"settings":{"auto_rotate":true,"change_slides_speed":5,"color_scheme":"scheme-3","show_line_separator":true,"show_social":false,"enable_country_selector":false,"enable_language_selector":false}},"header":{"type":"header","settings":{"logo_position":"middle-center","mobile_logo_position":"center","menu":"main-menu","menu_type_desktop":"drawer","sticky_header_type":"reduce-logo-size","show_line_separator":true,"color_scheme":"scheme-5","menu_color_scheme":"scheme-1","enable_country_selector":true,"enable_language_selector":true,"margin_bottom":0,"padding_top":8,"padding_bottom":8}}},"order":["announcement-bar","header"]}
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "header": {
+      "settings": {
+        "search_placeholder": "Search Products, Brands & More...",
+        "color": "#ed142b",
+        "rewards_text": "JOIN THE SUPPZ NATION COMMUNITY. CREATE AN ACCOUNT FOR YOUR NEXT ORDER.",
+        "promo_text": "FUEL YOUR NEXT LEVEL"
+      },
+      "block_order": [
+        "categories",
+        "brands",
+        "specials",
+        "stacks",
+        "talk",
+        "delivery"
+      ],
+      "type": "suppz-header",
+      "blocks": {
+        "delivery": {
+          "settings": {
+            "title": "PICKUP & DELIVERY",
+            "icon": "truck",
+            "source": "link"
+          },
+          "type": "navigation"
+        },
+        "talk": {
+          "settings": {
+            "title": "FIT TALK",
+            "icon": "talk",
+            "source": "link"
+          },
+          "type": "navigation"
+        },
+        "specials": {
+          "settings": {
+            "title": "SPECIALS",
+            "highlight": true,
+            "icon": "flame",
+            "source": "link"
+          },
+          "type": "navigation"
+        },
+        "categories": {
+          "settings": {
+            "url": "/collections",
+            "title": "CATEGORIES",
+            "icon": "muscle",
+            "source": "categories"
+          },
+          "type": "navigation"
+        },
+        "brands": {
+          "settings": {
+            "title": "BRANDS",
+            "icon": "brands",
+            "source": "brands"
+          },
+          "type": "navigation"
+        },
+        "stacks": {
+          "settings": {
+            "title": "STACKS",
+            "icon": "muscle",
+            "source": "link"
+          },
+          "type": "navigation"
+        }
+      }
+    }
+  },
+  "order": [
+    "header"
+  ]
+}

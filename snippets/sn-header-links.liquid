@@ -1,0 +1,21 @@
+{% if block.settings.menu != blank %}
+  {% for child in block.settings.menu.links %}
+    <li>
+      {% if child.links != blank %}
+        <details><summary>{{ child.title | escape }}{% render 'sn-header-icon', icon: 'chevron' %}</summary>
+          <ul><li><a href="{{ child.url }}">View all {{ child.title | escape }}</a></li>
+            {% for grandchild in child.links %}<li><a href="{{ grandchild.url }}">{{ grandchild.title | escape }}</a></li>{% endfor %}
+          </ul>
+        </details>
+      {% else %}<a href="{{ child.url }}"{% if child.current %} aria-current="page"{% endif %}>{{ child.title | escape }}</a>{% endif %}
+    </li>
+  {% endfor %}
+{% elsif block.settings.source == 'categories' %}
+  {% for collection in collections %}
+    {% unless collection.handle == 'frontpage' %}<li><a href="{{ collection.url }}">{{ collection.title | escape }}</a></li>{% endunless %}
+  {% endfor %}
+  <li><a href="{{ routes.collections_url }}">View all categories</a></li>
+{% elsif block.settings.source == 'brands' %}
+  {% for vendor in shop.vendors %}<li>{{ vendor | link_to_vendor }}</li>{% endfor %}
+  <li><a href="{{ routes.all_products_collection_url }}">Shop all products</a></li>
+{% endif %}

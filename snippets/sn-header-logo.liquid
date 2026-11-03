@@ -1,0 +1,7 @@
+<a class="sn-logo" href="{{ routes.root_url }}" aria-label="Suppz Nation home">
+  {% if section.settings.logo != blank %}
+    {{ section.settings.logo | image_url: width: 420 | image_tag: widths: '140, 210, 280, 420', sizes: '140px', loading: 'eager', alt: 'Suppz Nation' }}
+  {% else %}
+    <span class="sn-logo__top">SUPPZ</span><span class="sn-logo__bottom">NATION</span>
+  {% endif %}
+</a>
