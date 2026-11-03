@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "suppz_categories": {
@@ -257,6 +266,46 @@
     },
     "tabbed_featured": {
       "type": "tabbed-featured-collection",
+      "blocks": {
+        "collection_0": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "BEST PROTEIN",
+            "collection": "frontpage",
+            "link": ""
+          }
+        },
+        "collection_1": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "BEST PRE WORKOUTS",
+            "collection": "frontpage",
+            "link": ""
+          }
+        },
+        "collection_2": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "BEST FAT BURNERS",
+            "collection": "",
+            "link": ""
+          }
+        },
+        "collection_3": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "BEST DRINKS (RTD)",
+            "collection": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_0",
+        "collection_1",
+        "collection_2",
+        "collection_3"
+      ],
       "settings": {
         "title": "SHOP OUR BEST SELLERS",
         "products_to_show": 12,
@@ -266,39 +315,7 @@
         "accent": "#ed142b",
         "padding_top": 28,
         "padding_bottom": 28
-      },
-      "blocks": {
-        "collection_0": {
-          "type": "collection_tab",
-          "settings": {
-            "label": "BEST PROTEIN"
-          }
-        },
-        "collection_1": {
-          "type": "collection_tab",
-          "settings": {
-            "label": "BEST PRE WORKOUTS"
-          }
-        },
-        "collection_2": {
-          "type": "collection_tab",
-          "settings": {
-            "label": "BEST FAT BURNERS"
-          }
-        },
-        "collection_3": {
-          "type": "collection_tab",
-          "settings": {
-            "label": "BEST DRINKS (RTD)"
-          }
-        }
-      },
-      "block_order": [
-        "collection_0",
-        "collection_1",
-        "collection_2",
-        "collection_3"
-      ]
+      }
     }
   },
   "order": [
