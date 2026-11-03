@@ -197,6 +197,7 @@
           "type": "banner",
           "settings": {
             "desktop_image": "shopify://shop_images/wellness_banner_full_bleed_2240x800_1cb2fac4-a747-4f3d-8bf7-7d7fdab7f801.png",
+            "mobile_image": "shopify://shop_images/Wellness_Essentials_Supplement_Collection.png",
             "link": "",
             "alt_text": ""
           }
@@ -205,6 +206,7 @@
           "type": "banner",
           "settings": {
             "desktop_image": "shopify://shop_images/November_Deals__Supplement_Stack_Savings.png",
+            "mobile_image": "shopify://shop_images/November_Deals__Up_to_30_Off.png",
             "link": "",
             "alt_text": ""
           }
