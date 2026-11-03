@@ -1,0 +1,44 @@
+{{ 'suppz-marquee.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'suppz-marquee.js' | asset_url }}" defer></script>
+<suppz-marquee class="sn-marquee{% if section.settings.direction == 'right' %} sn-marquee--right{% endif %}" style="--sn-marquee-bg:{{ section.settings.background }};--sn-marquee-color:{{ section.settings.text_color }};--sn-marquee-duration:{{ section.settings.speed }}s;--sn-marquee-height:{{ section.settings.height }}px;--sn-marquee-font:{{ section.settings.font_size }}px;" role="region" aria-label="{{ section.settings.label | escape }}">
+  <div class="sn-marquee__viewport">
+    <div class="sn-marquee__track">
+      {% for copy in (1..2) %}
+        <ul class="sn-marquee__group" role="list"{% if copy == 2 %} aria-hidden="true"{% endif %}>
+          {% for block in section.blocks %}
+            <li class="sn-marquee__item"{% if copy == 1 %} {{ block.shopify_attributes }}{% endif %}>
+              {% if block.settings.link != blank %}<a href="{{ block.settings.link }}"{% if copy == 2 %} tabindex="-1"{% endif %}>{{ block.settings.text | escape }}</a>{% else %}<span>{{ block.settings.text | escape }}</span>{% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endfor %}
+    </div>
+  </div>
+  <button class="sn-marquee__toggle" type="button" aria-label="Pause scrolling announcements" hidden><svg class="sn-marquee__pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6v12M15 6v12"/></svg><svg class="sn-marquee__play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m8 5 11 7-11 7Z"/></svg></button>
+</suppz-marquee>
+{% schema %}
+{
+ "name":"Suppz Marquee","tag":"section","class":"sn-marquee-section","max_blocks":12,
+ "disabled_on":{"groups":["header","footer"]},
+ "settings":[
+  {"type":"text","id":"label","label":"Accessible section name","default":"Store highlights"},
+  {"type":"color","id":"background","label":"Background","default":"#ed142b"},
+  {"type":"color","id":"text_color","label":"Text color","default":"#ffffff"},
+  {"type":"range","id":"speed","label":"Time per loop (higher is slower)","min":10,"max":80,"step":2,"unit":"s","default":30},
+  {"type":"select","id":"direction","label":"Scroll direction","default":"left","options":[{"value":"left","label":"Left"},{"value":"right","label":"Right"}]},
+  {"type":"range","id":"height","label":"Strip height","min":36,"max":72,"step":2,"unit":"px","default":46},
+  {"type":"range","id":"font_size","label":"Text size","min":12,"max":22,"step":1,"unit":"px","default":16}
+ ],
+ "blocks":[{"type":"message","name":"Message","settings":[
+  {"type":"text","id":"text","label":"Text","default":"FUEL YOUR GOALS"},
+  {"type":"url","id":"link","label":"Link (optional)"}
+ ]}],
+ "presets":[{"name":"Suppz Marquee","blocks":[
+  {"type":"message","settings":{"text":"WELCOME TO SUPPZ NATION"}},
+  {"type":"message","settings":{"text":"FUEL YOUR GOALS"}},
+  {"type":"message","settings":{"text":"EXPLORE OUR RANGE"}},
+  {"type":"message","settings":{"text":"SHOP YOUR FAVOURITES"}},
+  {"type":"message","settings":{"text":"JOIN THE SUPPZ NATION COMMUNITY"}}
+ ]}]
+}
+{% endschema %}
