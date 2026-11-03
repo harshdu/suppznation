@@ -212,6 +212,7 @@
         "slide_3": {
           "type": "banner",
           "settings": {
+            "desktop_image": "shopify://shop_images/Fuel_Your_Performance.png",
             "link": "",
             "alt_text": ""
           }
