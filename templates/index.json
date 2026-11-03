@@ -405,6 +405,79 @@
         "height": 46,
         "font_size": 16
       }
+    },
+    "collections_list_AEV4fw": {
+      "type": "collections-list",
+      "blocks": {
+        "collection_fCk7K7": {
+          "type": "collection",
+          "settings": {
+            "title": "Palazzo Set",
+            "link": "/collections/top-palazzo-dupatta-set"
+          }
+        },
+        "collection_c4Mg7N": {
+          "type": "collection",
+          "settings": {
+            "title": "Gown",
+            "link": "/collections/gown"
+          }
+        },
+        "collection_DQmdcy": {
+          "type": "collection",
+          "settings": {
+            "title": "A-Line Kurta",
+            "link": "/collections/a-line-kurta-set"
+          }
+        },
+        "collection_4BBWm3": {
+          "type": "collection",
+          "settings": {
+            "title": "Anarkali",
+            "link": "/collections/anarkali-suit"
+          }
+        },
+        "collection_bD4zi8": {
+          "type": "collection",
+          "settings": {
+            "title": "Sharara Set",
+            "link": "/collections/top-sharara-dupatta-set"
+          }
+        },
+        "collection_Vwihbb": {
+          "type": "collection",
+          "settings": {
+            "title": "Straight Kurta",
+            "link": "/collections/straight-kurta-set"
+          }
+        },
+        "collection_RUxmkL": {
+          "type": "collection",
+          "settings": {
+            "title": "Ethnic Co-Ords",
+            "link": "/collections/ethnic-co-ords-set"
+          }
+        },
+        "collection_Bzetrj": {
+          "type": "collection",
+          "settings": {
+            "title": "Western",
+            "link": "/collections/maxi-dress"
+          }
+        }
+      },
+      "block_order": [
+        "collection_fCk7K7",
+        "collection_c4Mg7N",
+        "collection_DQmdcy",
+        "collection_4BBWm3",
+        "collection_bD4zi8",
+        "collection_Vwihbb",
+        "collection_RUxmkL",
+        "collection_Bzetrj"
+      ],
+      "name": "Collections List",
+      "settings": {}
     }
   },
   "order": [
@@ -413,6 +486,7 @@
     "featured_collection_B4D3F7",
     "tabbed_featured",
     "featured_collection_fDP8ef",
-    "suppz_marquee"
+    "suppz_marquee",
+    "collections_list_AEV4fw"
   ]
 }
