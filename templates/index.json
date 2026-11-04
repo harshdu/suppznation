@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "suppz_categories": {
@@ -654,6 +645,22 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "new_supplements": {
+      "type": "suppz-new-supplements",
+      "settings": {
+        "title": "NEW SUPPLEMENTS",
+        "label": "NEW ARRIVALS",
+        "products_to_show": 12,
+        "show_view_all": true,
+        "view_all_label": "VIEW ALL",
+        "show_new_badge": true,
+        "new_badge_label": "NEW",
+        "show_compare_price": true,
+        "accent": "#ed142b",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
     }
   },
   "order": [
@@ -664,6 +671,7 @@
     "featured_collection_fDP8ef",
     "suppz_marquee",
     "suppz_brands",
-    "wellness_slider"
+    "wellness_slider",
+    "new_supplements"
   ]
 }

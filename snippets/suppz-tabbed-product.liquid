@@ -14,6 +14,7 @@
         {{ product.featured_image | image_url: width: 700 | image_tag: widths: '180, 300, 450, 700', sizes: '(max-width: 749px) 44vw, 220px', loading: 'lazy', alt: product.featured_image.alt, class: 'sn-tabs__image' }}
       {% else %}{{ 'product-1' | placeholder_svg_tag: 'sn-tabs__placeholder' }}{% endif %}
     </a>
+    {% if show_new_badge %}<span class="sn-new__badge">{{ section.settings.new_badge_label | default: 'NEW' | escape }}</span>{% endif %}
     <div class="sn-tabs__actions">
       {% if product.available == false %}
         <button type="button" class="sn-tabs__add" disabled>{{ 'products.product.sold_out' | t }}</button>
