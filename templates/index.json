@@ -679,6 +679,7 @@
           "type": "banner",
           "settings": {
             "label": "Main banner",
+            "desktop_image": "shopify://shop_images/Fuel_Your_Performance_Supplements.png",
             "link": "",
             "alt_text": ""
           }
