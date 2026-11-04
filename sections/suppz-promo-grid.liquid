@@ -1,0 +1,55 @@
+{{ 'suppz-promo-grid.css' | asset_url | stylesheet_tag }}
+<section class="sn-promo-grid" aria-label="{{ section.settings.label | escape }}" style="--sn-promo-gap:{{ section.settings.gap }}px;--sn-promo-radius:{{ section.settings.radius }}px;--sn-promo-top:{{ section.settings.padding_top }}px;--sn-promo-bottom:{{ section.settings.padding_bottom }}px;">
+  <div class="sn-promo-grid__items">
+    {% for block in section.blocks %}
+      {% liquid
+        assign image = block.settings.desktop_image | default: block.settings.mobile_image
+        assign description = block.settings.alt_text | default: image.alt | default: block.settings.label | default: 'Store promotion'
+        assign fallback_ratio = 1.55
+        if forloop.first
+          assign fallback_ratio = 4.35
+        endif
+        assign desktop_ratio = image.aspect_ratio | default: fallback_ratio
+        assign mobile_ratio = block.settings.mobile_image.aspect_ratio | default: desktop_ratio
+      %}
+      <div class="sn-promo-grid__item{% if forloop.first %} sn-promo-grid__item--wide{% endif %}" style="--sn-promo-desktop-ratio:{{ desktop_ratio }};--sn-promo-mobile-ratio:{{ mobile_ratio }};" {{ block.shopify_attributes }}>
+        {% if block.settings.link != blank %}<a class="sn-promo-grid__card" href="{{ block.settings.link }}" aria-label="{{ description | escape }}">{% else %}<div class="sn-promo-grid__card">{% endif %}
+          {% if image != blank %}
+            <picture>
+              {% if block.settings.mobile_image != blank %}<source media="(max-width: 749px)" srcset="{{ block.settings.mobile_image | image_url: width: 390 }} 390w, {{ block.settings.mobile_image | image_url: width: 780 }} 780w, {{ block.settings.mobile_image | image_url: width: 1200 }} 1200w" sizes="calc(100vw - 30px)" width="{{ block.settings.mobile_image.width }}" height="{{ block.settings.mobile_image.height }}">{% endif %}
+              <img src="{{ image | image_url: width: 1400 }}" srcset="{{ image | image_url: width: 500 }} 500w, {{ image | image_url: width: 800 }} 800w, {{ image | image_url: width: 1400 }} 1400w, {{ image | image_url: width: 2200 }} 2200w" sizes="{% if forloop.first %}(min-width: 1456px) 1400px, calc(100vw - 56px){% else %}(min-width: 1456px) 690px, (min-width: 750px) calc((100vw - 76px) / 2), calc(100vw - 30px){% endif %}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ description | escape }}" loading="lazy">
+            </picture>
+          {% else %}
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'sn-promo-grid__placeholder' }}
+            {% if request.design_mode %}<span class="sn-promo-grid__setup">{{ block.settings.label | escape }} — select a banner image</span>{% endif %}
+          {% endif %}
+        {% if block.settings.link != blank %}</a>{% else %}</div>{% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% schema %}
+{
+ "name":"Promo Banner Grid","tag":"section","class":"sn-promo-grid-section","max_blocks":3,
+ "disabled_on":{"groups":["header","footer"]},
+ "settings":[
+  {"type":"text","id":"label","label":"Accessible section name","default":"Store promotions"},
+  {"type":"range","id":"gap","label":"Space between banners","min":8,"max":40,"step":2,"unit":"px","default":20},
+  {"type":"range","id":"radius","label":"Rounded corners","min":0,"max":30,"step":1,"unit":"px","default":17},
+  {"type":"range","id":"padding_top","label":"Top spacing","min":0,"max":100,"step":4,"unit":"px","default":16},
+  {"type":"range","id":"padding_bottom","label":"Bottom spacing","min":0,"max":100,"step":4,"unit":"px","default":16}
+ ],
+ "blocks":[{"type":"banner","name":"Banner","settings":[
+  {"type":"text","id":"label","label":"Banner name","default":"Promotion"},
+  {"type":"image_picker","id":"desktop_image","label":"Desktop image","info":"First banner: approximately 1740 × 400 px. Lower banners: approximately 930 × 600 px."},
+  {"type":"image_picker","id":"mobile_image","label":"Mobile image (optional)","info":"Uses the desktop image if not selected. Images keep their original proportions."},
+  {"type":"url","id":"link","label":"Banner link"},
+  {"type":"text","id":"alt_text","label":"Image description","info":"Describe the promotion and include important offer terms shown in the artwork."}
+ ]}],
+ "presets":[{"name":"Promo Banner Grid","blocks":[
+  {"type":"banner","settings":{"label":"Main banner"}},
+  {"type":"banner","settings":{"label":"Left banner"}},
+  {"type":"banner","settings":{"label":"Right banner"}}
+ ]}]
+}
+{% endschema %}
