@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "suppz_categories": {
@@ -478,6 +469,148 @@
       ],
       "name": "Collections List",
       "settings": {}
+    },
+    "suppz_brands": {
+      "type": "suppz-brands",
+      "blocks": {
+        "brand_0": {
+          "type": "brand",
+          "settings": {
+            "name": "GENETIX NUTRITION"
+          }
+        },
+        "brand_1": {
+          "type": "brand",
+          "settings": {
+            "name": "EHP Labs"
+          }
+        },
+        "brand_2": {
+          "type": "brand",
+          "settings": {
+            "name": "OPTIMUM NUTRITION"
+          }
+        },
+        "brand_3": {
+          "type": "brand",
+          "settings": {
+            "name": "ANABOLIX"
+          }
+        },
+        "brand_4": {
+          "type": "brand",
+          "settings": {
+            "name": "RULE 1"
+          }
+        },
+        "brand_5": {
+          "type": "brand",
+          "settings": {
+            "name": "SWITCH NUTRITION"
+          }
+        },
+        "brand_6": {
+          "type": "brand",
+          "settings": {
+            "name": "APPLIED NUTRITION"
+          }
+        },
+        "brand_7": {
+          "type": "brand",
+          "settings": {
+            "name": "INTERNATIONAL PROTEIN"
+          }
+        },
+        "brand_8": {
+          "type": "brand",
+          "settings": {
+            "name": "MAX'S"
+          }
+        },
+        "brand_9": {
+          "type": "brand",
+          "settings": {
+            "name": "ATP SCIENCE"
+          }
+        },
+        "brand_10": {
+          "type": "brand",
+          "settings": {
+            "name": "NEXUS"
+          }
+        },
+        "brand_11": {
+          "type": "brand",
+          "settings": {
+            "name": "RED DRAGON"
+          }
+        },
+        "brand_12": {
+          "type": "brand",
+          "settings": {
+            "name": "MUSCLETECH"
+          }
+        },
+        "brand_13": {
+          "type": "brand",
+          "settings": {
+            "name": "KAIZEN"
+          }
+        },
+        "brand_14": {
+          "type": "brand",
+          "settings": {
+            "name": "b RAW"
+          }
+        },
+        "brand_15": {
+          "type": "brand",
+          "settings": {
+            "name": "ZOMBIE LABS"
+          }
+        },
+        "brand_16": {
+          "type": "brand",
+          "settings": {
+            "name": "FIBRE BOOST"
+          }
+        },
+        "brand_17": {
+          "type": "brand",
+          "settings": {
+            "name": "BSc"
+          }
+        }
+      },
+      "block_order": [
+        "brand_0",
+        "brand_1",
+        "brand_2",
+        "brand_3",
+        "brand_4",
+        "brand_5",
+        "brand_6",
+        "brand_7",
+        "brand_8",
+        "brand_9",
+        "brand_10",
+        "brand_11",
+        "brand_12",
+        "brand_13",
+        "brand_14",
+        "brand_15",
+        "brand_16",
+        "brand_17"
+      ],
+      "settings": {
+        "title": "EXPLORE OUR BRANDS",
+        "show_view_all": true,
+        "button_label": "VIEW ALL BRANDS",
+        "background": "#e9e9e9",
+        "accent": "#ed142b",
+        "columns_desktop": 6,
+        "columns_mobile": "2"
+      }
     }
   },
   "order": [
@@ -487,6 +620,7 @@
     "tabbed_featured",
     "featured_collection_fDP8ef",
     "suppz_marquee",
-    "collections_list_AEV4fw"
+    "collections_list_AEV4fw",
+    "suppz_brands"
   ]
 }

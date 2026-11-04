@@ -1,0 +1,72 @@
+{{ 'suppz-brands.css' | asset_url | stylesheet_tag }}
+<section class="sn-brands" aria-labelledby="SNBrands-{{ section.id }}" style="--sn-brands-bg:{{ section.settings.background }};--sn-brands-accent:{{ section.settings.accent }};--sn-brands-columns:{{ section.settings.columns_desktop }};--sn-brands-mobile-columns:{{ section.settings.columns_mobile }};">
+  <div class="sn-brands__panel">
+    {% if section.settings.background_image != blank %}
+      {{ section.settings.background_image | image_url: width: 2000 | image_tag: widths: '750, 1200, 1600, 2000', sizes: '(min-width: 1158px) 1110px, calc(100vw - 48px)', loading: 'lazy', alt: '', class: 'sn-brands__background' }}
+    {% endif %}
+    <div class="sn-brands__header">
+      <h2 id="SNBrands-{{ section.id }}">{{ section.settings.title | escape }}</h2>
+      {% if section.settings.show_view_all %}<a class="sn-brands__all" href="{{ section.settings.view_all_link | default: routes.all_products_collection_url }}">{{ section.settings.button_label | escape }}</a>{% endif %}
+    </div>
+    <ul class="sn-brands__grid" role="list">
+      {% for block in section.blocks %}
+        {% liquid
+          assign brand_name = block.settings.name | default: block.settings.collection.title | default: 'Brand'
+          assign vendor_name = brand_name | url_encode
+          assign brand_url = routes.root_url | append: 'collections/vendors?q=' | append: vendor_name
+          assign brand_url = block.settings.link | default: block.settings.collection.url | default: brand_url
+        %}
+        <li {{ block.shopify_attributes }}>
+          <a class="sn-brands__card" href="{{ brand_url }}" aria-label="Shop {{ brand_name | escape }}">
+            {% if block.settings.logo != blank %}
+              {{ block.settings.logo | image_url: width: 450 | image_tag: widths: '150, 225, 300, 450', sizes: '(max-width: 749px) 40vw, 160px', loading: 'lazy', alt: brand_name, class: 'sn-brands__logo' }}
+            {% else %}<span class="sn-brands__name">{{ brand_name | escape }}</span>{% endif %}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% schema %}
+{
+ "name":"Explore Our Brands","tag":"section","class":"sn-brands-section","max_blocks":36,
+ "disabled_on":{"groups":["header","footer"]},
+ "settings":[
+  {"type":"text","id":"title","label":"Heading","default":"EXPLORE OUR BRANDS"},
+  {"type":"checkbox","id":"show_view_all","label":"Show View All button","default":true},
+  {"type":"text","id":"button_label","label":"Button label","default":"VIEW ALL BRANDS"},
+  {"type":"url","id":"view_all_link","label":"View All Brands link"},
+  {"type":"image_picker","id":"background_image","label":"Background texture image (optional)"},
+  {"type":"color","id":"background","label":"Background color","default":"#e9e9e9"},
+  {"type":"color","id":"accent","label":"Button color","default":"#ed142b"},
+  {"type":"range","id":"columns_desktop","label":"Desktop columns","min":3,"max":6,"step":1,"default":6},
+  {"type":"select","id":"columns_mobile","label":"Mobile columns","default":"2","options":[{"value":"2","label":"2"},{"value":"3","label":"3"}]}
+ ],
+ "blocks":[{"type":"brand","name":"Brand","settings":[
+  {"type":"text","id":"name","label":"Brand name","default":"Brand"},
+  {"type":"image_picker","id":"logo","label":"Brand logo"},
+  {"type":"collection","id":"collection","label":"Brand collection"},
+  {"type":"url","id":"link","label":"Custom link (overrides collection)","info":"Without a custom link or collection, the card opens products filtered by the brand name."}
+ ]}],
+ "presets":[{"name":"Explore Our Brands","blocks":[
+  {"type":"brand","settings":{"name":"GENETIX NUTRITION"}},
+  {"type":"brand","settings":{"name":"EHP Labs"}},
+  {"type":"brand","settings":{"name":"OPTIMUM NUTRITION"}},
+  {"type":"brand","settings":{"name":"ANABOLIX"}},
+  {"type":"brand","settings":{"name":"RULE 1"}},
+  {"type":"brand","settings":{"name":"SWITCH NUTRITION"}},
+  {"type":"brand","settings":{"name":"APPLIED NUTRITION"}},
+  {"type":"brand","settings":{"name":"INTERNATIONAL PROTEIN"}},
+  {"type":"brand","settings":{"name":"MAX'S"}},
+  {"type":"brand","settings":{"name":"ATP SCIENCE"}},
+  {"type":"brand","settings":{"name":"NEXUS"}},
+  {"type":"brand","settings":{"name":"RED DRAGON"}},
+  {"type":"brand","settings":{"name":"MUSCLETECH"}},
+  {"type":"brand","settings":{"name":"KAIZEN"}},
+  {"type":"brand","settings":{"name":"b RAW"}},
+  {"type":"brand","settings":{"name":"ZOMBIE LABS"}},
+  {"type":"brand","settings":{"name":"FIBRE BOOST"}},
+  {"type":"brand","settings":{"name":"BSc"}}
+ ]}]
+}
+{% endschema %}
