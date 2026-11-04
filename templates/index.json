@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "suppz_categories": {
@@ -582,43 +591,56 @@
         "wellness_0": {
           "type": "wellness_card",
           "settings": {
-            "title": "SLEEP SUPPORT",
-            "subtitle": "EVENING SUPPORT FOR RESTFUL NIGHTS"
+            "image": "shopify://shop_images/Square_4.png",
+            "title": "Accessories",
+            "subtitle": "EVENING SUPPORT FOR RESTFUL NIGHTS",
+            "collection": "",
+            "link": ""
           }
         },
         "wellness_1": {
           "type": "wellness_card",
           "settings": {
             "title": "STRESS RELIEF",
-            "subtitle": "CALM SUPPORT FOR BUSY DAYS"
+            "subtitle": "CALM SUPPORT FOR BUSY DAYS",
+            "collection": "",
+            "link": ""
           }
         },
         "wellness_2": {
           "type": "wellness_card",
           "settings": {
             "title": "GUT HEALTH",
-            "subtitle": "DAILY SUPPORT FOR DIGESTIVE HEALTH"
+            "subtitle": "DAILY SUPPORT FOR DIGESTIVE HEALTH",
+            "collection": "",
+            "link": ""
           }
         },
         "wellness_3": {
           "type": "wellness_card",
           "settings": {
             "title": "IMMUNITY SUPPORT",
-            "subtitle": "EVERYDAY SUPPORT FOR IMMUNE HEALTH"
+            "subtitle": "EVERYDAY SUPPORT FOR IMMUNE HEALTH",
+            "collection": "",
+            "link": ""
           }
         },
         "wellness_4": {
           "type": "wellness_card",
           "settings": {
             "title": "ENERGY & FOCUS",
-            "subtitle": "DAILY SUPPORT FOR ENERGY AND CLARITY"
+            "subtitle": "DAILY SUPPORT FOR ENERGY AND CLARITY",
+            "collection": "",
+            "link": ""
           }
         },
         "wellness_5": {
           "type": "wellness_card",
           "settings": {
             "title": "RECOVERY",
-            "subtitle": "SUPPORT FOR YOUR POST-WORKOUT ROUTINE"
+            "subtitle": "SUPPORT FOR YOUR POST-WORKOUT ROUTINE",
+            "collection": "",
+            "link": ""
           }
         }
       },
