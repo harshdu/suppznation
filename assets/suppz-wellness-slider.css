@@ -1,0 +1,19 @@
+.sn-wellness{display:block;padding:var(--sn-wellness-top,28px) 0 var(--sn-wellness-bottom,28px);background:var(--sn-wellness-bg,#fff);--sn-wellness-gutter:46px;--sn-wellness-zoom:1.05}
+.sn-wellness__heading{padding:0 var(--sn-wellness-gutter);margin-bottom:32px}
+.sn-wellness__heading h2{margin:0;color:#080808;font:400 44px/1.1 Impact,'Arial Narrow',Arial,sans-serif;text-transform:uppercase;overflow-wrap:anywhere}
+.sn-wellness__heading>p{margin:8px 0 0;color:#677887;font:400 19px/1.5 Arial,Helvetica,sans-serif}
+.sn-wellness .sn-wellness__slider{padding:0;background:transparent;--sn-deal-gutter:var(--sn-wellness-gutter)}
+.sn-wellness .sn-deals__list{gap:24px}
+.sn-wellness .sn-wellness__card{width:clamp(260px,21.1vw,350px)}
+.sn-wellness__link{position:relative;isolation:isolate;display:block;width:100%;aspect-ratio:.656;border-radius:15px;overflow:hidden;color:#fff;text-decoration:none;background:#d6d9d8;-webkit-user-drag:none;box-shadow:0 2px 4px #0001}
+.sn-wellness__image{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;transform:scale(1);transition:transform .65s cubic-bezier(.2,.65,.3,1);pointer-events:none}
+.sn-wellness__placeholder{background:#bfc5c1;fill:#7d8981}
+.sn-wellness__link:after{content:'';position:absolute;inset:35% 0 0;z-index:1;background:linear-gradient(transparent,rgba(0,0,0,.05) 30%,rgba(0,0,0,.65) 100%);pointer-events:none}
+.sn-wellness__text{position:absolute;bottom:26px;left:20px;right:18px;z-index:2;pointer-events:none}
+.sn-wellness__text h3{margin:0;color:#fff;font:400 29px/1.05 Impact,'Arial Narrow',Arial,sans-serif;text-transform:uppercase;overflow-wrap:anywhere}
+.sn-wellness__text p{margin:5px 0 0;color:#e3e3e3;font:700 16px/1.2 Arial,Helvetica,sans-serif;text-transform:uppercase;overflow-wrap:anywhere}
+.sn-wellness .sn-deals__arrow{top:50%;width:52px;height:52px}.sn-wellness .sn-deals__arrow--prev{left:15px}.sn-wellness .sn-deals__arrow--next{right:15px}
+@media(hover:hover) and (pointer:fine){.sn-wellness__link:hover .sn-wellness__image{transform:scale(var(--sn-wellness-zoom))}}
+.sn-wellness__link:focus-visible .sn-wellness__image{transform:scale(var(--sn-wellness-zoom))}
+@media(max-width:749px){.sn-wellness{--sn-wellness-gutter:15px}.sn-wellness__heading{margin-bottom:22px}.sn-wellness__heading h2{font-size:30px}.sn-wellness__heading>p{font-size:15px;line-height:1.5}.sn-wellness .sn-deals__list{gap:16px}.sn-wellness .sn-wellness__card{width:78vw;max-width:350px}.sn-wellness__text{bottom:22px;left:18px}.sn-wellness__text h3{font-size:27px}.sn-wellness__text p{font-size:14px}.sn-wellness .sn-deals__arrow{width:38px;height:38px}.sn-wellness .sn-deals__arrow--prev{left:2px}.sn-wellness .sn-deals__arrow--next{right:2px}}
+@media(prefers-reduced-motion:reduce){.sn-wellness__image{transition:none}.sn-wellness__link:hover .sn-wellness__image,.sn-wellness__link:focus-visible .sn-wellness__image{transform:none}}

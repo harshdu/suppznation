@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "suppz_categories": {
@@ -584,6 +575,69 @@
         "columns_desktop": 6,
         "columns_mobile": "2"
       }
+    },
+    "wellness_slider": {
+      "type": "suppz-wellness-slider",
+      "blocks": {
+        "wellness_0": {
+          "type": "wellness_card",
+          "settings": {
+            "title": "SLEEP SUPPORT",
+            "subtitle": "EVENING SUPPORT FOR RESTFUL NIGHTS"
+          }
+        },
+        "wellness_1": {
+          "type": "wellness_card",
+          "settings": {
+            "title": "STRESS RELIEF",
+            "subtitle": "CALM SUPPORT FOR BUSY DAYS"
+          }
+        },
+        "wellness_2": {
+          "type": "wellness_card",
+          "settings": {
+            "title": "GUT HEALTH",
+            "subtitle": "DAILY SUPPORT FOR DIGESTIVE HEALTH"
+          }
+        },
+        "wellness_3": {
+          "type": "wellness_card",
+          "settings": {
+            "title": "IMMUNITY SUPPORT",
+            "subtitle": "EVERYDAY SUPPORT FOR IMMUNE HEALTH"
+          }
+        },
+        "wellness_4": {
+          "type": "wellness_card",
+          "settings": {
+            "title": "ENERGY & FOCUS",
+            "subtitle": "DAILY SUPPORT FOR ENERGY AND CLARITY"
+          }
+        },
+        "wellness_5": {
+          "type": "wellness_card",
+          "settings": {
+            "title": "RECOVERY",
+            "subtitle": "SUPPORT FOR YOUR POST-WORKOUT ROUTINE"
+          }
+        }
+      },
+      "block_order": [
+        "wellness_0",
+        "wellness_1",
+        "wellness_2",
+        "wellness_3",
+        "wellness_4",
+        "wellness_5"
+      ],
+      "settings": {
+        "title": "EXPLORE WELLNESS SUPPORT THAT FITS YOUR GOALS",
+        "description": "From sleep and stress relief through to gut health, immunity and focus, shop the goal that is most important to you.",
+        "hover_zoom": 105,
+        "background": "#ffffff",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
     }
   },
   "order": [
@@ -593,6 +647,7 @@
     "tabbed_featured",
     "featured_collection_fDP8ef",
     "suppz_marquee",
-    "suppz_brands"
+    "suppz_brands",
+    "wellness_slider"
   ]
 }
