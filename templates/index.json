@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "suppz_categories": {
@@ -770,6 +761,25 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "suppz_about": {
+      "type": "suppz-about",
+      "settings": {
+        "brand_name": "SUPPZ NATION",
+        "title": "SUPPLEMENTS FOR YOUR GOALS",
+        "body": "<p>At <strong>Suppz Nation</strong>, explore supplements that fit your training, nutrition and everyday routine.</p><p>Discover your favourite brands and shop our range of protein, pre-workout and more.</p><p>Find your next addition to your routine and keep moving towards your goals.</p>",
+        "show_info_card": true,
+        "info_title": "NUTRITION BUILT FOR YOUR GOALS",
+        "info_body": "<p>Whatever your fitness goals, explore our range and find products to complement your routine. Browse your favourite categories or discover something new at Suppz Nation.</p>",
+        "image_alt": "The Suppz Nation community",
+        "show_badge": true,
+        "badge_title": "SUPPZ NATION",
+        "badge_subtitle": "FIND YOUR NEXT FAVOURITE",
+        "background": "#f7f8fa",
+        "accent": "#ed142b",
+        "padding_top": 24,
+        "padding_bottom": 44
+      }
     }
   },
   "order": [
@@ -783,6 +793,7 @@
     "wellness_slider",
     "new_supplements",
     "promo_banner_grid",
-    "article_cards"
+    "article_cards",
+    "suppz_about"
   ]
 }

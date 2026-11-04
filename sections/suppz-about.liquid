@@ -1,0 +1,57 @@
+{{ 'suppz-about.css' | asset_url | stylesheet_tag }}
+<section class="sn-about" aria-labelledby="SNAbout-{{ section.id }}" style="--sn-about-bg:{{ section.settings.background }};--sn-about-accent:{{ section.settings.accent }};--sn-about-top:{{ section.settings.padding_top }}px;--sn-about-bottom:{{ section.settings.padding_bottom }}px;">
+  <div class="sn-about__inner">
+    <div class="sn-about__content">
+      {% if section.settings.logo != blank %}
+        <a class="sn-about__logo" href="{{ routes.root_url }}" aria-label="{{ section.settings.brand_name | escape }} home">{{ section.settings.logo | image_url: width: 450 | image_tag: widths: '160, 240, 320, 450', sizes: '170px', loading: 'lazy', alt: section.settings.brand_name }}</a>
+      {% else %}<a class="sn-about__logo sn-about__logo--text" href="{{ routes.root_url }}">{{ section.settings.brand_name | escape }}</a>{% endif %}
+      <h2 id="SNAbout-{{ section.id }}">{{ section.settings.title | escape }}</h2>
+      <div class="sn-about__body rte">{{ section.settings.body }}</div>
+      {% if section.settings.show_info_card %}
+        <div class="sn-about__info">
+          {% if section.settings.info_title != blank %}<h3>{{ section.settings.info_title | escape }}</h3>{% endif %}
+          <div class="rte">{{ section.settings.info_body }}</div>
+        </div>
+      {% endif %}
+    </div>
+    <div class="sn-about__visual-column">
+      <div class="sn-about__visual">
+        <div class="sn-about__portrait">
+          {% if section.settings.image != blank %}{{ section.settings.image | image_url: width: 1200 | image_tag: widths: '360, 540, 800, 1200', sizes: '(min-width: 990px) 540px, (min-width: 750px) 65vw, 90vw', loading: 'lazy', alt: section.settings.image_alt, class: 'sn-about__image' }}
+          {% else %}{{ 'lifestyle-1' | placeholder_svg_tag: 'sn-about__image sn-about__placeholder' }}{% endif %}
+        </div>
+        {% if section.settings.show_badge %}
+          <div class="sn-about__badge">
+            {% if section.settings.badge_title != blank %}<strong>{{ section.settings.badge_title | escape }}</strong>{% endif %}
+            {% if section.settings.badge_subtitle != blank %}<span>{{ section.settings.badge_subtitle | escape }}</span>{% endif %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+ "name":"About Suppz Nation","tag":"section","class":"sn-about-section",
+ "disabled_on":{"groups":["header","footer"]},
+ "settings":[
+  {"type":"text","id":"brand_name","label":"Brand name","default":"SUPPZ NATION"},
+  {"type":"image_picker","id":"logo","label":"Brand logo"},
+  {"type":"text","id":"title","label":"Heading","default":"SUPPLEMENTS FOR YOUR GOALS"},
+  {"type":"richtext","id":"body","label":"Main content","default":"<p>At <strong>Suppz Nation</strong>, explore supplements that fit your training, nutrition and everyday routine.</p><p>Discover your favourite brands and shop our range of protein, pre-workout and more.</p><p>Find your next addition to your routine and keep moving towards your goals.</p>"},
+  {"type":"checkbox","id":"show_info_card","label":"Show information card","default":true},
+  {"type":"text","id":"info_title","label":"Information card heading","default":"NUTRITION BUILT FOR YOUR GOALS"},
+  {"type":"richtext","id":"info_body","label":"Information card content","default":"<p>Whatever your fitness goals, explore our range and find products to complement your routine. Browse your favourite categories or discover something new at Suppz Nation.</p>"},
+  {"type":"image_picker","id":"image","label":"Circular image"},
+  {"type":"text","id":"image_alt","label":"Image description","default":"The Suppz Nation community"},
+  {"type":"checkbox","id":"show_badge","label":"Show image badge","default":true},
+  {"type":"text","id":"badge_title","label":"Badge heading","default":"SUPPZ NATION"},
+  {"type":"text","id":"badge_subtitle","label":"Badge subtitle","default":"FIND YOUR NEXT FAVOURITE"},
+  {"type":"color","id":"background","label":"Background color","default":"#f7f8fa"},
+  {"type":"color","id":"accent","label":"Image border and link color","default":"#ed142b"},
+  {"type":"range","id":"padding_top","label":"Top spacing","min":0,"max":100,"step":4,"unit":"px","default":24},
+  {"type":"range","id":"padding_bottom","label":"Bottom spacing","min":0,"max":100,"step":4,"unit":"px","default":44}
+ ],
+ "presets":[{"name":"About Suppz Nation"}]
+}
+{% endschema %}
