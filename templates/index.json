@@ -697,6 +697,7 @@
           "type": "banner",
           "settings": {
             "label": "Right banner",
+            "desktop_image": "shopify://shop_images/Best_Value_Supplement_Stack_Ad.png",
             "link": "",
             "alt_text": ""
           }
