@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "suppz_categories": {
@@ -227,7 +236,7 @@
       "name": "t:sections.featured-collection.presets.name",
       "settings": {
         "deal_layout": true,
-        "deal_accent": "#F84A00",
+        "deal_accent": "#f84a00",
         "deal_button_label": "SHOP DEAL NOW",
         "deal_all_label": "SHOP ALL",
         "collection": "frontpage",
@@ -303,7 +312,7 @@
         "show_view_all": true,
         "view_all_label": "VIEW ALL",
         "show_compare_price": true,
-        "accent": "#F84A00",
+        "accent": "#f84a00",
         "padding_top": 28,
         "padding_bottom": 28
       }
@@ -313,7 +322,7 @@
       "name": "t:sections.featured-collection.presets.name",
       "settings": {
         "deal_layout": true,
-        "deal_accent": "#F84A00",
+        "deal_accent": "#f84a00",
         "deal_button_label": "SHOP DEAL NOW",
         "deal_all_label": "SHOP ALL",
         "collection": "frontpage",
@@ -389,7 +398,7 @@
       ],
       "settings": {
         "label": "Store highlights",
-        "background": "#F84A00",
+        "background": "#f84a00",
         "text_color": "#ffffff",
         "speed": 30,
         "direction": "left",
@@ -397,188 +406,151 @@
         "font_size": 16
       }
     },
-    "collections_list_AEV4fw": {
-      "type": "collections-list",
-      "blocks": {
-        "collection_fCk7K7": {
-          "type": "collection",
-          "settings": {
-            "title": "Palazzo Set",
-            "link": "/collections/top-palazzo-dupatta-set"
-          }
-        },
-        "collection_c4Mg7N": {
-          "type": "collection",
-          "settings": {
-            "title": "Gown",
-            "link": "/collections/gown"
-          }
-        },
-        "collection_DQmdcy": {
-          "type": "collection",
-          "settings": {
-            "title": "A-Line Kurta",
-            "link": "/collections/a-line-kurta-set"
-          }
-        },
-        "collection_4BBWm3": {
-          "type": "collection",
-          "settings": {
-            "title": "Anarkali",
-            "link": "/collections/anarkali-suit"
-          }
-        },
-        "collection_bD4zi8": {
-          "type": "collection",
-          "settings": {
-            "title": "Sharara Set",
-            "link": "/collections/top-sharara-dupatta-set"
-          }
-        },
-        "collection_Vwihbb": {
-          "type": "collection",
-          "settings": {
-            "title": "Straight Kurta",
-            "link": "/collections/straight-kurta-set"
-          }
-        },
-        "collection_RUxmkL": {
-          "type": "collection",
-          "settings": {
-            "title": "Ethnic Co-Ords",
-            "link": "/collections/ethnic-co-ords-set"
-          }
-        },
-        "collection_Bzetrj": {
-          "type": "collection",
-          "settings": {
-            "title": "Western",
-            "link": "/collections/maxi-dress"
-          }
-        }
-      },
-      "block_order": [
-        "collection_fCk7K7",
-        "collection_c4Mg7N",
-        "collection_DQmdcy",
-        "collection_4BBWm3",
-        "collection_bD4zi8",
-        "collection_Vwihbb",
-        "collection_RUxmkL",
-        "collection_Bzetrj"
-      ],
-      "name": "Collections List",
-      "settings": {}
-    },
     "suppz_brands": {
       "type": "suppz-brands",
       "blocks": {
         "brand_0": {
           "type": "brand",
           "settings": {
-            "name": "GENETIX NUTRITION"
+            "name": "GENETIX NUTRITION",
+            "collection": "",
+            "link": ""
           }
         },
         "brand_1": {
           "type": "brand",
           "settings": {
-            "name": "EHP Labs"
+            "name": "EHP Labs",
+            "collection": "",
+            "link": ""
           }
         },
         "brand_2": {
           "type": "brand",
           "settings": {
-            "name": "OPTIMUM NUTRITION"
+            "name": "OPTIMUM NUTRITION",
+            "collection": "",
+            "link": ""
           }
         },
         "brand_3": {
           "type": "brand",
           "settings": {
-            "name": "ANABOLIX"
+            "name": "ANABOLIX",
+            "collection": "",
+            "link": ""
           }
         },
         "brand_4": {
           "type": "brand",
           "settings": {
-            "name": "RULE 1"
+            "name": "RULE 1",
+            "collection": "",
+            "link": ""
           }
         },
         "brand_5": {
           "type": "brand",
           "settings": {
-            "name": "SWITCH NUTRITION"
+            "name": "SWITCH NUTRITION",
+            "collection": "",
+            "link": ""
           }
         },
         "brand_6": {
           "type": "brand",
           "settings": {
-            "name": "APPLIED NUTRITION"
+            "name": "APPLIED NUTRITION",
+            "collection": "",
+            "link": ""
           }
         },
         "brand_7": {
           "type": "brand",
           "settings": {
-            "name": "INTERNATIONAL PROTEIN"
+            "name": "INTERNATIONAL PROTEIN",
+            "collection": "",
+            "link": ""
           }
         },
         "brand_8": {
           "type": "brand",
           "settings": {
-            "name": "MAX'S"
+            "name": "MAX'S",
+            "collection": "",
+            "link": ""
           }
         },
         "brand_9": {
           "type": "brand",
           "settings": {
-            "name": "ATP SCIENCE"
+            "name": "ATP SCIENCE",
+            "collection": "",
+            "link": ""
           }
         },
         "brand_10": {
           "type": "brand",
           "settings": {
-            "name": "NEXUS"
+            "name": "NEXUS",
+            "collection": "",
+            "link": ""
           }
         },
         "brand_11": {
           "type": "brand",
           "settings": {
-            "name": "RED DRAGON"
+            "name": "RED DRAGON",
+            "collection": "",
+            "link": ""
           }
         },
         "brand_12": {
           "type": "brand",
           "settings": {
-            "name": "MUSCLETECH"
+            "name": "MUSCLETECH",
+            "collection": "",
+            "link": ""
           }
         },
         "brand_13": {
           "type": "brand",
           "settings": {
-            "name": "KAIZEN"
+            "name": "KAIZEN",
+            "collection": "",
+            "link": ""
           }
         },
         "brand_14": {
           "type": "brand",
           "settings": {
-            "name": "b RAW"
+            "name": "b RAW",
+            "collection": "",
+            "link": ""
           }
         },
         "brand_15": {
           "type": "brand",
           "settings": {
-            "name": "ZOMBIE LABS"
+            "name": "ZOMBIE LABS",
+            "collection": "",
+            "link": ""
           }
         },
         "brand_16": {
           "type": "brand",
           "settings": {
-            "name": "FIBRE BOOST"
+            "name": "FIBRE BOOST",
+            "collection": "",
+            "link": ""
           }
         },
         "brand_17": {
           "type": "brand",
           "settings": {
-            "name": "BSc"
+            "name": "BSc",
+            "collection": "",
+            "link": ""
           }
         }
       },
@@ -606,6 +578,7 @@
         "title": "EXPLORE OUR BRANDS",
         "show_view_all": true,
         "button_label": "VIEW ALL BRANDS",
+        "view_all_link": "",
         "background": "#e9e9e9",
         "accent": "#ed142b",
         "columns_desktop": 6,
@@ -620,7 +593,6 @@
     "tabbed_featured",
     "featured_collection_fDP8ef",
     "suppz_marquee",
-    "collections_list_AEV4fw",
     "suppz_brands"
   ]
 }
