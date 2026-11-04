@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "suppz_categories": {
@@ -717,7 +726,7 @@
             "image": "shopify://shop_images/Shred_Month_Blog_Swaps.jpg",
             "category": "",
             "title": "Shred Month Easy Wins to Kick Off Your Reset",
-            "excerpt": "a",
+            "excerpt": "Kick off Shred Month the right way with 6 simple, sustainable swaps to help you reset, tighten up and build momentum.",
             "reading_time": 7,
             "link": ""
           }
@@ -728,9 +737,9 @@
             "article": "",
             "image": "shopify://shop_images/Augut_2026_Shred_Month_Blog.jpg",
             "category": "",
-            "title": "",
-            "excerpt": "",
-            "reading_time": 0,
+            "title": "Top 5 Protein Powders For Shredding",
+            "excerpt": "Kick off Shred Month the right way with 6 simple, sustainable swaps to help you reset, tighten up and build momentum.",
+            "reading_time": 5,
             "link": ""
           }
         },
@@ -741,7 +750,7 @@
             "image": "shopify://shop_images/Supps_to_Get_Started_2_10b09061-457a-4036-bcc3-aec360d517bd.jpg",
             "category": "",
             "title": "",
-            "excerpt": "",
+            "excerpt": "Kick off Shred Month the right way with 6 simple, sustainable swaps to help you reset, tighten up and build momentum.",
             "reading_time": 0,
             "link": ""
           }
