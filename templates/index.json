@@ -601,7 +601,8 @@
         "wellness_1": {
           "type": "wellness_card",
           "settings": {
-            "title": "STRESS RELIEF",
+            "image": "shopify://shop_images/square_2.png",
+            "title": "Protein Supplements",
             "subtitle": "CALM SUPPORT FOR BUSY DAYS",
             "collection": "",
             "link": ""
@@ -610,7 +611,8 @@
         "wellness_2": {
           "type": "wellness_card",
           "settings": {
-            "title": "GUT HEALTH",
+            "image": "shopify://shop_images/square_3.png",
+            "title": "Sports Nutrition",
             "subtitle": "DAILY SUPPORT FOR DIGESTIVE HEALTH",
             "collection": "",
             "link": ""
@@ -619,7 +621,8 @@
         "wellness_3": {
           "type": "wellness_card",
           "settings": {
-            "title": "IMMUNITY SUPPORT",
+            "image": "shopify://shop_images/square_1.png",
+            "title": "Weight Loss",
             "subtitle": "EVERYDAY SUPPORT FOR IMMUNE HEALTH",
             "collection": "",
             "link": ""
@@ -628,17 +631,9 @@
         "wellness_4": {
           "type": "wellness_card",
           "settings": {
-            "title": "ENERGY & FOCUS",
+            "image": "shopify://shop_images/square.png",
+            "title": "Health & Vitamins",
             "subtitle": "DAILY SUPPORT FOR ENERGY AND CLARITY",
-            "collection": "",
-            "link": ""
-          }
-        },
-        "wellness_5": {
-          "type": "wellness_card",
-          "settings": {
-            "title": "RECOVERY",
-            "subtitle": "SUPPORT FOR YOUR POST-WORKOUT ROUTINE",
             "collection": "",
             "link": ""
           }
@@ -649,8 +644,7 @@
         "wellness_1",
         "wellness_2",
         "wellness_3",
-        "wellness_4",
-        "wellness_5"
+        "wellness_4"
       ],
       "settings": {
         "title": "EXPLORE WELLNESS SUPPORT THAT FITS YOUR GOALS",
