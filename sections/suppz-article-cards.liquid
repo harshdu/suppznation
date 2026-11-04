@@ -2,7 +2,24 @@
 <section class="sn-articles" aria-label="{{ section.settings.title | default: 'Latest articles' | escape }}" style="--sn-articles-top:{{ section.settings.padding_top }}px;--sn-articles-bottom:{{ section.settings.padding_bottom }}px;">
   {% if section.settings.show_heading %}<h2 class="sn-articles__heading">{{ section.settings.title | escape }}</h2>{% endif %}
   <div class="sn-articles__grid">
-    {% if section.settings.source == 'manual' %}
+    {% liquid
+      assign has_custom_cards = false
+      for block in section.blocks
+        if block.settings.article != blank or block.settings.image != blank or block.settings.title != blank or block.settings.excerpt != blank or block.settings.category != blank or block.settings.link != blank or block.settings.reading_time > 0
+          assign has_custom_cards = true
+          break
+        endif
+      endfor
+      assign use_manual_cards = false
+      if section.settings.source == 'manual'
+        assign use_manual_cards = true
+      elsif has_custom_cards
+        if section.settings.source == 'auto' or section.settings.blog == blank
+          assign use_manual_cards = true
+        endif
+      endif
+    %}
+    {% if use_manual_cards %}
       {% for block in section.blocks %}{% render 'suppz-article-card', article: block.settings.article, block: block, section: section %}{% endfor %}
     {% else %}
       {% for article in section.settings.blog.articles limit: section.settings.post_limit %}{% render 'suppz-article-card', article: article, section: section %}
@@ -17,7 +34,7 @@
  "settings":[
   {"type":"text","id":"title","label":"Section heading","default":"FIT TALK"},
   {"type":"checkbox","id":"show_heading","label":"Show section heading","default":false},
-  {"type":"select","id":"source","label":"Article source","default":"blog","options":[{"value":"blog","label":"Latest articles from a blog"},{"value":"manual","label":"Choose cards individually"}]},
+  {"type":"select","id":"source","label":"Article source","default":"auto","info":"Automatic shows edited article cards first, or your selected blog when no cards have content. If no blog is selected, edited cards are always shown.","options":[{"value":"auto","label":"Automatic (edited cards first)"},{"value":"blog","label":"Latest articles from a blog"},{"value":"manual","label":"Choose cards individually"}]},
   {"type":"blog","id":"blog","label":"Blog"},
   {"type":"range","id":"post_limit","label":"Number of blog articles","min":3,"max":6,"step":1,"default":3},
   {"type":"range","id":"padding_top","label":"Top spacing","min":0,"max":100,"step":4,"unit":"px","default":28},
