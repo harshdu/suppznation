@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "suppz_categories": {
@@ -709,33 +718,58 @@
     },
     "article_cards": {
       "type": "suppz-article-cards",
-      "settings": {
-        "title": "FIT TALK",
-        "show_heading": false,
-        "source": "blog",
-        "post_limit": 3,
-        "padding_top": 28,
-        "padding_bottom": 28
-      },
       "blocks": {
         "article_0": {
           "type": "article_card",
-          "settings": {}
+          "settings": {
+            "article": "",
+            "image": "shopify://shop_images/Shred_Month_Blog_Swaps.jpg",
+            "category": "",
+            "title": "Shred Month Easy Wins to Kick Off Your Reset",
+            "excerpt": "a",
+            "reading_time": 7,
+            "link": ""
+          }
         },
         "article_1": {
           "type": "article_card",
-          "settings": {}
+          "settings": {
+            "article": "",
+            "image": "shopify://shop_images/Augut_2026_Shred_Month_Blog.jpg",
+            "category": "",
+            "title": "",
+            "excerpt": "",
+            "reading_time": 0,
+            "link": ""
+          }
         },
         "article_2": {
           "type": "article_card",
-          "settings": {}
+          "settings": {
+            "article": "",
+            "image": "shopify://shop_images/Supps_to_Get_Started_2_10b09061-457a-4036-bcc3-aec360d517bd.jpg",
+            "category": "",
+            "title": "",
+            "excerpt": "",
+            "reading_time": 0,
+            "link": ""
+          }
         }
       },
       "block_order": [
         "article_0",
         "article_1",
         "article_2"
-      ]
+      ],
+      "settings": {
+        "title": "FIT TALK",
+        "show_heading": true,
+        "source": "blog",
+        "blog": "",
+        "post_limit": 3,
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
     }
   },
   "order": [
