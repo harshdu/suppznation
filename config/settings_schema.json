@@ -1,5 +1,12 @@
 [
   {
+    "name": "Premium 3D design",
+    "settings": [
+      { "type": "checkbox", "id": "premium_3d_enabled", "label": "Enable premium 3D styling", "default": true },
+      { "type": "paragraph", "content": "Layered surfaces, soft shadows and subtle desktop card depth. Touch and reduced-motion preferences are respected." }
+    ]
+  },
+  {
     "name": "theme_info",
     "theme_name": "Dawn",
     "theme_version": "16.1.0",
