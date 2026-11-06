@@ -80,7 +80,7 @@
         "ring_text": "SUPPZ NATION",
         "link_label": "DISCOVER THE PRODUCT",
         "scroll_label": "SCROLL TO DISCOVER",
-        "autoplay": true,
+        "autoplay": false,
         "interval": 6,
         "immersive_links": true,
         "background": "#fff5e9",
