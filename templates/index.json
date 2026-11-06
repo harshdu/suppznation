@@ -1,83 +1,14 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "floating_carousel": {
-      "type": "suppz-floating-carousel",
-      "blocks": {
-        "floating_0": {
-          "type": "product",
-          "settings": {
-            "product": "kasturi-baby-pink",
-            "image": "shopify://shop_images/Group_1321318785.png",
-            "label": "",
-            "link": ""
-          }
-        },
-        "product_xXrP8B": {
-          "type": "product",
-          "settings": {
-            "product": "juhi-black",
-            "image": "shopify://shop_images/Group_1321318785_1.png",
-            "label": "",
-            "link": ""
-          }
-        },
-        "floating_2": {
-          "type": "product",
-          "settings": {
-            "product": "gulabo-baby-pink",
-            "image": "shopify://shop_images/Group_1321318785_2.png",
-            "label": "",
-            "link": ""
-          }
-        },
-        "floating_3": {
-          "type": "product",
-          "settings": {
-            "product": "fatima-lavender",
-            "image": "shopify://shop_images/Group_1321318785_3.png",
-            "label": "",
-            "link": ""
-          }
-        },
-        "floating_4": {
-          "type": "product",
-          "settings": {
-            "product": "fatima-baby-pink",
-            "image": "shopify://shop_images/Group_1321318785_4.png",
-            "label": "",
-            "link": ""
-          }
-        },
-        "floating_5": {
-          "type": "product",
-          "settings": {
-            "product": "chitra-wine",
-            "image": "shopify://shop_images/Group_1321318785_5.png",
-            "label": "C4 ORIGINAL",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "floating_0",
-        "product_xXrP8B",
-        "floating_2",
-        "floating_3",
-        "floating_4",
-        "floating_5"
-      ],
-      "settings": {
-        "title": "",
-        "ring_text": "SUPPZ NATION",
-        "link_label": "DISCOVER THE PRODUCT",
-        "scroll_label": "SCROLL TO DISCOVER",
-        "immersive_links": true,
-        "background": "rgba(0,0,0,0)",
-        "shape_color": "#000000",
-        "accent": "#F84A00",
-        "scroll_length": 80
-      }
-    },
     "suppz_categories": {
       "type": "suppz-category-slider",
       "blocks": {
@@ -298,6 +229,84 @@
       "settings": {
         "autoplay": true,
         "autoplay_seconds": 3
+      }
+    },
+    "floating_carousel": {
+      "type": "suppz-floating-carousel",
+      "blocks": {
+        "floating_0": {
+          "type": "product",
+          "settings": {
+            "product": "kasturi-baby-pink",
+            "image": "shopify://shop_images/Group_1321318785.png",
+            "label": "",
+            "link": ""
+          }
+        },
+        "product_xXrP8B": {
+          "type": "product",
+          "settings": {
+            "product": "juhi-black",
+            "image": "shopify://shop_images/Group_1321318785_1.png",
+            "label": "",
+            "link": ""
+          }
+        },
+        "floating_2": {
+          "type": "product",
+          "settings": {
+            "product": "gulabo-baby-pink",
+            "image": "shopify://shop_images/Group_1321318785_2.png",
+            "label": "",
+            "link": ""
+          }
+        },
+        "floating_3": {
+          "type": "product",
+          "settings": {
+            "product": "fatima-lavender",
+            "image": "shopify://shop_images/Group_1321318785_3.png",
+            "label": "",
+            "link": ""
+          }
+        },
+        "floating_4": {
+          "type": "product",
+          "settings": {
+            "product": "fatima-baby-pink",
+            "image": "shopify://shop_images/Group_1321318785_4.png",
+            "label": "",
+            "link": ""
+          }
+        },
+        "floating_5": {
+          "type": "product",
+          "settings": {
+            "product": "chitra-wine",
+            "image": "shopify://shop_images/Group_1321318785_5.png",
+            "label": "C4 ORIGINAL",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "floating_0",
+        "product_xXrP8B",
+        "floating_2",
+        "floating_3",
+        "floating_4",
+        "floating_5"
+      ],
+      "settings": {
+        "title": "",
+        "ring_text": "SUPPZ NATION",
+        "link_label": "DISCOVER THE PRODUCT",
+        "scroll_label": "SCROLL TO DISCOVER",
+        "scroll_length": 80,
+        "immersive_links": true,
+        "background": "rgba(0,0,0,0)",
+        "shape_color": "#000000",
+        "accent": "#f84a00"
       }
     },
     "featured_collection_B4D3F7": {
@@ -862,9 +871,9 @@
     }
   },
   "order": [
-    "floating_carousel",
     "suppz_categories",
     "suppz_hero",
+    "floating_carousel",
     "featured_collection_B4D3F7",
     "tabbed_featured",
     "featured_collection_fDP8ef",
