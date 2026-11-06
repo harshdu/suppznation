@@ -329,7 +329,7 @@
     <script src="{{ 'silkspire-wishlist.js' | asset_url }}" defer="defer"></script>
   </head>
 
-  <body class="silkspire-glass{% if settings.premium_3d_enabled != false %} sn-premium{% endif %} template-{{ request.page_type | handle }} gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
+  <body class="silkspire-glass{% if settings.premium_3d_enabled != false %} sn-premium{% if settings.premium_motion_enabled != false %} sn-premium-motion{% endif %}{% endif %} template-{{ request.page_type | handle }} gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>

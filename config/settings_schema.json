@@ -3,7 +3,8 @@
     "name": "Premium 3D design",
     "settings": [
       { "type": "checkbox", "id": "premium_3d_enabled", "label": "Enable premium 3D styling", "default": true },
-      { "type": "paragraph", "content": "Layered surfaces, soft shadows and subtle desktop card depth. Touch and reduced-motion preferences are respected." }
+      { "type": "checkbox", "id": "premium_motion_enabled", "label": "Enable 3D hover and scroll animations", "default": true },
+      { "type": "paragraph", "content": "Sculpted product stages, raised cards, interactive lighting and scroll reveals. Touch and reduced-motion preferences are respected." }
     ]
   },
   {
