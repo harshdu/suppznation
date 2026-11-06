@@ -1,5 +1,87 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
+    "floating_carousel": {
+      "type": "suppz-floating-carousel",
+      "blocks": {
+        "floating_0": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "label": "",
+            "link": ""
+          }
+        },
+        "floating_1": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "label": "",
+            "link": ""
+          }
+        },
+        "floating_2": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "label": "",
+            "link": ""
+          }
+        },
+        "floating_3": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "label": "",
+            "link": ""
+          }
+        },
+        "floating_4": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "label": "",
+            "link": ""
+          }
+        },
+        "floating_5": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "floating_0",
+        "floating_1",
+        "floating_2",
+        "floating_3",
+        "floating_4",
+        "floating_5"
+      ],
+      "settings": {
+        "title": "",
+        "ring_text": "SUPPZ NATION",
+        "link_label": "DISCOVER THE PRODUCT",
+        "scroll_label": "SCROLL TO DISCOVER",
+        "autoplay": true,
+        "interval": 6,
+        "immersive_links": true,
+        "background": "#fff5e9",
+        "shape_color": "#7c2d31",
+        "accent": "#ed5918"
+      }
+    },
     "suppz_categories": {
       "type": "suppz-category-slider",
       "blocks": {
@@ -781,49 +863,6 @@
         "padding_top": 24,
         "padding_bottom": 44
       }
-    },
-    "floating_carousel": {
-      "type": "suppz-floating-carousel",
-      "settings": {
-        "title": "SUPPZ NATION",
-        "ring_text": "DISCOVER YOUR NEXT FAVOURITE",
-        "link_label": "DISCOVER THE PRODUCT",
-        "scroll_label": "SCROLL TO DISCOVER",
-        "autoplay": true,
-        "interval": 6,
-        "immersive_links": true,
-        "background": "#fff5e9",
-        "shape_color": "#7c2d31",
-        "accent": "#ed5918"
-      },
-      "blocks": {
-        "floating_0": {
-          "type": "product"
-        },
-        "floating_1": {
-          "type": "product"
-        },
-        "floating_2": {
-          "type": "product"
-        },
-        "floating_3": {
-          "type": "product"
-        },
-        "floating_4": {
-          "type": "product"
-        },
-        "floating_5": {
-          "type": "product"
-        }
-      },
-      "block_order": [
-        "floating_0",
-        "floating_1",
-        "floating_2",
-        "floating_3",
-        "floating_4",
-        "floating_5"
-      ]
     }
   },
   "order": [
