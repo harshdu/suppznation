@@ -243,7 +243,9 @@ if (!customElements.get('product-info')) {
         );
 
         if (this.dataset.updateUrl === 'false') return;
-        window.history.replaceState({}, '', `${url}${variantId ? `?variant=${variantId}` : ''}`);
+        const immersiveView = new URLSearchParams(window.location.search).get('view') === 'immersive';
+        const viewSuffix = immersiveView ? `${variantId ? '&' : '?'}view=immersive` : '';
+        window.history.replaceState({}, '', `${url}${variantId ? `?variant=${variantId}` : ''}${viewSuffix}`);
       }
 
       setUnavailable() {

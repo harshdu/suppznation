@@ -1,0 +1,62 @@
+{{ 'suppz-immersive.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'suppz-immersive.js' | asset_url }}" defer></script>
+<suppz-floating-carousel class="sn-orbit" role="region" aria-roledescription="carousel" aria-label="{{ section.settings.title | escape }}" data-interval="{{ section.settings.interval }}" data-autoplay="{{ section.settings.autoplay }}" style="--sn-cream:{{ section.settings.background }};--sn-wine:{{ section.settings.shape_color }};--sn-orange:{{ section.settings.accent }};">
+  <div class="sn-orbit__brand">
+    {% if section.settings.logo != blank %}{{ section.settings.logo | image_url: width: 360 | image_tag: widths: '160, 240, 360', sizes: '150px', loading: 'eager', alt: section.settings.title }}{% else %}<span>{{ section.settings.title | escape }}</span>{% endif %}
+  </div>
+  <div class="sn-orbit__stage" tabindex="0" aria-label="Product carousel. Drag, swipe or use left and right arrow keys.">
+    <div class="sn-orbit__shape" aria-hidden="true">
+      <svg class="sn-orbit__ring" viewBox="0 0 1000 1000"><defs><path id="OrbitRing-{{ section.id }}" d="M500,500 m-410,0 a410,410 0 1,1 820,0 a410,410 0 1,1 -820,0"/></defs><text><textPath href="#OrbitRing-{{ section.id }}" textLength="2575" lengthAdjust="spacing">{{ section.settings.ring_text | escape }} · {{ section.settings.ring_text | escape }} · {{ section.settings.ring_text | escape }} · </textPath></text></svg>
+    </div>
+    <div class="sn-orbit__products">
+      {% for block in section.blocks %}
+        {% liquid
+          assign image = block.settings.image | default: block.settings.product.featured_image
+          assign label = block.settings.label | default: block.settings.product.title | default: 'Select a product'
+          assign destination = block.settings.product.url
+          if destination != blank and section.settings.immersive_links
+            assign destination = destination | append: '?view=immersive'
+          endif
+          assign destination = block.settings.link | default: destination
+        %}
+        <div class="sn-orbit__item" role="group" aria-roledescription="slide" aria-label="{{ forloop.index }} of {{ section.blocks.size }}: {{ label | escape }}" {{ block.shopify_attributes }}>
+          {% if destination != blank %}<a class="sn-orbit__product" href="{{ destination }}" draggable="false" aria-label="Discover {{ label | escape }}">{% else %}<div class="sn-orbit__product">{% endif %}
+            {% if image != blank %}{{ image | image_url: width: 1000 | image_tag: widths: '300, 500, 750, 1000', sizes: '(max-width: 749px) 65vw, 32vw', loading: 'eager', alt: label, class: 'sn-orbit__image' }}{% else %}{{ 'product-1' | placeholder_svg_tag: 'sn-orbit__image sn-orbit__placeholder' }}{% endif %}
+          {% if destination != blank %}</a>{% else %}</div>{% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    <span class="sn-orbit__cursor" aria-hidden="true">✦ {{ section.settings.link_label | escape }}</span>
+  </div>
+  <div class="sn-orbit__bottom">
+    <button type="button" class="sn-orbit__control" data-play aria-label="Pause product rotation">Ⅱ</button>
+    <button type="button" class="sn-orbit__discover" data-discover>{{ section.settings.scroll_label | escape }} <span aria-hidden="true">↓</span></button>
+    <div class="sn-orbit__arrows"><button type="button" class="sn-orbit__control" data-prev aria-label="Previous product">←</button><button type="button" class="sn-orbit__control" data-next aria-label="Next product">→</button></div>
+  </div>
+  <p class="visually-hidden" aria-live="polite" data-status></p>
+</suppz-floating-carousel>
+{% schema %}
+{
+ "name":"Floating Product Carousel","tag":"section","class":"sn-orbit-section","max_blocks":12,"disabled_on":{"groups":["header","footer"]},
+ "settings":[
+  {"type":"text","id":"title","label":"Brand / heading","default":"SUPPZ NATION"},
+  {"type":"image_picker","id":"logo","label":"Logo (optional)"},
+  {"type":"text","id":"ring_text","label":"Rotating background text","default":"DISCOVER YOUR NEXT FAVOURITE"},
+  {"type":"text","id":"link_label","label":"Product hover label","default":"DISCOVER THE PRODUCT"},
+  {"type":"text","id":"scroll_label","label":"Scroll prompt","default":"SCROLL TO DISCOVER"},
+  {"type":"checkbox","id":"autoplay","label":"Automatic rotation","default":true},
+  {"type":"range","id":"interval","label":"Time per product","min":3,"max":15,"step":1,"unit":"s","default":6},
+  {"type":"checkbox","id":"immersive_links","label":"Open immersive product view","default":true},
+  {"type":"color","id":"background","label":"Background","default":"#fff5e9"},
+  {"type":"color","id":"shape_color","label":"Background shape","default":"#7c2d31"},
+  {"type":"color","id":"accent","label":"Text accent","default":"#ed5918"}
+ ],
+ "blocks":[{"type":"product","name":"Floating product","settings":[
+  {"type":"product","id":"product","label":"Product"},
+  {"type":"image_picker","id":"image","label":"Transparent product image (optional)","info":"A transparent PNG/WebP cutout gives the closest floating effect. Otherwise the product's main image is used."},
+  {"type":"text","id":"label","label":"Product label (optional)"},
+  {"type":"url","id":"link","label":"Custom product link (optional)"}
+ ]}],
+ "presets":[{"name":"Floating Product Carousel","blocks":[{"type":"product"},{"type":"product"},{"type":"product"},{"type":"product"},{"type":"product"},{"type":"product"}]}]
+}
+{% endschema %}

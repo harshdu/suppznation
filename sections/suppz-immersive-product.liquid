@@ -1,0 +1,32 @@
+{{ 'suppz-immersive.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'suppz-immersive.js' | asset_url }}" defer></script>
+{% liquid
+  assign hero_image = product.metafields.custom.immersive_image.value | default: product.featured_image
+  assign hero_title = product.metafields.custom.immersive_title.value | default: product.title
+%}
+<suppz-product-scene class="sn-product-scene" style="--sn-cream:{{ section.settings.background }};--sn-wine:{{ section.settings.text_color }};--sn-orange:{{ section.settings.accent }};" aria-label="{{ product.title | escape }} introduction">
+  <div class="sn-product-scene__sticky">
+    <span class="sn-product-scene__brand">{{ shop.name | escape }}</span>
+    <h1>{{ hero_title | escape }}</h1>
+    <div class="sn-product-scene__image-wrap">
+      {% if hero_image != blank %}{{ hero_image | image_url: width: 1400 | image_tag: widths: '400, 700, 1000, 1400', sizes: '(max-width: 749px) 65vw, 36vw', loading: 'eager', fetchpriority: 'high', alt: product.title, class: 'sn-product-scene__image' }}{% else %}{{ 'product-1' | placeholder_svg_tag: 'sn-product-scene__image' }}{% endif %}
+    </div>
+    <span class="sn-product-scene__category">{{ product.type | default: product.vendor | escape }}</span>
+    <span class="sn-product-scene__aside">{{ section.settings.side_label | escape }}</span>
+    <a class="sn-product-scene__shop" href="#ImmersiveProductDetails">{{ section.settings.button_label | escape }} <span aria-hidden="true">↓</span></a>
+  </div>
+</suppz-product-scene>
+<div id="ImmersiveProductDetails" class="sn-product-scene__anchor"></div>
+{% schema %}
+{
+ "name":"Immersive Product Hero","tag":"section","class":"sn-product-scene-section","enabled_on":{"templates":["product"]},
+ "settings":[
+  {"type":"paragraph","content":"Uses the current product's image and title. Optional product metafields custom.immersive_image (file) and custom.immersive_title (text) let you customize each product's scene."},
+  {"type":"text","id":"side_label","label":"Right-side caption","default":"SUPPZ NATION"},
+  {"type":"text","id":"button_label","label":"Shop link label","default":"DISCOVER & SHOP"},
+  {"type":"color","id":"background","label":"Background","default":"#fff5e9"},
+  {"type":"color","id":"text_color","label":"Caption color","default":"#7c2d31"},
+  {"type":"color","id":"accent","label":"Title color","default":"#ed5918"}
+ ]
+}
+{% endschema %}
