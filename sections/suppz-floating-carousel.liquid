@@ -1,6 +1,7 @@
 {{ 'suppz-immersive.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'suppz-immersive.js' | asset_url }}" defer></script>
-<suppz-floating-carousel class="sn-orbit" role="region" aria-roledescription="carousel" aria-label="{{ section.settings.title | escape }}" data-interval="{{ section.settings.interval }}" data-autoplay="{{ section.settings.autoplay }}" style="--sn-cream:{{ section.settings.background }};--sn-wine:{{ section.settings.shape_color }};--sn-orange:{{ section.settings.accent }};">
+<suppz-floating-carousel class="sn-orbit" role="region" aria-roledescription="carousel" aria-label="{{ section.settings.title | escape }}" data-scroll-length="{{ section.settings.scroll_length | default: 80 }}" style="--sn-cream:{{ section.settings.background }};--sn-wine:{{ section.settings.shape_color }};--sn-orange:{{ section.settings.accent }};">
+  <div class="sn-orbit__pin">
   <div class="sn-orbit__brand">
     {% if section.settings.logo != blank %}{{ section.settings.logo | image_url: width: 360 | image_tag: widths: '160, 240, 360', sizes: '150px', loading: 'eager', alt: section.settings.title }}{% else %}<span>{{ section.settings.title | escape }}</span>{% endif %}
   </div>
@@ -34,6 +35,7 @@
     <div class="sn-orbit__arrows"><button type="button" class="sn-orbit__control" data-prev aria-label="Previous product">←</button><button type="button" class="sn-orbit__control" data-next aria-label="Next product">→</button></div>
   </div>
   <p class="visually-hidden" aria-live="polite" data-status></p>
+  </div>
 </suppz-floating-carousel>
 {% schema %}
 {
@@ -44,8 +46,7 @@
   {"type":"text","id":"ring_text","label":"Rotating background text","default":"DISCOVER YOUR NEXT FAVOURITE"},
   {"type":"text","id":"link_label","label":"Product hover label","default":"DISCOVER THE PRODUCT"},
   {"type":"text","id":"scroll_label","label":"Scroll prompt","default":"SCROLL TO DISCOVER"},
-  {"type":"checkbox","id":"autoplay","label":"Automatic rotation","default":true},
-  {"type":"range","id":"interval","label":"Time per product","min":3,"max":15,"step":1,"unit":"s","default":6},
+  {"type":"range","id":"scroll_length","label":"Scroll distance per product","min":40,"max":160,"step":10,"unit":"vh","default":80,"info":"The section stays full-screen while scrolling from the first product to the last. Reverse scrolling moves back through the products."},
   {"type":"checkbox","id":"immersive_links","label":"Open immersive product view","default":true},
   {"type":"color","id":"background","label":"Background","default":"#fff5e9"},
   {"type":"color","id":"shape_color","label":"Background shape","default":"#7c2d31"},

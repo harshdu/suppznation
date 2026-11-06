@@ -15,6 +15,13 @@
 .sn-orbit__control,.sn-orbit__discover{display:flex;align-items:center;justify-content:center;gap:10px;border:1px solid currentColor;border-radius:30px;background:transparent;color:inherit;min-width:36px;min-height:36px;padding:8px 12px;cursor:pointer;font:400 15px/1 Georgia,serif}
 .sn-orbit__discover{border:0;font-size:11px;letter-spacing:1px}.sn-orbit__arrows{display:flex;gap:8px}.sn-orbit.is-paused .sn-orbit__ring{animation-play-state:paused}
 .sn-orbit__control{background:var(--sn-cream,#fff5e9);color:var(--sn-wine,#7c2d31)}
+.sn-orbit__pin{position:relative;height:100%;overflow:hidden}
+.sn-orbit.is-scroll-driven{height:var(--sn-orbit-run,100dvh);min-height:0;max-height:none;overflow:clip}
+.sn-orbit.is-scroll-driven .sn-orbit__pin{position:sticky;top:0;height:100dvh;min-height:0;overflow:hidden}
+.sn-orbit.is-scroll-driven [data-play]{display:none}
+.sn-orbit.is-scroll-driven .sn-orbit__bottom:before{content:'';width:36px}
+.sn-orbit.is-scroll-driven .sn-orbit__ring{animation:none}
+.sn-orbit.is-scroll-driven .sn-orbit__control:disabled{opacity:.4;cursor:default}
 .sn-orbit a:focus-visible,.sn-orbit button:focus-visible,.sn-orbit__stage:focus-visible{outline:2px solid var(--sn-orange);outline-offset:4px}
 @keyframes sn-orbit-ring{to{transform:rotate(360deg)}}
 .sn-product-scene{display:block;position:relative;height:190svh;background:var(--sn-cream,#fff5e9);color:var(--sn-wine,#7c2d31);--scene-progress:0}
