@@ -71,7 +71,7 @@ if (!customElements.get('suppz-floating-carousel')) {
       }, opts);
     }
     behavior() { return this.motion.matches ? 'instant' : 'smooth'; }
-    spacing() { return this.stage.clientWidth * (this.stage.clientWidth < 750 ? .65 : .29); }
+    spacing() { return this.stage.clientWidth * (this.stage.clientWidth < 750 ? .55 : .29); }
     startY() { return this.getBoundingClientRect().top + window.scrollY; }
     measure() {
       this.scrollStep = this.pin.offsetHeight * (Number(this.dataset.scrollLength) || 80) / 100;
@@ -101,15 +101,17 @@ if (!customElements.get('suppz-floating-carousel')) {
     }
     render() {
       const spacing = this.spacing();
+      const mobile = this.stage.clientWidth < 750;
       this.items.forEach((item, index) => {
         const relative = index - this.position;
         const distance = Math.abs(relative);
-        const scale = Math.max(.45, 1 - distance * .16);
+        const scale = Math.max(mobile ? .38 : .45, 1 - distance * (mobile ? .38 : .16));
         const x = relative * spacing;
-        const y = Math.sin(relative * 1.15) * this.stage.clientHeight * .075;
+        const y = Math.sin(relative * 1.15) * this.stage.clientHeight * (mobile ? .012 : .075);
         const tilt = this.motion.matches ? 0 : Math.sin(relative * 1.25 + this.position * .25) * 18;
         item.style.transform = `translate(-50%,-50%) translate3d(${x}px,${y}px,0) rotate(${tilt}deg) scale(${scale})`;
         item.style.zIndex = String(Math.round(30 - distance * 5));
+        item.style.filter = mobile && !this.motion.matches ? `brightness(${1 - Math.min(distance, 1) * .22}) blur(${Math.min(distance, 1.6) * 1.5}px)` : '';
         const hidden = Math.abs(x) > this.stage.clientWidth * .9;
         item.style.visibility = hidden ? 'hidden' : 'visible';
         item.inert = hidden;
