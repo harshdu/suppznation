@@ -83,9 +83,9 @@
         "autoplay": false,
         "interval": 6,
         "immersive_links": true,
-        "background": "#fff5e9",
-        "shape_color": "#7c2d31",
-        "accent": "#ed5918"
+        "background": "rgba(0,0,0,0)",
+        "shape_color": "#000000",
+        "accent": "#F84A00"
       }
     },
     "suppz_categories": {
