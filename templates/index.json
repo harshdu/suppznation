@@ -15,15 +15,17 @@
         "floating_0": {
           "type": "product",
           "settings": {
-            "product": "",
+            "product": "kasturi-baby-pink",
+            "image": "shopify://shop_images/Group_1321318785.png",
             "label": "",
             "link": ""
           }
         },
-        "floating_1": {
+        "product_xXrP8B": {
           "type": "product",
           "settings": {
-            "product": "",
+            "product": "juhi-black",
+            "image": "shopify://shop_images/Group_1321318785_1.png",
             "label": "",
             "link": ""
           }
@@ -31,7 +33,8 @@
         "floating_2": {
           "type": "product",
           "settings": {
-            "product": "",
+            "product": "gulabo-baby-pink",
+            "image": "shopify://shop_images/Group_1321318785_2.png",
             "label": "",
             "link": ""
           }
@@ -39,7 +42,8 @@
         "floating_3": {
           "type": "product",
           "settings": {
-            "product": "",
+            "product": "fatima-lavender",
+            "image": "shopify://shop_images/Group_1321318785_3.png",
             "label": "",
             "link": ""
           }
@@ -47,7 +51,8 @@
         "floating_4": {
           "type": "product",
           "settings": {
-            "product": "",
+            "product": "fatima-baby-pink",
+            "image": "shopify://shop_images/Group_1321318785_4.png",
             "label": "",
             "link": ""
           }
@@ -55,15 +60,16 @@
         "floating_5": {
           "type": "product",
           "settings": {
-            "product": "",
-            "label": "",
+            "product": "chitra-wine",
+            "image": "shopify://shop_images/Group_1321318785_5.png",
+            "label": "C4 ORIGINAL",
             "link": ""
           }
         }
       },
       "block_order": [
         "floating_0",
-        "floating_1",
+        "product_xXrP8B",
         "floating_2",
         "floating_3",
         "floating_4",
