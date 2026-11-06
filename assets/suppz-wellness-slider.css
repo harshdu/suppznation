@@ -1,5 +1,5 @@
 .sn-wellness{display:block;padding:var(--sn-wellness-top,28px) 0 var(--sn-wellness-bottom,28px);background:var(--sn-wellness-bg,#fff);--sn-wellness-gutter:46px;--sn-wellness-zoom:1.05}
-.sn-wellness__heading{padding:0 var(--sn-wellness-gutter);margin-bottom:32px}
+.sn-wellness__heading{padding:0 var(--sn-wellness-gutter);margin-bottom:32px;text-align: center;}
 .sn-wellness__heading h2{margin:0;color:#080808;font:400 44px/1.1 Impact,'Arial Narrow',Arial,sans-serif;text-transform:uppercase;overflow-wrap:anywhere}
 .sn-wellness__heading>p{margin:8px 0 0;color:#677887;font:400 19px/1.5 Arial,Helvetica,sans-serif}
 .sn-wellness .sn-wellness__slider{padding:0;background:transparent;--sn-deal-gutter:var(--sn-wellness-gutter)}
