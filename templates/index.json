@@ -738,7 +738,7 @@
       "settings": {
         "title": "NEW SUPPLEMENTS",
         "label": "NEW ARRIVALS",
-        "collection": "frontpage",
+        "collection": "hydrogen",
         "products_to_show": 12,
         "show_view_all": true,
         "view_all_label": "VIEW ALL",
