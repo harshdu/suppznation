@@ -6,7 +6,8 @@ body.sn-premium {
   --glass-shadow: var(--sn-depth);
   --glass-line: #e5e4e1;
   color: #20242a;
-  background: radial-gradient(ellipse at 95% 4%,#ed142b06,transparent 34%),linear-gradient(180deg,#faf9f6,#f2f1ed);
+  /* background: radial-gradient(ellipse at 95% 4%,#ed142b06,transparent 34%),linear-gradient(180deg,#faf9f6,#f2f1ed); */
+  background: #fff;
   background-attachment: scroll;
 }
 .sn-premium :is(.sn-tabs,.sn-deals,.sn-wellness,.sn-articles,.sn-brands,.sn-promo-grid){position:relative;margin-top:20px;margin-bottom:28px}
