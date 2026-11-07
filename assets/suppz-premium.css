@@ -55,7 +55,10 @@ body.sn-premium .button:not(.button--secondary):not(.button--tertiary){backgroun
 
 /* Sculpted display stages: strong depth remains visible without hovering. */
 .sn-premium :is(.sn-tabs__media,.sn-deals__poster,.sn-brands__panel,.sn-brands__card,.sn-articles__card,.sn-promo-grid__card,.sn-wellness__link,.sn-about__portrait,.product__info-container){box-sizing:border-box}
-body.sn-premium{--sn-depth:0 2px 0 #fff,0 8px 0 -3px #d9d9d5,0 18px 24px -12px #15203035,0 35px 60px -28px #15203040;background:radial-gradient(ellipse at 0 15%,#ed142b0b,transparent 35%),radial-gradient(ellipse at 100% 65%,#9daec31c,transparent 40%),#f4f3ef}
+body.sn-premium{--sn-depth:0 2px 0 #fff,0 8px 0 -3px #d9d9d5,0 18px 24px -12px #15203035,0 35px 60px -28px #15203040;
+  background:radial-gradient(ellipse at 0 15%,#ed142b0b,transparent 35%),radial-gradient(ellipse at 100% 65%,#9daec31c,transparent 40%),#f4f3ef;
+  background:#fff;
+}
 .sn-premium .sn-tabs{width:min(1430px,calc(100% - 32px));box-sizing:border-box;padding-top:44px;padding-bottom:40px;margin-top:36px;margin-bottom:44px;border:1px solid #ffffff30;border-radius:32px;background:radial-gradient(ellipse at 90% 0,#ed142b35,transparent 55%),radial-gradient(ellipse at 0 100%,#6884a32b,transparent 60%),linear-gradient(145deg,#272d36,#10141a);box-shadow:0 3px 0 #454b53,0 10px 0 -4px #191e25,0 30px 50px -20px #10162265;isolation:isolate}
 .sn-premium .sn-tabs::before{content:'';position:absolute;inset:0;border-radius:inherit;background-image:linear-gradient(#ffffff04 1px,transparent 1px),linear-gradient(90deg,#ffffff04 1px,transparent 1px);background-size:52px 52px;pointer-events:none;z-index:-1;mask-image:linear-gradient(#000,transparent)}
 .sn-premium .sn-tabs .sn-tabs__heading{color:#fff;text-shadow:0 2px 0 #0005;letter-spacing:.015em;font-size:clamp(28px,3vw,44px);margin-bottom:24px}
