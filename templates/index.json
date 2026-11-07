@@ -237,7 +237,7 @@
         "floating_0": {
           "type": "product",
           "settings": {
-            "product": "kasturi-baby-pink",
+            "product": "product-1",
             "image": "shopify://shop_images/Group_1321318785.png",
             "label": "",
             "link": ""
@@ -246,7 +246,7 @@
         "product_xXrP8B": {
           "type": "product",
           "settings": {
-            "product": "juhi-black",
+            "product": "product-2",
             "image": "shopify://shop_images/Group_1321318785_1.png",
             "label": "",
             "link": ""
@@ -255,7 +255,7 @@
         "floating_2": {
           "type": "product",
           "settings": {
-            "product": "gulabo-baby-pink",
+            "product": "product-3",
             "image": "shopify://shop_images/Group_1321318785_2.png",
             "label": "",
             "link": ""
@@ -264,7 +264,7 @@
         "floating_3": {
           "type": "product",
           "settings": {
-            "product": "fatima-lavender",
+            "product": "product-4",
             "image": "shopify://shop_images/Group_1321318785_3.png",
             "label": "",
             "link": ""
@@ -273,7 +273,7 @@
         "floating_4": {
           "type": "product",
           "settings": {
-            "product": "fatima-baby-pink",
+            "product": "product-5",
             "image": "shopify://shop_images/Group_1321318785_4.png",
             "label": "",
             "link": ""
@@ -282,7 +282,7 @@
         "floating_5": {
           "type": "product",
           "settings": {
-            "product": "chitra-wine",
+            "product": "product-6",
             "image": "shopify://shop_images/Group_1321318785_5.png",
             "label": "C4 ORIGINAL",
             "link": ""
