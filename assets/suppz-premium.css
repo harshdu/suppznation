@@ -75,7 +75,7 @@ body.sn-premium{--sn-depth:0 2px 0 #fff,0 8px 0 -3px #d9d9d5,0 18px 24px -12px #
 .sn-premium .sn-tabs__image-link :is(img,svg){filter:drop-shadow(8px 18px 7px #17202c35);transform:translateY(-5px) scale(.94);transform-origin:50% 80%;transition:transform .65s cubic-bezier(.2,.7,.2,1),filter .65s}
 .sn-premium :is(.sn-deals__cta,.sn-tabs__view-all,.sn-deals__all,.sn-brands__all,.sn-tabs__add){border-bottom:3px solid #98091a;box-shadow:inset 0 1px #ffffff50,0 5px 0 -2px #820b18,0 10px 18px -8px #b10d244d;transition:translate .25s,box-shadow .25s}
 .sn-premium .sn-tabs__add:disabled{border-bottom-color:#bac0c8;box-shadow:none}
-.sn-premium .sn-hero__track{border:2px solid #fff;border-bottom:7px solid #d6d7d9;box-shadow:0 8px 0 -3px #fff,0 14px 0 -6px #d2d4d8,0 35px 45px -22px #17202c70}
+.sn-premium .sn-hero__track{border:2px solid #fff;box-shadow:0 8px 0 -3px #fff,0 14px 0 -6px #d2d4d8,0 35px 45px -22px #17202c70}
 .sn-premium .sn-hero__controls{padding-top:20px}
 .sn-premium .sn-categories__list{padding-top:24px;padding-bottom:30px}
 .sn-premium .sn-categories__circle{border-width:3px;box-shadow:inset 0 3px 6px #ffffff70,inset 0 -6px 9px #0008,0 5px 0 #9c1020,0 12px 15px -5px #17202c60;transition:translate .3s,box-shadow .3s}
