@@ -1,4 +1,4 @@
-.sn-hero{display:block;max-width:1430px;margin:10px auto 20px;padding:0 15px;box-sizing:border-box;color:#263142}
+.sn-hero{display:block;max-width:100%;margin:10px auto 20px;padding:0 15px;box-sizing:border-box;color:#263142}
 .sn-hero__track{display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;-webkit-overflow-scrolling:touch;border-radius:17px;touch-action:pan-x pan-y pinch-zoom;cursor:grab;user-select:none;aspect-ratio:2.8}
 .sn-hero__track::-webkit-scrollbar{display:none}
 .sn-hero__slide{flex:0 0 100%;min-width:0;height:100%;scroll-snap-align:start;scroll-snap-stop:always;overflow:hidden;position:relative}
