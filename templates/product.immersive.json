@@ -9,6 +9,16 @@
  */
 {
   "sections": {
+    "immersive_hero": {
+      "type": "suppz-immersive-product",
+      "settings": {
+        "side_label": "SUPPZ NATION",
+        "button_label": "DISCOVER & SHOP",
+        "background": "#fff5e9",
+        "text_color": "#7c2d31",
+        "accent": "#ed5918"
+      }
+    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -47,7 +57,11 @@
         },
         "description": {
           "type": "description",
-          "settings": {}
+          "settings": {
+            "delivery_content": "<p>Get it delivered in 4-5 days.</p>",
+            "returns_content": "",
+            "cod_content": ""
+          }
         },
         "share": {
           "type": "share",
@@ -95,6 +109,7 @@
     },
     "related-products": {
       "type": "related-products",
+      "disabled": true,
       "settings": {
         "heading": "You may also like",
         "heading_size": "h2",
@@ -109,16 +124,6 @@
         "show_rating": false,
         "padding_top": 36,
         "padding_bottom": 28
-      }
-    },
-    "immersive_hero": {
-      "type": "suppz-immersive-product",
-      "settings": {
-        "side_label": "SUPPZ NATION",
-        "button_label": "DISCOVER & SHOP",
-        "background": "#fff5e9",
-        "text_color": "#7c2d31",
-        "accent": "#ed5918"
       }
     }
   },
