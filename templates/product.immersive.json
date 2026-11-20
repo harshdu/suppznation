@@ -11,6 +11,7 @@
   "sections": {
     "immersive_hero": {
       "type": "suppz-immersive-product",
+      "disabled": true,
       "settings": {
         "side_label": "SUPPZ NATION",
         "button_label": "DISCOVER & SHOP",
@@ -40,7 +41,7 @@
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
-            "picker_type": "button",
+            "picker_type": "dropdown",
             "swatch_shape": "circle"
           }
         },
@@ -51,7 +52,7 @@
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
-            "show_dynamic_checkout": true,
+            "show_dynamic_checkout": false,
             "show_gift_card_recipient": true
           }
         },
@@ -68,6 +69,38 @@
           "settings": {
             "share_label": "Share"
           }
+        },
+        "pdp_secure": {
+          "type": "pdp_service",
+          "settings": {
+            "title": "Secure checkout",
+            "text": "Protected payment processing",
+            "icon": "shield"
+          }
+        },
+        "pdp_delivery": {
+          "type": "pdp_service",
+          "settings": {
+            "title": "Delivery options",
+            "text": "Calculated at checkout",
+            "icon": "truck"
+          }
+        },
+        "pdp_returns": {
+          "type": "pdp_service",
+          "settings": {
+            "title": "Returns information",
+            "text": "See store policy for eligibility",
+            "icon": "return"
+          }
+        },
+        "pdp_support": {
+          "type": "pdp_service",
+          "settings": {
+            "title": "Product support",
+            "text": "Contact us for assistance",
+            "icon": "check"
+          }
         }
       },
       "block_order": [
@@ -78,22 +111,27 @@
         "quantity_selector",
         "buy_buttons",
         "description",
-        "share"
+        "share",
+        "pdp_secure",
+        "pdp_delivery",
+        "pdp_returns",
+        "pdp_support"
       ],
       "settings": {
-        "enable_sticky_info": true,
+        "enable_sticky_info": false,
         "color_scheme": "scheme-1",
-        "media_size": "large",
-        "constrain_to_viewport": true,
+        "media_size": "medium",
+        "constrain_to_viewport": false,
         "media_fit": "contain",
-        "gallery_layout": "columns",
-        "mobile_thumbnails": "hide",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
         "media_position": "left",
         "image_zoom": "lightbox",
-        "hide_variants": true,
+        "hide_variants": false,
         "enable_video_looping": true,
-        "padding_top": 36,
-        "padding_bottom": 12
+        "padding_top": 8,
+        "padding_bottom": 24,
+        "pdp_reference_layout": true
       }
     },
     "disclosures": {

@@ -22,8 +22,10 @@ if (!customElements.get('media-gallery')) {
       }
 
       onSlideChanged(event) {
+        const mediaId = event.detail?.currentElement?.dataset?.mediaId;
+        if (!mediaId) return;
         const thumbnail = this.elements.thumbnails.querySelector(
-          `[data-target="${event.detail.currentElement.dataset.mediaId}"]`
+          `[data-target="${mediaId}"]`
         );
         this.setActiveThumbnail(thumbnail);
       }

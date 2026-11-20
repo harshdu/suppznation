@@ -1,0 +1,83 @@
+{% if section.settings.pdp_reference_layout != false %}
+{% liquid
+  assign detail = product.metafields.custom
+  assign selected_variant = product.selected_or_first_available_variant
+%}
+{% case area %}
+{% when 'breadcrumbs' %}
+  {% assign breadcrumb_collection = detail.breadcrumb_collection.value | default: collection | default: product.collections.first %}
+  <nav class="sn-pdp-breadcrumbs quick-add-hidden" aria-label="Breadcrumb">
+    <a href="{{ routes.root_url }}" aria-label="Home">{% render 'suppz-pdp-icon', icon: 'home' %}</a><span aria-hidden="true">›</span>
+    {% if detail.breadcrumb_parent.value != blank and detail.breadcrumb_parent.value.id != breadcrumb_collection.id %}<a href="{{ detail.breadcrumb_parent.value.url }}">{{ detail.breadcrumb_parent.value.title | escape }}</a><span aria-hidden="true">›</span>{% endif %}
+    {% if breadcrumb_collection != blank %}<a href="{{ breadcrumb_collection.url }}">{{ breadcrumb_collection.title | escape }}</a><span aria-hidden="true">›</span>{% endif %}
+    <span aria-current="page">{{ product.title | escape }}</span>
+  </nav>
+{% when 'brand' %}
+  {% if detail.brand_logo.value != blank %}
+    <div class="sn-pdp-brand">{{ detail.brand_logo.value | image_url: width: 260 | image_tag: widths: '130,260', sizes: '100px', loading: 'lazy', alt: product.vendor }}</div>
+  {% endif %}
+{% when 'rating' %}
+  <div class="sn-pdp-status-row">
+    {% assign review_rating = product.metafields.reviews.rating.value %}
+    {% if review_rating != blank %}
+      {% assign rating_percent = review_rating.rating | times: 100.0 | divided_by: review_rating.scale_max %}
+      <span class="sn-pdp-stars" role="img" aria-label="{{ review_rating.rating }} out of {{ review_rating.scale_max }} stars" style="--sn-stars:{{ rating_percent }}%">★★★★★</span>
+      {% if product.metafields.reviews.rating_count.value != blank %}<span>{{ product.metafields.reviews.rating_count.value }} Reviews</span>{% endif %}
+    {% endif %}
+    {% if detail.reviews_url.value != blank %}<a class="sn-pdp-review-link" href="{{ detail.reviews_url.value }}">Write a review</a>{% endif %}
+    <span id="SNPdpStatus-{{ section.id }}" class="sn-pdp-stock{% unless selected_variant.available %} is-unavailable{% endunless %}" role="status"><i aria-hidden="true"></i>{% if selected_variant.available %}{% if selected_variant.inventory_management == 'shopify' and selected_variant.inventory_quantity <= 0 %}Available to order{% else %}In stock online{% endif %}{% else %}Out of stock{% endif %}</span>
+  </div>
+{% when 'points' %}
+  {% if detail.reward_points.value != blank %}<div class="sn-pdp-points">{{ detail.reward_points.value | escape }} POINTS {% render 'suppz-pdp-icon', icon: 'arrow' %}</div>{% endif %}
+{% when 'benefits' %}
+  {% if detail.product_benefits.value != blank %}
+    <ul class="sn-pdp-benefits" role="list">{% for benefit in detail.product_benefits.value limit: 3 %}<li>{% render 'suppz-pdp-icon', icon: 'check' %}<span>{{ benefit | escape }}</span></li>{% endfor %}</ul>
+  {% endif %}
+{% when 'gallery' %}
+  {% if product.media.size > 1 %}<div class="sn-pdp-gallery-nav quick-add-hidden"><button type="button" data-pdp-prev aria-label="Previous product image">{% render 'suppz-pdp-icon', icon: 'arrow' %}</button><button type="button" data-pdp-next aria-label="Next product image">{% render 'suppz-pdp-icon', icon: 'arrow' %}</button></div>{% endif %}
+  <div id="SNPdpBadge-{{ section.id }}" class="sn-pdp-badge-wrap quick-add-hidden">
+    {% if detail.promo_badge.value != blank %}<span class="sn-pdp-sale">{{ detail.promo_badge.value | escape }}</span>{% elsif selected_variant.compare_at_price > selected_variant.price %}<span class="sn-pdp-sale">SPECIAL<br>OFFER</span>{% endif %}
+  </div>
+{% when 'upsell' %}
+  {% if detail.back_in_stock_url.value != blank %}<p class="sn-pdp-restock quick-add-hidden"><a href="{{ detail.back_in_stock_url.value }}">Get an email when your option is back in stock</a></p>{% endif %}
+  {% assign upsell = detail.upsell_product.value %}
+  {% if upsell != blank and upsell.id != product.id %}
+    {% assign upsell_id = 'PdpUpsell-' | append: section.id | append: '-' | append: upsell.id %}
+    <aside class="sn-pdp-upsell quick-add-hidden" aria-label="Suggested addition">
+      <a class="sn-pdp-upsell-image" href="{{ upsell.url }}">{% if upsell.featured_image %}{{ upsell.featured_image | image_url: width: 180 | image_tag: widths: '90,180', sizes: '70px', loading: 'lazy', alt: upsell.title }}{% endif %}</a>
+      <div><a href="{{ upsell.url }}"><strong>{{ detail.upsell_heading.value | default: upsell.title | escape }}</strong></a>{% if detail.upsell_text.value != blank %}<p>{{ detail.upsell_text.value | escape }}</p>{% endif %}<span>{{ upsell.price | money }}</span></div>
+      {% if upsell.available %}
+        {% if upsell.variants.size > 1 or upsell.selected_or_first_available_variant.quantity_rule.min > 1 or upsell.selected_or_first_available_variant.quantity_rule.increment > 1 %}
+          {{ 'quick-add.css' | asset_url | stylesheet_tag }}<script src="{{ 'quick-add.js' | asset_url }}" defer></script>
+          <modal-opener data-modal="#{{ upsell_id }}"><button type="button" class="sn-pdp-upsell-add" data-product-url="{{ upsell.url }}" aria-haspopup="dialog">Quick Add{% render 'loading-spinner' %}</button></modal-opener>
+          <quick-add-modal id="{{ upsell_id }}" class="quick-add-modal"><div role="dialog" aria-label="Choose options for {{ upsell.title | escape }}" aria-modal="true" class="quick-add-modal__content global-settings-popup" tabindex="-1"><button id="ModalClose-{{ upsell_id }}" type="button" class="quick-add-modal__toggle" aria-label="Close">{{ 'icon-close.svg' | inline_asset_content }}</button><div id="QuickAddInfo-{{ upsell_id }}" class="quick-add-modal__content-info"></div></div></quick-add-modal>
+        {% else %}
+          <product-form data-section-id="{{ section.id }}">
+            <div class="product-form__error-message-wrapper" role="alert" hidden><span class="product-form__error-message"></span></div>
+            {% form 'product', upsell, id: upsell_id %}<input type="hidden" name="id" value="{{ upsell.selected_or_first_available_variant.id }}"><input type="hidden" name="quantity" value="1"><button type="submit" class="sn-pdp-upsell-add"><span>ADD</span>{% render 'loading-spinner' %}</button>{% endform %}
+          </product-form>
+        {% endif %}
+      {% else %}<span class="sn-pdp-upsell-sold">Sold out</span>{% endif %}
+    </aside>
+  {% endif %}
+{% when 'panels' %}
+  {% if detail.delivery_note.value != blank or detail.standard_delivery.value != blank or detail.express_delivery.value != blank or detail.delivery_checker_url.value != blank %}
+    <section class="sn-pdp-delivery sn-pdp-panel quick-add-hidden" aria-label="Delivery information">
+      {% if detail.delivery_note.value != blank %}<p>{{ detail.delivery_note.value | escape | newline_to_br }}</p>{% endif %}
+      {% if detail.delivery_checker_url.value != blank %}<form action="{{ detail.delivery_checker_url.value }}" method="get" class="sn-pdp-postcode"><label class="visually-hidden" for="PdpPostcode-{{ section.id }}">Suburb or postcode</label><input id="PdpPostcode-{{ section.id }}" name="postcode" placeholder="Enter your suburb or postcode" autocomplete="postal-code" required maxlength="80"><input type="hidden" name="product" value="{{ product.handle }}"><button type="submit">SUBMIT</button></form>{% endif %}
+      {% if detail.standard_delivery.value != blank or detail.express_delivery.value != blank %}<h2>DELIVERY</h2><div class="sn-pdp-delivery-options">
+        {% if detail.standard_delivery.value != blank %}<div>{% render 'suppz-pdp-icon', icon: 'truck' %}<div><strong>STANDARD</strong><span>{{ detail.standard_delivery.value | escape }}</span></div></div>{% endif %}
+        {% if detail.express_delivery.value != blank %}<div>{% render 'suppz-pdp-icon', icon: 'truck' %}<div><strong>EXPRESS</strong><span>{{ detail.express_delivery.value | escape }}</span></div></div>{% endif %}
+      </div>{% endif %}
+    </section>
+  {% endif %}
+  {% assign services = section.blocks | where: 'type', 'pdp_service' %}
+  <div class="sn-pdp-bottom-panels quick-add-hidden">
+    {% if services.size > 0 %}<div class="sn-pdp-services sn-pdp-panel">{% for service in services %}<div {{ service.shopify_attributes }}>{% render 'suppz-pdp-icon', icon: service.settings.icon %}<div><strong>{{ service.settings.title | escape }}</strong>{% if service.settings.text != blank %}<span>{{ service.settings.text | escape }}</span>{% endif %}</div></div>{% endfor %}</div>{% endif %}
+    {% if detail.award_title.value != blank %}<div class="sn-pdp-award sn-pdp-panel"><h2>{{ detail.award_title.value | escape }}</h2><div>{% if detail.award_image.value != blank %}{{ detail.award_image.value | image_url: width: 120 | image_tag: widths: '60,120', sizes: '40px', loading: 'lazy', alt: '' }}{% endif %}{% if detail.award_text.value != blank %}<p>{{ detail.award_text.value | escape }}</p>{% endif %}</div></div>{% endif %}
+  </div>
+{% when 'description' %}
+  {% assign description_block = section.blocks | where: 'type', 'description' | first %}
+  {% if product.description != blank and description_block != blank %}<details class="sn-pdp-description quick-add-hidden" open {{ description_block.shopify_attributes }}><summary>Product details</summary><div class="rte">{{ product.description }}</div></details>{% endif %}
+{% endcase %}
+{% endif %}

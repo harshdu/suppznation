@@ -6,12 +6,13 @@
   @param {string} product_form_id - The product form's unique ID.
   @param {string} section_id - The section ID used to namespace the form and submit button.
   @param {boolean} [show_pickup_availability] - Whether to render pickup availability. Defaults to `false`.
+  @param {boolean} [reference_layout] - Adds the compact product-page purchase layout.
   @param {object} [section] - The current section context, supplied implicitly when rendered from a section and used for IDs and pickup-availability colors.
 
   @example
   {% render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true %}
 {% enddoc %}
-<div {{ block.shopify_attributes }}>
+<div{% if reference_layout %} class="sn-pdp-buy"{% endif %} {{ block.shopify_attributes }}>
   {%- if product != blank -%}
     {%- liquid
       assign gift_card_recipient_feature_active = false
@@ -85,6 +86,7 @@
               disabled
             {% endif %}
           >
+            {% if reference_layout %}{{ 'icon-cart.svg' | inline_asset_content }}{% endif %}
             <span>
               {%- if product.selected_or_first_available_variant == null -%}
                 {{ 'products.product.unavailable' | t }}

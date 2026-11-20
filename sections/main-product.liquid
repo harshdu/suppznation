@@ -1,6 +1,6 @@
 <product-info
   id="MainProduct-{{ section.id }}"
-  class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}"
+  class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}{% if section.settings.pdp_reference_layout != false %} sn-pdp{% endif %}"
   data-section="{{ section.id }}"
   data-product-id="{{ product.id }}"
   data-update-url="true"
@@ -15,6 +15,10 @@
   {{ 'component-slider.css' | asset_url | stylesheet_tag }}
   {{ 'component-rating.css' | asset_url | stylesheet_tag }}
   {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+  {% if section.settings.pdp_reference_layout != false %}
+    {{ 'suppz-product-page.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'suppz-product-page.js' | asset_url }}" defer></script>
+  {% endif %}
 
   {% unless product.has_only_default_variant %}
     {{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
@@ -75,9 +79,11 @@
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
   <product-component view-event-payload="{{ product | standard_event_data: 'view', context: 'page' | escape }}">
     <div class="page-width">
+      {% render 'suppz-pdp-details', area: 'breadcrumbs', product: product, section: section %}
       <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
         <div class="grid__item product__media-wrapper">
           {% render 'product-media-gallery', variant_images: variant_images %}
+          {% render 'suppz-pdp-details', area: 'gallery', product: product, section: section %}
         </div>
         <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           <section
@@ -99,6 +105,7 @@
                   </p>
                 {%- when 'title' -%}
                   <div class="product__title" {{ block.shopify_attributes }}>
+                    {% render 'suppz-pdp-details', area: 'brand', product: product, section: section %}
                     <h1>{{ product.title | escape }}</h1>
                     <a href="{{ product.url }}" class="product__title">
                       <h2 class="h1">
@@ -106,6 +113,7 @@
                       </h2>
                     </a>
                   </div>
+                  {% render 'suppz-pdp-details', area: 'rating', product: product, section: section %}
                 {%- when 'price' -%}
                   <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                     {%- render 'price',
@@ -114,6 +122,7 @@
                       show_badges: true,
                       price_class: 'price--large'
                     -%}
+                    {% render 'suppz-pdp-details', area: 'points', product: product, section: section %}
                   </div>
                   {%- if product.quantity_price_breaks_configured? -%}
                     <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
@@ -141,6 +150,7 @@
                       {{ form | payment_terms }}
                     {%- endform -%}
                   </div>
+                  {% render 'suppz-pdp-details', area: 'benefits', product: product, section: section %}
                 {%- when 'inventory' -%}
                   <p
                     class="product__inventory{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.inventory_management != 'shopify' %} visibility-hidden{% endif %}"
@@ -193,6 +203,7 @@
                     {%- endif -%}
                   </p>
                 {%- when 'description' -%}
+                  {% if section.settings.pdp_reference_layout == false %}
                   {%- if product.description != blank -%}
                     <div class="product__accordion accordion product-details-dropdown quick-add-hidden" {{ block.shopify_attributes }}>
                       <details id="ProductDetails-{{ section.id }}-{{ block.id }}">
@@ -231,6 +242,7 @@
                       </details>
                     </div>
                   {%- endfor -%}
+                  {% endif %}
                 {%- when 'sku' -%}
                   <p
                     class="product__sku{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}"
@@ -525,13 +537,16 @@
                     product_form_id: product_form_id
                   %}
                 {%- when 'buy_buttons' -%}
+                  {% assign sn_reference = true %}{% if section.settings.pdp_reference_layout == false %}{% assign sn_reference = false %}{% endif %}
                   {%- render 'buy-buttons',
                     block: block,
                     product: product,
                     product_form_id: product_form_id,
                     section_id: section.id,
-                    show_pickup_availability: true
+                    show_pickup_availability: true,
+                    reference_layout: sn_reference
                   -%}
+                  {% render 'suppz-pdp-details', area: 'upsell', product: product, section: section %}
                 {%- when 'rating' -%}
                   {%- if product.metafields.reviews.rating.value != blank -%}
                     <div class="rating-wrapper">
@@ -728,9 +743,11 @@
               {{- 'icon-arrow.svg' | inline_asset_content -}}
             </a>
           </section>
+          {% render 'suppz-pdp-details', area: 'panels', product: product, section: section %}
         </div>
       </div>
 
+      {% render 'suppz-pdp-details', area: 'description', product: product, section: section %}
       {% render 'product-media-modal', variant_images: variant_images %}
 
       {% assign popups = section.blocks | where: 'type', 'popup' %}
@@ -792,6 +809,16 @@
   "tag": "section",
   "class": "section",
   "blocks": [
+    {
+      "type": "pdp_service",
+      "name": "Service reassurance",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "title", "label": "Heading", "default": "Secure checkout" },
+        { "type": "text", "id": "text", "label": "Details", "default": "Protected payment processing" },
+        { "type": "select", "id": "icon", "label": "Icon", "default": "shield", "options": [{"value":"shield","label":"Shield"},{"value":"truck","label":"Delivery"},{"value":"return","label":"Returns"},{"value":"check","label":"Check"}] }
+      ]
+    },
     {
       "type": "@app"
     },
@@ -2199,6 +2226,8 @@
     }
   ],
   "settings": [
+    { "type": "checkbox", "id": "pdp_reference_layout", "label": "Use reference product layout", "default": true },
+    { "type": "paragraph", "content": "Product-specific details use custom product metafields: product_benefits, brand_logo, upsell_product, delivery_note, standard_delivery, express_delivery, award_title and award_text. Empty details are hidden." },
     {
       "type": "checkbox",
       "id": "enable_sticky_info",
