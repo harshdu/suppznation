@@ -1222,17 +1222,21 @@ class ProductRecommendations extends HTMLElement {
         html.innerHTML = text;
         const recommendations = html.querySelector('product-recommendations');
 
-        if (recommendations?.innerHTML.trim().length) {
+        if (recommendations && (recommendations.innerHTML.trim().length || this.classList.contains('sn-related'))) {
+          // Quick Add dialogs move to body; remove the previous cards' dialogs before replacing them.
+          this.querySelectorAll('modal-opener[data-modal]').forEach((opener) => {
+            const modal = document.getElementById(opener.dataset.modal.slice(1));
+            if (modal?.matches('quick-add-modal')) modal.remove();
+          });
           this.innerHTML = recommendations.innerHTML;
+          this.dispatchEvent(new CustomEvent('product-recommendations:loaded', { bubbles: true }));
         }
 
         if (!this.querySelector('slideshow-component') && this.classList.contains('complementary-products')) {
           this.remove();
         }
 
-        if (html.querySelector('.grid__item')) {
-          this.classList.add('product-recommendations--loaded');
-        }
+        this.classList.toggle('product-recommendations--loaded', Boolean(this.querySelector('.grid__item, .sn-tabs__product')));
       })
       .catch((e) => {
         console.error(e);

@@ -63,6 +63,7 @@
   };
   mount();
   document.addEventListener('shopify:section:load', (event) => mount(event.target));
+  document.addEventListener('product-recommendations:loaded', (event) => mount(event.target));
   document.addEventListener('shopify:section:unload', (event) => {
     event.target.querySelectorAll('[data-sn-observed]').forEach((element) => observer?.unobserve(element));
     if (active && event.target.contains(active)) reset();

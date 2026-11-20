@@ -1,0 +1,32 @@
+{{ 'suppz-featured-deals.css' | asset_url | stylesheet_tag }}
+{{ 'suppz-tabbed-collection.css' | asset_url | stylesheet_tag }}
+{{ 'quick-add.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'suppz-featured-deals.js' | asset_url }}" defer></script>
+<script src="{{ 'product-form.js' | asset_url }}" defer></script>
+<script src="{{ 'quick-add.js' | asset_url }}" defer></script>
+<product-recommendations
+  class="sn-related"
+  data-url="{{ routes.product_recommendations_url }}?limit={{ section.settings.products_to_show }}"
+  data-section-id="{{ section.id }}"
+  data-product-id="{{ product.id }}"
+>
+  {% if recommendations.performed and recommendations.products_count > 0 %}
+    <section class="sn-tabs" style="--sn-tabs-accent:{{ section.settings.accent | default: '#ed142b' }};--sn-tabs-top:{{ section.settings.padding_top }}px;--sn-tabs-bottom:{{ section.settings.padding_bottom }}px;"{% if section.settings.heading != blank %} aria-labelledby="SNRelatedHeading-{{ section.id }}"{% else %} aria-label="Recommended products"{% endif %}>
+      {% if section.settings.heading != blank %}<h2 class="sn-tabs__heading" id="SNRelatedHeading-{{ section.id }}">{{ section.settings.heading }}</h2>{% endif %}
+      <suppz-deal-slider class="sn-deals sn-tabs__products" aria-label="Recommended products">
+        <div class="sn-deals__slider">
+          <div class="sn-deals__track" id="SNRelatedTrack-{{ section.id }}" tabindex="0" role="region" aria-label="Recommended products. Swipe, drag or use arrow keys to browse.">
+            <ul class="sn-deals__list" role="list">
+              {% for recommendation in recommendations.products limit: section.settings.products_to_show %}
+                {% render 'suppz-tabbed-product', product: recommendation, section: section, tab_id: 'related-products' %}
+              {% endfor %}
+            </ul>
+          </div>
+          <button class="sn-deals__arrow sn-deals__arrow--prev" type="button" data-prev aria-label="Previous recommended products" aria-controls="SNRelatedTrack-{{ section.id }}" disabled>{% render 'suppz-pdp-icon', icon: 'arrow' %}</button>
+          <button class="sn-deals__arrow sn-deals__arrow--next" type="button" data-next aria-label="Next recommended products" aria-controls="SNRelatedTrack-{{ section.id }}">{% render 'suppz-pdp-icon', icon: 'arrow' %}</button>
+        </div>
+      </suppz-deal-slider>
+    </section>
+  {% endif %}
+</product-recommendations>
+<style>.sn-related{display:block}.sn-related .sn-deals__arrow--prev svg{rotate:180deg}</style>

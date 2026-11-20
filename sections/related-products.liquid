@@ -1,3 +1,6 @@
+{% if section.settings.match_featured_style != false %}
+  {% render 'suppz-related-products', section: section, product: product, recommendations: recommendations %}
+{% else %}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'section-related-products.css' | asset_url | stylesheet_tag }}
@@ -58,6 +61,7 @@
     {{ 'mask-arch.svg' | inline_asset_content }}
   {%- endif -%}
 </div>
+{% endif %}
 
 {% schema %}
 {
@@ -65,6 +69,10 @@
   "tag": "section",
   "class": "section",
   "settings": [
+    { "type": "checkbox", "id": "match_featured_style", "label": "Match Featured collection design", "default": true },
+    { "type": "color", "id": "accent", "label": "Button color", "default": "#ed142b" },
+    { "type": "checkbox", "id": "show_compare_price", "label": "Show original price on sale products", "default": true },
+    { "type": "paragraph", "content": "Featured design uses the shared product cards, drag/swipe slider and Add to Cart / Quick Add. Column and image-shape settings apply to the classic grid when matching is switched off." },
     {
       "type": "paragraph",
       "content": "t:sections.related-products.settings.paragraph__1.content"
